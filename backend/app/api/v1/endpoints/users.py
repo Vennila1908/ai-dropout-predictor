@@ -60,10 +60,11 @@ def update_user(user_id: int, payload: UserUpdate, db: Session = Depends(get_db)
 
 
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_user(user_id: int, db: Session = Depends(get_db), me: User = Depends(require_admin)) -> None:
+def delete_user(user_id: int, db: Session = Depends(get_db), me: User = Depends(require_admin)):
     user = db.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     user.is_active = False
     db.commit()
     write_audit(db, user_id=me.id, action="user.deactivate", entity="user", entity_id=user.id, meta={})
+    return None

@@ -84,10 +84,11 @@ def update_student(student_id: int, payload: StudentUpdate, db: Session = Depend
 
 
 @router.delete("/{student_id}", status_code=status.HTTP_204_NO_CONTENT, dependencies=[Depends(require_admin_or_faculty)])
-def delete_student(student_id: int, db: Session = Depends(get_db), me: User = Depends(get_current_user)) -> None:
+def delete_student(student_id: int, db: Session = Depends(get_db), me: User = Depends(get_current_user)):
     if not student_service.delete_student(db, student_id):
         raise HTTPException(status_code=404, detail="Student not found")
     write_audit(db, user_id=me.id, action="student.delete", entity="student", entity_id=student_id, meta={})
+    return None
 
 
 @router.get("/{student_id}/timeline", response_model=StudentTimelineOut)
