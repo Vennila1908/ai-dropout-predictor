@@ -72,17 +72,22 @@ function Find-Python311Plus {
       continue
     }
 
+    # Check for known error patterns BEFORE the version regex so that messages
+    # like "Python 3.12 not found!" are not mistakenly matched as a valid version.
+    if ($isStoreStub) {
+      $attempts.Add(("{0,-10} : Windows Store alias stub (no real Python installed at {1})" -f $c.Invoke, $cmd.Source))
+      continue
+    }
+    if ($verOut -match 'No suitable Python runtime|Requested Python version|Can.t find a suitable Python|No Python at|not found') {
+      $attempts.Add(("{0,-10} : py launcher reports no matching Python installed" -f $c.Invoke))
+      continue
+    }
+
     $m = [regex]::Match($verOut, 'Python\s+(\d+)\.(\d+)(?:\.(\d+))?')
     if (-not $m.Success) {
-      if ($isStoreStub) {
-        $attempts.Add(("{0,-10} : Windows Store alias stub (no real Python installed at {1})" -f $c.Invoke, $cmd.Source))
-      } elseif ($verOut -match 'No suitable Python runtime|Requested Python version|Can.t find a suitable Python|No Python at') {
-        $attempts.Add(("{0,-10} : py launcher reports no matching Python installed" -f $c.Invoke))
-      } else {
-        $oneLine = (($verOut -split "`r?`n" | Where-Object { $_.Trim() } | Select-Object -First 1))
-        if ([string]::IsNullOrWhiteSpace($oneLine)) { $oneLine = '(no output)' }
-        $attempts.Add(("{0,-10} : unexpected --version output: {1}" -f $c.Invoke, $oneLine.Trim()))
-      }
+      $oneLine = (($verOut -split "`r?`n" | Where-Object { $_.Trim() } | Select-Object -First 1))
+      if ([string]::IsNullOrWhiteSpace($oneLine)) { $oneLine = '(no output)' }
+      $attempts.Add(("{0,-10} : unexpected --version output: {1}" -f $c.Invoke, $oneLine.Trim()))
       continue
     }
 
