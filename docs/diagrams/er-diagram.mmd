@@ -1,0 +1,118 @@
+erDiagram
+  users ||--o{ students : owns
+  users ||--o{ recommendations : creates
+  users ||--o{ counseling_sessions : conducts
+  users ||--o{ uploads : uploaded_by
+  users ||--o{ audit_logs : performs
+  users ||--o{ faculty_notes : authors
+
+  departments ||--o{ users : has
+  departments ||--o{ students : has
+
+  students ||--o{ predictions : has
+  students ||--o{ recommendations : receives
+  students ||--o{ counseling_sessions : attends
+  students ||--o{ risk_history : tracks
+  students ||--o{ faculty_notes : has
+
+  predictions ||--o{ recommendations : informs
+
+  users {
+    int id PK
+    string email UK
+    string hashed_password
+    string full_name
+    string role
+    int department_id FK
+    bool is_active
+    datetime created_at
+  }
+
+  departments {
+    int id PK
+    string name UK
+    string code
+  }
+
+  students {
+    int id PK
+    string roll_no UK
+    string name
+    int age
+    string gender
+    int department_id FK
+    int semester
+    float attendance_pct
+    float internal_marks
+    float semester_marks
+    int backlogs
+    bool fee_paid
+    int fee_delay_days
+    string financial_status
+    string placement_readiness
+  }
+
+  predictions {
+    int id PK
+    int student_id FK
+    string risk_level
+    float confidence
+    string model_version
+    json features_json
+    json explanation_json
+  }
+
+  recommendations {
+    int id PK
+    int student_id FK
+    int prediction_id FK
+    text summary
+    json plan_json
+    string source
+    string status
+    int created_by FK
+  }
+
+  uploads {
+    int id PK
+    string filename
+    string original_name
+    string file_type
+    int size_bytes
+    int rows_imported
+    string status
+    int uploaded_by FK
+  }
+
+  counseling_sessions {
+    int id PK
+    int student_id FK
+    int faculty_id FK
+    text notes
+    text outcome
+    date next_followup
+  }
+
+  audit_logs {
+    int id PK
+    int user_id FK
+    string action
+    string entity
+    int entity_id
+    json meta_json
+  }
+
+  risk_history {
+    int id PK
+    int student_id FK
+    string risk_level
+    float confidence
+    datetime snapshot_date
+  }
+
+  faculty_notes {
+    int id PK
+    int student_id FK
+    int faculty_id FK
+    text note
+  }

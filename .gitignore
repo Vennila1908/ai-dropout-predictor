@@ -1,0 +1,68 @@
+# ───────── Python / Backend ─────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.db
+.coverage
+.coverage.*
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+htmlcov/
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# ───────── ML artifacts ─────────
+ml/artifacts/*.joblib
+ml/artifacts/*.pkl
+ml/artifacts/model_meta.json
+backend/app/ml/artifacts/
+
+# ───────── Runtime data ─────────
+uploads/*
+!uploads/.gitkeep
+backend/uploads/*
+!backend/uploads/.gitkeep
+logs/
+*.log
+
+# ───────── Node / Frontend ─────────
+node_modules/
+.vite/
+.parcel-cache/
+.cache/
+dist/
+build/
+.next/
+.turbo/
+coverage/
+
+# ───────── Editor / OS ─────────
+.idea/
+.vscode/
+!.vscode/extensions.json
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ───────── Misc ─────────
+.netlify
+.vercel
+.tsbuildinfo
+*.tsbuildinfo
+
+# Run logs
+.run-logs/

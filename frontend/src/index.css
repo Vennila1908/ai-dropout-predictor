@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --surface: 0 0% 100%;
+    --surface-subtle: 220 14% 96%;
+    --surface-inset: 220 14% 92%;
+    --border: 220 13% 91%;
+    --ink: 222 47% 11%;
+    --ink-muted: 215 16% 47%;
+  }
+
+  .dark {
+    --surface: 222 47% 6%;
+    --surface-subtle: 222 30% 9%;
+    --surface-inset: 222 30% 12%;
+    --border: 222 25% 18%;
+    --ink: 210 20% 96%;
+    --ink-muted: 215 16% 65%;
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-surface text-ink;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  *, *::before, *::after {
+    border-color: hsl(var(--border));
+  }
+
+  ::selection {
+    @apply bg-primary-500/30;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border bg-surface shadow-card;
+  }
+  .card-hover {
+    @apply transition-shadow hover:shadow-card-hover;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium
+           transition-colors focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700;
+  }
+  .btn-secondary {
+    @apply btn border bg-surface-subtle text-ink hover:bg-surface-inset;
+  }
+  .btn-ghost {
+    @apply btn text-ink-muted hover:text-ink hover:bg-surface-subtle;
+  }
+  .btn-danger {
+    @apply btn bg-risk-high text-white hover:bg-red-600;
+  }
+
+  .input {
+    @apply w-full rounded-lg border bg-surface px-3 py-2 text-sm text-ink placeholder:text-ink-muted/70
+           shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500/40;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium;
+  }
+  .badge-low { @apply badge bg-risk-low/10 text-risk-low border-risk-low/30; }
+  .badge-medium { @apply badge bg-risk-medium/10 text-risk-medium border-risk-medium/30; }
+  .badge-high { @apply badge bg-risk-high/10 text-risk-high border-risk-high/30; }
+  .badge-neutral { @apply badge bg-surface-subtle text-ink-muted border; }
+
+  .ring-focus {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 8px; }
+}

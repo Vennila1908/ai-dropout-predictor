@@ -1,0 +1,25 @@
+sequenceDiagram
+  participant U as Faculty
+  participant FE as Frontend
+  participant API as Backend
+  participant ML as ML Service
+  participant XAI as Explainability
+  participant DB as Database
+
+  U->>FE: Click "Run prediction" on student
+  FE->>API: POST /api/v1/predictions/{student_id}
+  API->>DB: Load student
+  API->>ML: build_features(student)
+  ML->>ML: Lazy-load model.joblib (first time only)
+  ML-->>API: probabilities + argmax class
+  API->>XAI: explain(model, features, sample)
+  alt SHAP available
+    XAI-->>API: signed feature contributions
+  else SHAP missing
+    XAI-->>API: permutation-based contributions
+  end
+  API->>API: Compose narrative sentence
+  API->>DB: INSERT predictions, risk_history
+  API->>DB: INSERT audit_logs(action='prediction.create')
+  API-->>FE: 200 { risk_level, confidence, top_factors, narrative }
+  FE->>U: Render RiskMeter + ExplainabilityPanel

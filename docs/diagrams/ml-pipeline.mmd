@@ -1,0 +1,21 @@
+flowchart LR
+  RAW["CSV / Excel / PDF / DOCX"] --> PARSE["Parsers + Column Mapper"]
+  PARSE --> CLEAN["Validation + normalization"]
+  CLEAN --> DB[("students")]
+  DB --> FEAT["features.py"]
+  FEAT --> SPLIT["train/test split (stratified)"]
+  SPLIT --> M1["LogisticRegression"]
+  SPLIT --> M2["RandomForestClassifier"]
+  SPLIT --> M3["GradientBoostingClassifier"]
+  SPLIT --> M4["XGBClassifier (optional)"]
+  M1 --> EVAL["macro-F1 selection"]
+  M2 --> EVAL
+  M3 --> EVAL
+  M4 --> EVAL
+  EVAL --> ART[("model.joblib + model_meta.json")]
+  ART --> PRED["predict service"]
+  DB --> PRED
+  PRED --> XAI["SHAP / permutation fallback"]
+  XAI --> OUT["risk_level + confidence + top_factors"]
+  OUT --> REC["RecommendationService"]
+  OUT --> RISK[("risk_history")]

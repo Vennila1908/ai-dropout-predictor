@@ -1,0 +1,20 @@
+%% End-to-end workflow: upload → DB → ML → XAI → LLM → dashboard.
+flowchart TD
+  A["Faculty drops CSV / Excel / PDF / DOCX"] --> B["Parser detects type"]
+  B --> C["Column mapper<br/>(rapidfuzz fuzzy match)"]
+  C --> D{"User confirms<br/>mapping?"}
+  D -- No --> C
+  D -- Yes --> E["Validate + normalize rows"]
+  E --> F[("Insert into students")]
+  F --> G["Feature engineering<br/>(features.py)"]
+  G --> H["Trained ML model<br/>(joblib)"]
+  H --> I["Risk + confidence"]
+  I --> J["XAI: SHAP / fallback"]
+  J --> K[("predictions + risk_history")]
+  K --> L["Recommendation Service"]
+  L --> M{"Ollama reachable?"}
+  M -- Yes --> N["LLM (phi3) → JSON"]
+  M -- No --> O["Deterministic fallback"]
+  N --> P[("recommendations")]
+  O --> P
+  P --> Q["Dashboards<br/>+ counseling UI"]
