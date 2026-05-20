@@ -7,12 +7,13 @@ unit-test with overrides.
 
 from __future__ import annotations
 
+import json
 from functools import lru_cache
 from pathlib import Path
-from typing import List
+from typing import Annotated, List
 
 from pydantic import Field, field_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
@@ -45,7 +46,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./app.db"
 
     # ─── CORS ──────────────────────────────────────────────────────────────
-    cors_origins: List[str] = Field(
+    cors_origins: Annotated[List[str], NoDecode] = Field(
         default_factory=lambda: [
             "http://localhost:5173",
             "http://localhost:8080",
@@ -78,13 +79,23 @@ class Settings(BaseSettings):
     # ─── Validators ────────────────────────────────────────────────────────
     @field_validator("cors_origins", mode="before")
     @classmethod
-    def _split_cors(cls, value):
-        """Allow CORS_ORIGINS as a comma-separated string env var."""
-        if isinstance(value, str):
-            if value.strip() == "*":
+    def _split_cors_origins(cls, v):
+        """Accept JSON array, comma-separated string, single URL, or list."""
+        if v is None or v == "":
+            return []
+        if isinstance(v, list):
+            return v
+        if isinstance(v, str):
+            s = v.strip()
+            if s == "*":
                 return ["*"]
-            return [v.strip() for v in value.split(",") if v.strip()]
-        return value
+            if s.startswith("["):
+                try:
+                    return json.loads(s)
+                except json.JSONDecodeError:
+                    pass
+            return [item.strip() for item in s.split(",") if item.strip()]
+        return v
 
     @property
     def upload_path(self) -> Path:
