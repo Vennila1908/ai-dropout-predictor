@@ -38,7 +38,7 @@ export function Modal({ open, onClose, title, children, footer, widthClass = 'ma
             transition={{ duration: 0.15 }}
             className={`card relative z-10 w-full ${widthClass}`}
           >
-            {(title || onClose) && (
+            {(title || typeof onClose === 'function') && (
               <div className="flex items-center justify-between border-b px-5 py-3">
                 <h3 className="text-base font-semibold">{title}</h3>
                 <button onClick={onClose} className="btn-ghost p-1.5" aria-label="Close">

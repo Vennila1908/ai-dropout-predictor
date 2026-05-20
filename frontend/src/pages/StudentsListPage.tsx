@@ -65,26 +65,32 @@ export function StudentsListPage() {
         <div className="border-t px-5 py-3">
           {isLoading ? (
             <div className="space-y-2">
-              {Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} className="h-10" />)}
+              {Array.from({ length: 6 }).map((_, i) => (
+                <Skeleton key={i} className="h-10" />
+              ))}
             </div>
           ) : (
             <>
               <StudentTable rows={data?.items ?? []} onRowClick={(s) => navigate(`/students/${s.id}`)} />
               <div className="mt-3">
-                <Pagination
-                  page={page}
-                  pageSize={pageSize}
-                  total={data?.total ?? 0}
-                  onPageChange={goto}
-                />
+                <Pagination page={page} pageSize={pageSize} total={data?.total ?? 0} onPageChange={goto} />
               </div>
             </>
           )}
         </div>
       </Card>
 
-      <Modal open={createOpen} onClose={() => setCreateOpen(false)} title="New student" widthClass="max-w-3xl">
-        <StudentForm onSubmit={(v) => create.mutateAsync(v)} loading={create.isPending} submitLabel="Create" />
+      <Modal
+        open={createOpen}
+        onClose={() => setCreateOpen(false)}
+        title="New student"
+        widthClass="max-w-3xl"
+      >
+        <StudentForm
+          onSubmit={(v) => void create.mutateAsync(v)}
+          loading={create.isPending}
+          submitLabel="Create"
+        />
       </Modal>
     </div>
   );

@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Send } from 'lucide-react';
 import { ChatMessage } from './ChatMessage';
 import { Button } from '@/components/ui/Button';
-import { chatApi } from '@/features/chat/chatApi';
+import { chatApi, type ChatArtifacts } from '@/features/chat/chatApi';
 import { QUICK_PROMPTS } from '@/lib/constants';
 
 interface Msg {
@@ -11,6 +11,7 @@ interface Msg {
   role: 'user' | 'assistant';
   content: string;
   source?: 'llm' | 'fallback';
+  artifacts?: ChatArtifacts;
 }
 
 export function ChatPanel() {
@@ -35,7 +36,7 @@ export function ChatPanel() {
       setMessages((prev) => [
         ...prev,
         { id: `u-${Date.now()}`, role: 'user', content: message },
-        { id: `a-${Date.now()}`, role: 'assistant', content: res.answer, source: res.source },
+        { id: `a-${Date.now()}`, role: 'assistant', content: res.answer, source: res.source, artifacts: res.artifacts },
       ]);
       setInput('');
     },
@@ -59,7 +60,7 @@ export function ChatPanel() {
     <div className="flex h-full flex-col rounded-xl border bg-surface">
       <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto p-4 scrollbar-thin">
         {messages.map((m) => (
-          <ChatMessage key={m.id} role={m.role} content={m.content} source={m.source} />
+          <ChatMessage key={m.id} role={m.role} content={m.content} source={m.source} artifacts={m.artifacts} />
         ))}
         {send.isPending && (
           <ChatMessage role="assistant" content="…" />

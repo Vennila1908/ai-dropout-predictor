@@ -5,10 +5,12 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app import __version__
@@ -58,8 +60,23 @@ def create_app() -> FastAPI:
     # ─── Rate limiting ─────────────────────────────────────────────────
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+    app.add_middleware(SlowAPIMiddleware)
 
     # ─── Uniform error envelope ────────────────────────────────────────
+    @app.exception_handler(RequestValidationError)
+    async def validation_exc_handler(request: Request, exc: RequestValidationError):
+        parts: list[str] = []
+        for err in exc.errors():
+            loc = [str(part) for part in err.get("loc", []) if part not in {"body", "query"}]
+            prefix = ".".join(loc)
+            msg = str(err.get("msg", "Invalid value"))
+            parts.append(f"{prefix}: {msg}" if prefix else msg)
+        message = "; ".join(parts) if parts else "Validation failed"
+        return JSONResponse(
+            status_code=422,
+            content={"error": {"code": "422", "message": message}, "detail": exc.errors()},
+        )
+
     @app.exception_handler(StarletteHTTPException)
     async def http_exc_handler(request: Request, exc: StarletteHTTPException):
         return JSONResponse(

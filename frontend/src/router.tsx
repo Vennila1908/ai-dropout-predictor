@@ -17,6 +17,7 @@ import { CounselingPage } from '@/pages/CounselingPage';
 import { AnalyticsPage } from '@/pages/AnalyticsPage';
 import { ChatPage } from '@/pages/ChatPage';
 import { SettingsPage } from '@/pages/SettingsPage';
+import { UsersPage } from '@/pages/UsersPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 
 function PageTransition({ children }: { children: React.ReactNode }) {
@@ -67,6 +68,14 @@ export function AppRouter() {
                       element={
                         <RoleGate allow={['admin', 'faculty']}>
                           <StudentDetailPage />
+                        </RoleGate>
+                      }
+                    />
+                    <Route
+                      path="/users"
+                      element={
+                        <RoleGate allow={['admin']}>
+                          <UsersPage />
                         </RoleGate>
                       }
                     />

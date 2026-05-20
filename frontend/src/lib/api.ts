@@ -71,13 +71,40 @@ export interface ApiError {
   details?: unknown;
 }
 
+function messageFromDetail(detail: unknown): string | undefined {
+  if (typeof detail === 'string') return detail;
+  if (!Array.isArray(detail)) return undefined;
+
+  const parts = detail
+    .map((item) => {
+      if (typeof item === 'string') return item;
+      if (!item || typeof item !== 'object' || !('msg' in item)) return null;
+      const msg = String((item as { msg: unknown }).msg);
+      const loc = 'loc' in item && Array.isArray((item as { loc: unknown }).loc)
+        ? (item as { loc: unknown[] }).loc.filter((part) => part !== 'body').join('.')
+        : '';
+      return loc ? `${loc}: ${msg}` : msg;
+    })
+    .filter((part): part is string => Boolean(part));
+
+  return parts.length ? parts.join('; ') : undefined;
+}
+
 export function formatError(err: unknown): ApiError {
   if (axios.isAxiosError(err)) {
-    const data = err.response?.data as { error?: { code?: string; message?: string }; detail?: string } | undefined;
+    const data = err.response?.data as
+      | { error?: { code?: string; message?: string }; detail?: unknown }
+      | undefined;
+    const detailMessage = messageFromDetail(data?.detail);
     return {
       status: err.response?.status ?? 0,
       code: data?.error?.code ?? String(err.response?.status ?? 'NETWORK'),
-      message: data?.error?.message ?? data?.detail ?? err.message ?? 'Request failed',
+      message:
+        data?.error?.message ??
+        detailMessage ??
+        (typeof data?.detail === 'string' ? data.detail : undefined) ??
+        err.message ??
+        'Request failed',
       details: err.response?.data,
     };
   }

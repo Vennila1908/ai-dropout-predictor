@@ -11,10 +11,11 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   error?: string;
   options: Option[];
   placeholder?: string;
+  hint?: string;
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select(
-  { label, error, options, placeholder, className, id, ...rest },
+  { label, error, options, placeholder, hint, className, id, ...rest },
   ref,
 ) {
   const sid = id ?? rest.name;
@@ -42,6 +43,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
           </option>
         ))}
       </select>
+      {hint && !error && <p className="text-xs text-ink-muted">{hint}</p>}
       {error && <p className="text-xs text-risk-high">{error}</p>}
     </div>
   );

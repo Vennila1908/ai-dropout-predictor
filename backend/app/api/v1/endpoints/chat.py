@@ -4,14 +4,12 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Body, Depends, Request
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
-from app.core.config import settings
 from app.core.deps import get_current_user, get_db
-from app.core.rate_limit import limiter
 from app.models.user import User
 from app.services import chat_service
 
@@ -28,13 +26,13 @@ class ChatQueryIn(BaseModel):
 class ChatQueryOut(BaseModel):
     answer: str
     source: str
+    artifacts: dict[str, Any] = Field(default_factory=dict)
 
 
 @router.post("/query", response_model=ChatQueryOut)
-@limiter.limit(settings.rate_limit_chat)
 async def query(
-    payload: ChatQueryIn,
     request: Request,
+    payload: ChatQueryIn = Body(...),
     db: Session = Depends(get_db),
     _: User = Depends(get_current_user),
 ) -> ChatQueryOut | StreamingResponse:

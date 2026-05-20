@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Request, status
 from sqlalchemy.orm import Session
 
-from app.core.config import settings
 from app.core.deps import get_current_user, get_db
-from app.core.rate_limit import limiter
 from app.core.security import create_token, decode_token
 from app.models.user import User
 from app.repositories.user_repo import user_repo
@@ -20,7 +18,7 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 
 @router.post("/register", response_model=UserOut, status_code=status.HTTP_201_CREATED)
-def register(payload: RegisterIn, request: Request, db: Session = Depends(get_db)) -> UserOut:
+def register(request: Request, payload: RegisterIn = Body(...), db: Session = Depends(get_db)) -> UserOut:
     """Register a user.
 
     * If the users table is empty → bootstrap allowed without auth (first admin).
@@ -47,8 +45,7 @@ def register(payload: RegisterIn, request: Request, db: Session = Depends(get_db
 
 
 @router.post("/login", response_model=TokenPair)
-@limiter.limit(settings.rate_limit_login)
-def login(payload: LoginIn, request: Request, db: Session = Depends(get_db)) -> TokenPair:
+def login(request: Request, payload: LoginIn = Body(...), db: Session = Depends(get_db)) -> TokenPair:
     user = authenticate(db, email=payload.email, password=payload.password)
     if not user:
         write_audit(db, user_id=None, action="auth.login.failed", entity="user", meta={"email": payload.email})

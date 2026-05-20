@@ -10,6 +10,7 @@ import {
   Settings,
   X,
   GraduationCap,
+  UserCog,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUiStore } from '@/store/uiStore';
@@ -18,6 +19,7 @@ import { useAuth } from '@/hooks/useAuth';
 const NAV = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, roles: ['admin', 'faculty', 'student'] },
   { to: '/students', label: 'Students', icon: Users, roles: ['admin', 'faculty'] },
+  { to: '/users', label: 'User accounts', icon: UserCog, roles: ['admin'] },
   { to: '/uploads', label: 'Uploads', icon: UploadCloud, roles: ['admin', 'faculty'] },
   { to: '/predictions', label: 'Predictions', icon: Brain, roles: ['admin', 'faculty'] },
   { to: '/counseling', label: 'Counseling', icon: ClipboardList, roles: ['admin', 'faculty'] },

@@ -78,7 +78,10 @@ export function StudentDetailPage() {
   if (!student) {
     return (
       <div className="text-sm">
-        Student not found. <button className="text-primary-600 hover:underline" onClick={() => navigate(-1)}>Go back</button>
+        Student not found.{' '}
+        <button className="text-primary-600 hover:underline" onClick={() => navigate(-1)}>
+          Go back
+        </button>
       </div>
     );
   }
@@ -90,13 +93,21 @@ export function StudentDetailPage() {
           <ArrowLeft className="h-4 w-4" /> Back
         </button>
         <div className="flex flex-wrap gap-2">
-          <Button icon={<Play className="h-4 w-4" />} loading={runPredict.isPending} onClick={() => runPredict.mutate()}>
+          <Button
+            icon={<Play className="h-4 w-4" />}
+            loading={runPredict.isPending}
+            onClick={() => runPredict.mutate()}
+          >
             Run prediction
           </Button>
           <Button variant="secondary" icon={<Edit3 className="h-4 w-4" />} onClick={() => setEditing(true)}>
             Edit
           </Button>
-          <Button variant="danger" icon={<Trash2 className="h-4 w-4" />} onClick={() => setConfirmDelete(true)}>
+          <Button
+            variant="danger"
+            icon={<Trash2 className="h-4 w-4" />}
+            onClick={() => setConfirmDelete(true)}
+          >
             Delete
           </Button>
         </div>
@@ -110,7 +121,9 @@ export function StudentDetailPage() {
               <span className="font-mono text-xs text-ink-muted">{student.roll_no}</span>
               <Badge>Sem {student.semester}</Badge>
               {student.department_code && <Badge>{student.department_code}</Badge>}
-              {student.latest_risk && <span className={riskClass(student.latest_risk)}>{student.latest_risk} risk</span>}
+              {student.latest_risk && (
+                <span className={riskClass(student.latest_risk)}>{student.latest_risk} risk</span>
+              )}
             </div>
           }
           subtitle={`Last updated ${formatDate(student.updated_at)}`}
@@ -155,8 +168,12 @@ export function StudentDetailPage() {
                     <span className="font-medium">{e.title}</span>
                     <span className="text-xs text-ink-muted">{formatDate(e.timestamp)}</span>
                   </div>
-                  {e.detail?.narrative && <p className="mt-1 text-sm text-ink-muted">{String(e.detail.narrative)}</p>}
-                  {e.detail?.notes && <p className="mt-1 text-sm">{String(e.detail.notes)}</p>}
+                  {e?.detail?.narrative && typeof e.detail.narrative === 'string' ? (
+                    <p className="mt-1 text-sm text-ink-muted">{String(e.detail.narrative)}</p>
+                  ) : null}
+                  {e?.detail?.notes && typeof e.detail.notes === 'string' ? (
+                    <p className="mt-1 text-sm">{String(e.detail.notes)}</p>
+                  ) : null}
                 </li>
               ))}
             </ol>
@@ -167,7 +184,7 @@ export function StudentDetailPage() {
       <Modal open={editing} onClose={() => setEditing(false)} title="Edit student" widthClass="max-w-3xl">
         <StudentForm
           initial={student}
-          onSubmit={(v) => update.mutateAsync(v)}
+          onSubmit={(v) => void update.mutateAsync(v)}
           loading={update.isPending}
           submitLabel="Save changes"
         />

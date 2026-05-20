@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { authApi } from '@/features/auth/authApi';
 import { useAuth } from '@/hooks/useAuth';
+import type { ApiError } from '@/lib/api';
 
 const schema = z.object({
   email: z.string().email(),
@@ -39,7 +40,7 @@ export function LoginPage() {
       const dest = (location.state?.from?.pathname as string) ?? '/';
       navigate(dest, { replace: true });
     },
-    onError: (err: { message?: string }) => toast.error(err.message ?? 'Login failed'),
+    onError: (err: ApiError) => toast.error(err.message || 'Login failed'),
   });
 
   if (isHydrated && isAuthenticated) return <Navigate to="/" replace />;
@@ -87,8 +88,8 @@ export function LoginPage() {
             {...register('password')}
             placeholder="••••••••"
           />
-          <Button type="submit" className="w-full" loading={login.isPending}>
-            Sign in
+          <Button type="submit" className="w-full" loading={login.isPending} disabled={login.isPending}>
+            {login.isPending ? 'Signing in…' : 'Sign in'}
           </Button>
         </form>
 

@@ -173,7 +173,7 @@ if (-not $ollama) {
   if (-not (Test-OllamaUp)) {
     Write-Info "Ollama server not responding - starting 'ollama serve' in the background..."
     try {
-      Start-Process -FilePath "ollama" -ArgumentList "serve" -WindowStyle Hidden | Out-Null
+      Start-Process -FilePath "ollama" -ArgumentList "serve" -WindowStyle Minimized | Out-Null
     } catch {
       Write-Warn2 "Could not start 'ollama serve': $($_.Exception.Message)"
     }
@@ -221,18 +221,25 @@ if (-not $ollama) {
 # 5. Launch backend + frontend in their own windows.
 Write-Section "[5/6] Launching backend + frontend"
 
-# Backend command: cd into backend, run uvicorn from the venv (mirrors start_backend.ps1).
-$backendCmd = "Set-Location -LiteralPath '$backendDir'; & '$venvPython' -m uvicorn app.main:app --host 0.0.0.0 --port $BackendPort --reload"
-
-# Frontend command (mirrors start_frontend.ps1). Backticks escape the inner $env reference.
-$frontendCmd = "Set-Location -LiteralPath '$frontendDir'; if (-not `$env:VITE_API_BASE_URL) { `$env:VITE_API_BASE_URL = 'http://localhost:$BackendPort' }; npm run dev -- --port $FrontendPort --host"
+$startBackend  = Join-Path $PSScriptRoot "start_backend.ps1"
+$startFrontend = Join-Path $PSScriptRoot "start_frontend.ps1"
+$apiBaseUrl    = "http://localhost:$BackendPort"
 
 Write-Info "Spawning backend window (uvicorn :$BackendPort)..."
-Start-Process -FilePath "powershell.exe" -ArgumentList @("-NoExit", "-NoProfile", "-Command", $backendCmd) | Out-Null
+Start-Process -FilePath "powershell.exe" -ArgumentList @(
+  "-NoExit", "-NoProfile", "-ExecutionPolicy", "Bypass",
+  "-File", $startBackend,
+  "-Port", $BackendPort
+) | Out-Null
 Write-Ok "Backend window launched"
 
 Write-Info "Spawning frontend window (vite :$FrontendPort)..."
-Start-Process -FilePath "powershell.exe" -ArgumentList @("-NoExit", "-NoProfile", "-Command", $frontendCmd) | Out-Null
+Start-Process -FilePath "powershell.exe" -ArgumentList @(
+  "-NoExit", "-NoProfile", "-ExecutionPolicy", "Bypass",
+  "-File", $startFrontend,
+  "-Port", $FrontendPort,
+  "-ApiBaseUrl", $apiBaseUrl
+) | Out-Null
 Write-Ok "Frontend window launched"
 
 # 6. Wait for backend health, then open browser.
