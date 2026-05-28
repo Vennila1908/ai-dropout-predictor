@@ -964,10 +964,10 @@ def _tech_notes(n: int) -> list[str]:
 
 
 def _case_study_blocks(n: int) -> list[str]:
-    depts = ["Computer Science", "Mechanical Engineering", "Civil Engineering", "Electronics", "MBA"]
+    depts = ["B.Sc. Computer Science", "B.Sc. Mathematics", "B.Sc. Chemistry", "B.Sc. Physics", "BBA"]
     dept = depts[n % len(depts)]
     return [
-        f"Scenario {n}: The {dept} department at a mid-size engineering college with 180–320 students per cohort "
+        f"Scenario {n}: The {dept} degree program at a mid-size college with 180–320 students per cohort "
         f"adopts the AI Dropout Predictor at the start of semester {((n % 6) + 3)}. The HOD exports attendance and "
         "marks from the legacy ERP into Excel. Column headers vary between sheets — 'Reg No', 'Attend', 'IA Marks' — "
         "but the upload wizard's rapidfuzz mapper resolves them to roll_no, attendance_pct, and internal_marks with "

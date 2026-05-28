@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -13,6 +13,7 @@ import { StudentFilters, type StudentFiltersValue } from '@/components/students/
 import { StudentForm } from '@/components/students/StudentForm';
 import { StudentTable } from '@/components/students/StudentTable';
 import { studentsApi } from '@/features/students/studentsApi';
+import { useDepartments } from '@/hooks/useDepartments';
 import { usePagination } from '@/hooks/usePagination';
 
 export function StudentsListPage() {
@@ -23,6 +24,16 @@ export function StudentsListPage() {
   const { page, pageSize, goto } = usePagination({ pageSize: 20 });
   const [createOpen, setCreateOpen] = useState(false);
   const qc = useQueryClient();
+  const { data: departments } = useDepartments();
+
+  const courseOptions = useMemo(
+    () =>
+      (departments ?? []).map((d) => ({
+        value: d.id,
+        label: `${d.code} — ${d.name}`,
+      })),
+    [departments],
+  );
 
   const { data, isLoading } = useQuery({
     queryKey: ['students', filters, page, pageSize],
@@ -87,6 +98,7 @@ export function StudentsListPage() {
         widthClass="max-w-3xl"
       >
         <StudentForm
+          courseOptions={courseOptions}
           onSubmit={(v) => void create.mutateAsync(v)}
           loading={create.isPending}
           submitLabel="Create"

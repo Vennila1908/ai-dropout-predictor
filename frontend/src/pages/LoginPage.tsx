@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useMutation } from '@tanstack/react-query';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { GraduationCap, Lock, Mail, Sparkles } from 'lucide-react';
-import toast from 'react-hot-toast';
+import { AlertCircle, GraduationCap, Lock, Mail, Sparkles } from 'lucide-react';
 
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -19,6 +18,16 @@ const schema = z.object({
 });
 type FormValues = z.infer<typeof schema>;
 
+function loginErrorMessage(err: ApiError): string {
+  if (err.status === 429) {
+    return 'Too many attempts. Please try again later.';
+  }
+  if (err.status === 401) {
+    return 'Invalid email or password.';
+  }
+  return 'Unable to sign in. Please try again.';
+}
+
 export function LoginPage() {
   const { isAuthenticated, isHydrated, setAuth } = useAuth();
   const navigate = useNavigate();
@@ -28,6 +37,8 @@ export function LoginPage() {
     document.title = 'Sign in · AI Dropout Predictor';
   }, []);
 
+  const [formError, setFormError] = useState<string | null>(null);
+
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { email: '', password: '' },
@@ -36,11 +47,12 @@ export function LoginPage() {
   const login = useMutation({
     mutationFn: (data: FormValues) => authApi.login(data),
     onSuccess: (res) => {
+      setFormError(null);
       setAuth({ access_token: res.access_token, refresh_token: res.refresh_token, token_type: res.token_type }, res.user);
       const dest = (location.state?.from?.pathname as string) ?? '/';
       navigate(dest, { replace: true });
     },
-    onError: (err: ApiError) => toast.error(err.message || 'Login failed'),
+    onError: (err: ApiError) => setFormError(loginErrorMessage(err)),
   });
 
   if (isHydrated && isAuthenticated) return <Navigate to="/" replace />;
@@ -71,21 +83,37 @@ export function LoginPage() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit((v) => login.mutate(v))} className="space-y-4">
+        <form
+          onSubmit={handleSubmit((v) => {
+            setFormError(null);
+            login.mutate(v);
+          })}
+          className="space-y-4"
+        >
+          {formError && (
+            <div
+              role="alert"
+              className="flex items-start gap-2 rounded-lg border border-risk-high/30 bg-risk-high/10 px-3 py-2.5 text-sm text-risk-high"
+            >
+              <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
+              <p>{formError}</p>
+            </div>
+          )}
           <Input
             label="Email"
             type="email"
             autoComplete="username"
             error={errors.email?.message}
-            {...register('email')}
+            {...register('email', { onChange: () => setFormError(null) })}
             placeholder="you@college.edu"
           />
           <Input
             label="Password"
             type="password"
             autoComplete="current-password"
+            passwordToggle
             error={errors.password?.message}
-            {...register('password')}
+            {...register('password', { onChange: () => setFormError(null) })}
             placeholder="••••••••"
           />
           <Button type="submit" className="w-full" loading={login.isPending} disabled={login.isPending}>

@@ -15,6 +15,7 @@ from sqlalchemy.orm import Session
 from app.core.config import settings
 from app.core.logging import get_logger
 from app.core.security import hash_password
+from app.schemas.validators import normalize_roll_no
 from app.models.department import Department
 from app.models.student import FinancialStatus, PlacementReadiness, Student
 from app.models.user import User, UserRole
@@ -22,15 +23,74 @@ from app.models.user import User, UserRole
 
 logger = get_logger(__name__)
 
+_STUDENT_EMAIL_DOMAIN = "student.edu"
+
 
 _DEFAULT_DEPARTMENTS = [
-    ("Computer Science", "CSE"),
-    ("Information Technology", "IT"),
-    ("Electronics", "ECE"),
-    ("Mechanical", "MECH"),
-    ("Civil", "CIVIL"),
-    ("Business Administration", "MBA"),
+    ("B.Sc. Computer Science", "BSCS"),
+    ("Bachelor of Computer Applications", "BCA"),
+    ("B.Sc. Physics", "BSCP"),
+    ("B.Sc. Mathematics", "BSCM"),
+    ("B.Sc. Chemistry", "BSCC"),
+    ("Bachelor of Business Administration", "BBA"),
+    ("B.Com", "BCOM"),
+    ("M.Com", "MCOM"),
+    ("B.Com (Honours)", "BCOMH"),
+    ("B.Com (Computer Applications)", "BCOMCA"),
 ]
+
+
+# Old engineering-style codes → new degree program codes (one-time migration on startup).
+_LEGACY_DEPT_CODE_MAP: dict[str, str] = {
+    "CSE": "BSCS",
+    "IT": "BCA",
+    "ECE": "BSCP",
+    "MECH": "BSCM",
+    "CIVIL": "BSCC",
+    "MBA": "BBA",
+}
+
+
+def _migrate_legacy_department_codes(db: Session, departments: dict[str, Department]) -> None:
+    """Re-point students/users from legacy dept rows to the new degree program codes."""
+    by_code = {d.code: d for d in db.execute(select(Department)).scalars().all()}
+    migrated_students = 0
+    for old_code, new_code in _LEGACY_DEPT_CODE_MAP.items():
+        old_dept = by_code.get(old_code)
+        new_dept = departments.get(new_code) or by_code.get(new_code)
+        if not old_dept or not new_dept or old_dept.id == new_dept.id:
+            continue
+        for student in db.execute(select(Student).where(Student.department_id == old_dept.id)).scalars():
+            student.department_id = new_dept.id
+            migrated_students += 1
+        for user in db.execute(select(User).where(User.department_id == old_dept.id)).scalars():
+            user.department_id = new_dept.id
+        # Align roll_no prefixes (e.g. CSE040002 → BSCS040002).
+        for student in db.execute(select(Student).where(Student.roll_no.like(f"{old_code}%"))).scalars():
+            student.roll_no = new_code + student.roll_no[len(old_code) :]
+            if student.department_id != new_dept.id:
+                student.department_id = new_dept.id
+    if migrated_students:
+        db.commit()
+        logger.info("Migrated %d students from legacy engineering dept codes to degree programs", migrated_students)
+
+    # Drop empty legacy department rows so the UI only lists degree programs.
+    by_code = {d.code: d for d in db.execute(select(Department)).scalars().all()}
+    retired = 0
+    for old_code in _LEGACY_DEPT_CODE_MAP:
+        old_dept = by_code.get(old_code)
+        if not old_dept:
+            continue
+        has_students = db.execute(
+            select(Student.id).where(Student.department_id == old_dept.id).limit(1)
+        ).first()
+        has_users = db.execute(select(User.id).where(User.department_id == old_dept.id).limit(1)).first()
+        if not has_students and not has_users:
+            db.delete(old_dept)
+            retired += 1
+    if retired:
+        db.commit()
+        logger.info("Retired %d legacy engineering department rows", retired)
 
 
 def seed_departments(db: Session) -> dict[str, Department]:
@@ -40,6 +100,8 @@ def seed_departments(db: Session) -> dict[str, Department]:
             dept = Department(name=name, code=code)
             db.add(dept)
             existing[code] = dept
+        elif existing[code].name != name:
+            existing[code].name = name
     db.commit()
     logger.info("Seeded %d departments", len(existing))
     return existing
@@ -48,7 +110,7 @@ def seed_departments(db: Session) -> dict[str, Department]:
 def seed_users(db: Session, departments: dict[str, Department]) -> None:
     if db.execute(select(User).limit(1)).first():
         return  # already seeded
-    cse = departments.get("CSE")
+    bscs = departments.get("BSCS")
     users = [
         User(
             email=settings.seed_admin_email,
@@ -60,10 +122,10 @@ def seed_users(db: Session, departments: dict[str, Department]) -> None:
         ),
         User(
             email="faculty@example.com",
-            full_name="Dr. Jane Faculty",
+            full_name="Jane Faculty",
             hashed_password=hash_password("Faculty@123"),
             role=UserRole.faculty,
-            department_id=cse.id if cse else None,
+            department_id=bscs.id if bscs else None,
             is_active=True,
         ),
         User(
@@ -71,7 +133,7 @@ def seed_users(db: Session, departments: dict[str, Department]) -> None:
             full_name="Alex Student",
             hashed_password=hash_password("Student@123"),
             role=UserRole.student,
-            department_id=cse.id if cse else None,
+            department_id=bscs.id if bscs else None,
             is_active=True,
         ),
     ]
@@ -91,13 +153,13 @@ def seed_sample_students(db: Session, departments: dict[str, Department]) -> Non
 
     inserted = 0
     code_to_id = {code: dept.id for code, dept in departments.items()}
-    default_dept_id = code_to_id.get("CSE") or next(iter(code_to_id.values()), None)
+    default_dept_id = code_to_id.get("BSCS") or next(iter(code_to_id.values()), None)
 
     with csv_path.open("r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             try:
-                dept_id = code_to_id.get(row.get("department_code", "CSE")) or default_dept_id
+                dept_id = code_to_id.get(row.get("department_code", "BSCS")) or default_dept_id
                 student = Student(
                     roll_no=row["roll_no"].strip(),
                     name=row["name"].strip(),
@@ -129,8 +191,171 @@ def seed_sample_students(db: Session, departments: dict[str, Department]) -> Non
     logger.info("Seeded %d sample students from %s", inserted, csv_path)
 
 
+def _department_codes(departments: dict[str, Department]) -> list[str]:
+    """Degree codes in canonical seed order (longest codes first for prefix matching)."""
+    ordered = [code for _, code in _DEFAULT_DEPARTMENTS if code in departments]
+    extra = sorted(c for c in departments if c not in ordered)
+    codes = ordered + extra
+    return sorted(codes, key=len, reverse=True)
+
+
+def _realign_roll_no_prefix(roll_no: str, new_code: str, dept_codes: list[str]) -> str:
+    """Replace a leading department code on roll_no (e.g. BSCS040002 → BCOM040002)."""
+    upper = roll_no.upper()
+    for code in dept_codes:
+        if upper.startswith(code):
+            return new_code + roll_no[len(code) :]
+    return roll_no
+
+
+def _student_login_email(roll_no: str, suffix: int | None = None) -> str:
+    local = roll_no.strip().lower().replace(" ", "")
+    if suffix and suffix > 1:
+        local = f"{local}.{suffix}"
+    return f"{local}@{_STUDENT_EMAIL_DOMAIN}"
+
+
+def _migrate_student_local_emails(db: Session) -> None:
+    """One-time fix: replace legacy @student.local demo emails with @student.edu."""
+    users = list(db.execute(select(User).where(User.email.ilike("%@student.local"))).scalars().all())
+    if not users:
+        return
+    for user in users:
+        user.email = user.email.replace("@student.local", f"@{_STUDENT_EMAIL_DOMAIN}")
+    db.commit()
+    logger.info("Migrated %d legacy @student.local emails to @%s", len(users), _STUDENT_EMAIL_DOMAIN)
+
+
+def _department_without_students(db: Session, department_ids: list[int]) -> bool:
+    for dept_id in department_ids:
+        if not db.execute(
+            select(Student.id).where(Student.department_id == dept_id).limit(1)
+        ).first():
+            return True
+    return False
+
+
+def redistribute_students_across_departments(db: Session, departments: dict[str, Department]) -> None:
+    """Round-robin students across every department when some have none."""
+    dept_list = [departments[code] for _, code in _DEFAULT_DEPARTMENTS if code in departments]
+    if not dept_list:
+        return
+    dept_ids = [d.id for d in dept_list]
+    if not _department_without_students(db, dept_ids):
+        return
+
+    students = list(db.execute(select(Student).order_by(Student.id)).scalars().all())
+    if not students:
+        return
+
+    codes = _department_codes(departments)
+    used_rolls = {s.roll_no for s in students}
+    reassigned = 0
+
+    for index, student in enumerate(students):
+        target = dept_list[index % len(dept_list)]
+        if student.department_id == target.id:
+            continue
+        student.department_id = target.id
+        reassigned += 1
+        new_roll = _realign_roll_no_prefix(student.roll_no, target.code, codes)
+        if new_roll != student.roll_no and new_roll not in used_rolls:
+            used_rolls.remove(student.roll_no)
+            used_rolls.add(new_roll)
+            student.roll_no = new_roll
+
+    db.commit()
+    logger.info(
+        "Redistributed %d students across %d departments (round-robin)",
+        reassigned,
+        len(dept_list),
+    )
+
+
+def seed_student_login_accounts(db: Session) -> None:
+    """Create a student-role login for every student record missing an account."""
+    students = list(db.execute(select(Student).order_by(Student.id)).scalars().all())
+    if not students:
+        return
+
+    existing_rolls = {
+        roll_no
+        for roll_no in db.execute(
+            select(User.roll_no).where(User.roll_no.isnot(None), User.role == UserRole.student)
+        ).scalars()
+    }
+    existing_emails = {email.lower() for email in db.execute(select(User.email)).scalars()}
+    default_password = hash_password(settings.seed_student_password)
+    created = 0
+
+    for student in students:
+        if student.roll_no in existing_rolls:
+            continue
+        email = _student_login_email(student.roll_no)
+        if email.lower() in existing_emails:
+            suffix = 2
+            while _student_login_email(student.roll_no, suffix).lower() in existing_emails:
+                suffix += 1
+            email = _student_login_email(student.roll_no, suffix)
+
+        user = User(
+            email=email,
+            full_name=student.name,
+            hashed_password=default_password,
+            role=UserRole.student,
+            roll_no=student.roll_no,
+            department_id=student.department_id,
+            is_active=True,
+        )
+        db.add(user)
+        existing_rolls.add(student.roll_no)
+        existing_emails.add(email.lower())
+        created += 1
+
+    if created:
+        db.commit()
+        logger.info("Created %d student login accounts (password: seed default)", created)
+
+
+def _sanitize_roll_numbers(db: Session) -> None:
+    """Normalize legacy roll numbers (e.g. DEMO-LOW-01) to alphanumeric-only form."""
+    used_rolls = {roll for roll in db.execute(select(Student.roll_no)).scalars()}
+    updated = 0
+
+    for student in db.execute(select(Student)).scalars():
+        normalized = normalize_roll_no(student.roll_no)
+        if not normalized or normalized == student.roll_no:
+            continue
+        if normalized in used_rolls and normalized != student.roll_no:
+            logger.warning("Skipping roll_no migration collision for student id=%s", student.id)
+            continue
+        used_rolls.discard(student.roll_no)
+        used_rolls.add(normalized)
+        student.roll_no = normalized
+        updated += 1
+
+    for user in db.execute(select(User).where(User.roll_no.isnot(None))).scalars():
+        if not user.roll_no:
+            continue
+        normalized = normalize_roll_no(user.roll_no)
+        if normalized and normalized != user.roll_no:
+            user.roll_no = normalized
+
+    if updated:
+        db.commit()
+        logger.info("Normalized %d student roll numbers to alphanumeric-only format", updated)
+
+
 def seed_all(db: Session) -> None:
     """Run every seed step. Safe to call repeatedly — each step is idempotent."""
     departments = seed_departments(db)
+    _migrate_legacy_department_codes(db, departments)
     seed_users(db, departments)
     seed_sample_students(db, departments)
+    from app.db.seed_risk_demos import seed_risk_demo_students
+
+    seed_risk_demo_students(db)
+    _sanitize_roll_numbers(db)
+    redistribute_students_across_departments(db, departments)
+    _migrate_student_local_emails(db)
+    seed_student_login_accounts(db)

@@ -16,9 +16,17 @@ export interface StudentsQuery {
   sort?: string;
 }
 
+export interface StudentRollLookup {
+  roll_no: string;
+  name: string;
+  department_id: number | null;
+}
+
 export const studentsApi = {
   list: (params: StudentsQuery = {}) =>
     unwrap(api.get<PaginatedResponse<Student>>('/students', { params })),
+  lookupByRoll: (rollNo: string) =>
+    unwrap(api.get<StudentRollLookup>('/students/lookup-by-roll', { params: { roll_no: rollNo } })),
   get: (id: number) => unwrap(api.get<Student>(`/students/${id}`)),
   create: (payload: StudentCreatePayload) => unwrap(api.post<Student>('/students', payload)),
   update: (id: number, payload: StudentUpdatePayload) =>

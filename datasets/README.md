@@ -15,6 +15,8 @@ family_background, behavioral_indicators, extracurricular,
 placement_readiness, counselor_remarks, risk_level
 ```
 
+`department_code` uses degree program codes: **BSCS**, **BCA**, **BSCP**, **BSCM**, **BSCC**, **BBA**, **BCOM**, **MCOM**, **BCOMH**, **BCOMCA**, and any custom codes added by an admin under **Degree courses**.
+
 `risk_level` is the synthetic ground-truth label (with ~10 % noise) used during
 training. The application infers `risk_level` itself at inference time, so the
 column is optional in any CSV uploaded through the UI.

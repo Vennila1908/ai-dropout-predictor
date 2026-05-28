@@ -15,6 +15,7 @@ export interface Explanation {
 export interface Prediction {
   id: number;
   student_id: number;
+  roll_no: string;
   risk_level: RiskLevel;
   confidence: number;
   model_version: string;

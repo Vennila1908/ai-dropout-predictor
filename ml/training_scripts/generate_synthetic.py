@@ -12,7 +12,7 @@ import random
 from pathlib import Path
 
 
-DEPARTMENTS = ["CSE", "IT", "ECE", "MECH", "CIVIL", "MBA"]
+DEPARTMENTS = ["BSCS", "BCA", "BSCP", "BSCM", "BSCC", "BBA", "BCOM", "MCOM", "BCOMH", "BCOMCA"]
 GENDERS = ["M", "F"]
 
 FIRST = [

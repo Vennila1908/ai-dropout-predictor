@@ -44,7 +44,10 @@ api.interceptors.response.use(
     const status = error.response?.status;
     const original = error.config as AxiosRequestConfig & { _retried?: boolean };
 
-    if (status === 401 && original && !original._retried) {
+    const url = String(original?.url ?? '');
+    const isLoginRequest = url.includes('/auth/login');
+
+    if (status === 401 && original && !original._retried && !isLoginRequest) {
       original._retried = true;
       refreshPromise ??= refreshAccessToken();
       const next = await refreshPromise;

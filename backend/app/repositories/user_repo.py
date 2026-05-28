@@ -16,6 +16,9 @@ class UserRepo(CrudRepo[User]):
     def get_by_email(self, db: Session, email: str) -> User | None:
         return db.execute(select(User).where(User.email == email)).scalar_one_or_none()
 
+    def get_by_roll_no(self, db: Session, roll_no: str) -> User | None:
+        return db.execute(select(User).where(User.roll_no == roll_no)).scalar_one_or_none()
+
     def count_total(self, db: Session) -> int:
         return self.count(db)
 

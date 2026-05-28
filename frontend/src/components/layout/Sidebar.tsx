@@ -11,6 +11,7 @@ import {
   X,
   GraduationCap,
   UserCog,
+  BookOpen,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUiStore } from '@/store/uiStore';
@@ -20,6 +21,7 @@ const NAV = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, roles: ['admin', 'faculty', 'student'] },
   { to: '/students', label: 'Students', icon: Users, roles: ['admin', 'faculty'] },
   { to: '/users', label: 'User accounts', icon: UserCog, roles: ['admin'] },
+  { to: '/courses', label: 'Degree courses', icon: BookOpen, roles: ['admin'] },
   { to: '/uploads', label: 'Uploads', icon: UploadCloud, roles: ['admin', 'faculty'] },
   { to: '/predictions', label: 'Predictions', icon: Brain, roles: ['admin', 'faculty'] },
   { to: '/counseling', label: 'Counseling', icon: ClipboardList, roles: ['admin', 'faculty'] },

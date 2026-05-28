@@ -8,6 +8,7 @@ from typing import Any, List, Literal, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.schemas.student import RiskLevelLiteral
+from app.schemas.validators import RollNumber
 
 
 class FeatureContribution(BaseModel):
@@ -27,6 +28,7 @@ class PredictionOut(BaseModel):
 
     id: int
     student_id: int
+    roll_no: str
     risk_level: RiskLevelLiteral
     confidence: float
     model_version: str
@@ -36,7 +38,10 @@ class PredictionOut(BaseModel):
 
 
 class BatchPredictionRequest(BaseModel):
-    student_ids: Optional[List[int]] = None
+    model_config = ConfigDict(extra="ignore")
+
+    roll_nos: Optional[List[RollNumber]] = None
+    student_ids: Optional[List[int]] = None  # legacy — mapped to roll numbers server-side
     department_id: Optional[int] = None
 
 

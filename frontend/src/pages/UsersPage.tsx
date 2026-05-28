@@ -9,9 +9,9 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
 import { Modal } from '@/components/ui/Modal';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { analyticsApi } from '@/features/analytics/analyticsApi';
+import { useDepartments } from '@/hooks/useDepartments';
 import { usersApi } from '@/features/users/usersApi';
-import type { ApiError } from '@/lib/api';
+import { formatError, type ApiError } from '@/lib/api';
 import type { Role } from '@/lib/constants';
 import type { User } from '@/types';
 
@@ -45,18 +45,15 @@ export function UsersPage() {
     queryFn: usersApi.list,
   });
 
-  const { data: deptRisk } = useQuery({
-    queryKey: ['analytics', 'department-risk'],
-    queryFn: analyticsApi.departmentRisk,
-  });
+  const { data: departments, isError: departmentsError, error: departmentsLoadError } = useDepartments();
 
   const departmentOptions = useMemo(
     () =>
-      (deptRisk ?? []).map((d) => ({
-        value: d.department_id,
-        label: `${d.department_code} — ${d.department_name}`,
+      (departments ?? []).map((d) => ({
+        value: d.id,
+        label: `${d.code} — ${d.name}`,
       })),
-    [deptRisk],
+    [departments],
   );
 
   const filteredUsers = useMemo(
@@ -115,6 +112,13 @@ export function UsersPage() {
           </Button>
         </div>
       </header>
+
+      {departmentsError && (
+        <div className="rounded-lg border border-risk-high/30 bg-risk-high/10 px-4 py-3 text-sm text-ink-muted">
+          Could not load degree courses for the department dropdown:{' '}
+          {formatError(departmentsLoadError).message}. Restart the backend and refresh.
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-2">
         {(

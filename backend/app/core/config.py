@@ -75,6 +75,7 @@ class Settings(BaseSettings):
     # ─── Seed ──────────────────────────────────────────────────────────────
     seed_admin_email: str = "admin@example.com"
     seed_admin_password: str = "Admin@123"
+    seed_student_password: str = "Student@123"
 
     # ─── Validators ────────────────────────────────────────────────────────
     @field_validator("cors_origins", mode="before")

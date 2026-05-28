@@ -19,7 +19,7 @@ export const PLACEMENT_READINESS = ['low', 'medium', 'high'] as const;
 export const QUICK_PROMPTS = [
   'Show students with attendance below 60%',
   'How many students are at high risk?',
-  'Summarize CSE department risk profile',
+  'Summarize B.Sc. Computer Science degree risk profile',
   'Which features matter most for risk?',
   'List students with 3+ backlogs',
 ];
