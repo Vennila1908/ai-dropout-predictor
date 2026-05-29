@@ -17,10 +17,12 @@ from app.schemas.student import (
     RiskLevelLiteral,
     StudentCreate,
     StudentOut,
+    StudentRollLookup,
     StudentTimelineOut,
     StudentUpdate,
     TimelineEvent,
 )
+from app.schemas.validators import ROLL_NO_PATTERN
 from app.services import student_service
 from app.services.auth_service import write_audit
 
@@ -56,6 +58,24 @@ def list_students(
     )
 
 
+@router.get("/lookup-by-roll", response_model=StudentRollLookup, dependencies=[Depends(require_admin_or_faculty)])
+def lookup_student_by_roll(
+    roll_no: str = Query(min_length=1, max_length=40, pattern=ROLL_NO_PATTERN),
+    db: Session = Depends(get_db),
+) -> StudentRollLookup:
+    student = student_repo.get_by_roll_no(db, roll_no.strip())
+    if not student:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No student record found for this roll number")
+    return StudentRollLookup(roll_no=student.roll_no, name=student.name, department_id=student.department_id)
+
+
+@router.post("/bulk", response_model=dict[str, int], dependencies=[Depends(require_admin_or_faculty)])
+def bulk_create(payload: list[StudentCreate], db: Session = Depends(get_db), me: User = Depends(get_current_user)) -> dict[str, int]:
+    res = student_service.bulk_create(db, payload)
+    write_audit(db, user_id=me.id, action="student.bulk_create", entity="student", meta=res)
+    return res
+
+
 @router.post("", response_model=StudentOut, status_code=status.HTTP_201_CREATED, dependencies=[Depends(require_admin_or_faculty)])
 def create_student(payload: StudentCreate, db: Session = Depends(get_db), me: User = Depends(get_current_user)) -> StudentOut:
     try:
@@ -66,7 +86,7 @@ def create_student(payload: StudentCreate, db: Session = Depends(get_db), me: Us
     return StudentOut.model_validate(item)
 
 
-@router.get("/{student_id}", response_model=StudentOut)
+@router.get("/{student_id:int}", response_model=StudentOut)
 def get_student(student_id: int, db: Session = Depends(get_db)) -> StudentOut:
     item = student_service.get_student(db, student_id)
     if not item:
@@ -74,7 +94,7 @@ def get_student(student_id: int, db: Session = Depends(get_db)) -> StudentOut:
     return StudentOut.model_validate(item)
 
 
-@router.patch("/{student_id}", response_model=StudentOut, dependencies=[Depends(require_admin_or_faculty)])
+@router.patch("/{student_id:int}", response_model=StudentOut, dependencies=[Depends(require_admin_or_faculty)])
 def update_student(student_id: int, payload: StudentUpdate, db: Session = Depends(get_db), me: User = Depends(get_current_user)) -> StudentOut:
     item = student_service.update_student(db, student_id, payload)
     if not item:
@@ -83,7 +103,7 @@ def update_student(student_id: int, payload: StudentUpdate, db: Session = Depend
     return StudentOut.model_validate(item)
 
 
-@router.delete("/{student_id}", status_code=status.HTTP_204_NO_CONTENT, dependencies=[Depends(require_admin_or_faculty)])
+@router.delete("/{student_id:int}", status_code=status.HTTP_204_NO_CONTENT, dependencies=[Depends(require_admin_or_faculty)])
 def delete_student(student_id: int, db: Session = Depends(get_db), me: User = Depends(get_current_user)):
     if not student_service.delete_student(db, student_id):
         raise HTTPException(status_code=404, detail="Student not found")
@@ -91,7 +111,7 @@ def delete_student(student_id: int, db: Session = Depends(get_db), me: User = De
     return None
 
 
-@router.get("/{student_id}/timeline", response_model=StudentTimelineOut)
+@router.get("/{student_id:int}/timeline", response_model=StudentTimelineOut)
 def student_timeline(student_id: int, db: Session = Depends(get_db)) -> StudentTimelineOut:
     student = student_repo.get(db, student_id)
     if not student:
@@ -126,10 +146,3 @@ def student_timeline(student_id: int, db: Session = Depends(get_db)) -> StudentT
         )
     events.sort(key=lambda e: e.timestamp, reverse=True)
     return StudentTimelineOut(student_id=student_id, events=events)
-
-
-@router.post("/bulk", response_model=dict[str, int], dependencies=[Depends(require_admin_or_faculty)])
-def bulk_create(payload: list[StudentCreate], db: Session = Depends(get_db), me: User = Depends(get_current_user)) -> dict[str, int]:
-    res = student_service.bulk_create(db, payload)
-    write_audit(db, user_id=me.id, action="student.bulk_create", entity="student", meta=res)
-    return res

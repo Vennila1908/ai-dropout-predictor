@@ -1,6 +1,6 @@
 """Seed demo students across low / medium / high risk tiers with ML predictions.
 
-Safe to run repeatedly — students are keyed by roll_no (DEMO-LOW-*, etc.).
+Safe to run repeatedly — students are keyed by roll_no (DEMOLOW*, etc.).
 Existing demo rows get a prediction only when they have none yet.
 """
 
@@ -25,9 +25,9 @@ logger = get_logger(__name__)
 _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
     # ── Low risk ────────────────────────────────────────────────────────────
     {
-        "roll_no": "DEMO-LOW-01",
+        "roll_no": "DEMOLOW01",
         "name": "Priya Sharma",
-        "department_code": "CSE",
+        "department_code": "BSCS",
         "semester": 6,
         "attendance_pct": 92.0,
         "internal_marks": 78.0,
@@ -43,9 +43,9 @@ _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
         "target_risk": "low",
     },
     {
-        "roll_no": "DEMO-LOW-02",
+        "roll_no": "DEMOLOW02",
         "name": "Rahul Mehta",
-        "department_code": "IT",
+        "department_code": "BCA",
         "semester": 5,
         "attendance_pct": 88.0,
         "internal_marks": 74.0,
@@ -61,9 +61,9 @@ _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
         "target_risk": "low",
     },
     {
-        "roll_no": "DEMO-LOW-03",
+        "roll_no": "DEMOLOW03",
         "name": "Ananya Iyer",
-        "department_code": "ECE",
+        "department_code": "BSCP",
         "semester": 4,
         "attendance_pct": 95.0,
         "internal_marks": 82.0,
@@ -80,9 +80,9 @@ _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
     },
     # ── Medium risk ─────────────────────────────────────────────────────────
     {
-        "roll_no": "DEMO-MED-01",
+        "roll_no": "DEMOMED01",
         "name": "Vikram Singh",
-        "department_code": "CSE",
+        "department_code": "BSCS",
         "semester": 5,
         "attendance_pct": 68.0,
         "internal_marks": 52.0,
@@ -98,9 +98,9 @@ _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
         "target_risk": "medium",
     },
     {
-        "roll_no": "DEMO-MED-02",
+        "roll_no": "DEMOMED02",
         "name": "Sneha Patel",
-        "department_code": "MECH",
+        "department_code": "BSCM",
         "semester": 6,
         "attendance_pct": 73.0,
         "internal_marks": 53.0,
@@ -116,9 +116,9 @@ _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
         "target_risk": "medium",
     },
     {
-        "roll_no": "DEMO-MED-03",
+        "roll_no": "DEMOMED03",
         "name": "Karan Joshi",
-        "department_code": "IT",
+        "department_code": "BCA",
         "semester": 4,
         "attendance_pct": 74.0,
         "internal_marks": 56.0,
@@ -135,9 +135,9 @@ _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
     },
     # ── High risk ───────────────────────────────────────────────────────────
     {
-        "roll_no": "DEMO-HIGH-01",
+        "roll_no": "DEMOHIGH01",
         "name": "Arjun Reddy",
-        "department_code": "CSE",
+        "department_code": "BSCS",
         "semester": 5,
         "attendance_pct": 42.0,
         "internal_marks": 32.0,
@@ -153,9 +153,9 @@ _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
         "target_risk": "high",
     },
     {
-        "roll_no": "DEMO-HIGH-02",
+        "roll_no": "DEMOHIGH02",
         "name": "Meera Nair",
-        "department_code": "ECE",
+        "department_code": "BSCP",
         "semester": 6,
         "attendance_pct": 55.0,
         "internal_marks": 38.0,
@@ -171,9 +171,9 @@ _RISK_DEMO_STUDENTS: list[dict[str, Any]] = [
         "target_risk": "high",
     },
     {
-        "roll_no": "DEMO-HIGH-03",
+        "roll_no": "DEMOHIGH03",
         "name": "Rohit Khan",
-        "department_code": "CIVIL",
+        "department_code": "BSCC",
         "semester": 4,
         "attendance_pct": 48.0,
         "internal_marks": 36.0,
@@ -223,7 +223,7 @@ def seed_risk_demo_students(db: Session) -> dict[str, int]:
     """Insert demo students (if missing) and run ML predictions with explanations."""
     departments = seed_departments(db)
     code_to_id = {code: dept.id for code, dept in departments.items()}
-    default_dept_id = code_to_id.get("CSE") or next(iter(code_to_id.values()), None)
+    default_dept_id = code_to_id.get("BSCS") or next(iter(code_to_id.values()), None)
 
     inserted = 0
     updated = 0

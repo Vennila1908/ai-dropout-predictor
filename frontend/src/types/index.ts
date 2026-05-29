@@ -9,6 +9,7 @@ export interface User {
   email: string;
   full_name: string;
   role: Role;
+  roll_no: string | null;
   department_id: number | null;
   is_active: boolean;
   created_at: string;
@@ -34,6 +35,8 @@ export interface Department {
   id: number;
   name: string;
   code: string;
+  student_count?: number;
+  created_at?: string;
 }
 
 export interface Upload {

@@ -7,8 +7,8 @@ import io
 
 CSV_BLOB = (
     "Roll No,Student Name,Department,Semester,Attendance %,Internal,Backlogs,Fee Paid\n"
-    "U101,Test Alpha,CSE,1,82,72,0,Yes\n"
-    "U102,Test Beta,CSE,2,55,35,3,No\n"
+    "U101,Test Alpha,BSCS,1,82,72,0,Yes\n"
+    "U102,Test Beta,BSCS,2,55,35,3,No\n"
 )
 
 

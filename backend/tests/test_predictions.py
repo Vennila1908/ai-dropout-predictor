@@ -16,11 +16,11 @@ def _seed_dataset(monkeypatch_env: bool = True) -> Path:
         # roll_no,name,age,gender,department_code,semester,attendance_pct,internal_marks,
         # semester_marks,backlogs,fee_paid,fee_delay_days,financial_status,family_background,
         # behavioral_indicators,extracurricular,placement_readiness,counselor_remarks
-        ["S001", "A", 20, "M", "CSE", 1, 95, 90, 88, 0, True, 0, "high", "", "", "robotics", "high", ""],
-        ["S002", "B", 21, "F", "CSE", 2, 50, 35, 40, 4, False, 60, "low", "", "warning", "", "low", ""],
-        ["S003", "C", 22, "M", "CSE", 3, 70, 50, 55, 1, True, 5, "medium", "", "", "", "medium", ""],
-        ["S004", "D", 19, "F", "ECE", 1, 85, 70, 72, 0, True, 0, "medium", "", "", "music", "high", ""],
-        ["S005", "E", 23, "M", "MECH", 4, 55, 45, 48, 2, True, 20, "low", "", "", "", "low", ""],
+        ["S001", "A", 20, "M", "BSCS", 1, 95, 90, 88, 0, True, 0, "high", "", "", "debate club", "high", ""],
+        ["S002", "B", 21, "F", "BSCS", 2, 50, 35, 40, 4, False, 60, "low", "", "warning", "", "low", ""],
+        ["S003", "C", 22, "M", "BSCS", 3, 70, 50, 55, 1, True, 5, "medium", "", "", "", "medium", ""],
+        ["S004", "D", 19, "F", "BSCP", 1, 85, 70, 72, 0, True, 0, "medium", "", "", "music", "high", ""],
+        ["S005", "E", 23, "M", "BSCM", 4, 55, 45, 48, 2, True, 20, "low", "", "", "", "low", ""],
     ] * 12  # repeat to give the splitter enough rows per class
     cols = [
         "roll_no", "name", "age", "gender", "department_code", "semester", "attendance_pct",
@@ -69,10 +69,30 @@ def test_predict_for_student_auto_trains(app_client, auth_headers) -> None:
     }
     s = app_client.post("/api/v1/students", json=payload, headers=auth_headers)
     assert s.status_code in {200, 201}, s.text
-    sid = s.json()["id"]
+    sid = s.json()["roll_no"]
 
     r = app_client.post(f"/api/v1/predictions/{sid}", headers=auth_headers)
     assert r.status_code == 200, r.text
     body = r.json()
     assert body["risk_level"] in {"low", "medium", "high"}
     assert 0 <= body["confidence"] <= 1
+
+
+def test_predict_batch_route_not_captured_as_roll_no(app_client, auth_headers, monkeypatch) -> None:
+    from app.services import prediction_service
+
+    monkeypatch.setattr(
+        prediction_service,
+        "predict_batch",
+        lambda db, *, roll_nos, student_ids, department_id: {
+            "total": 0,
+            "succeeded": 0,
+            "failed": 0,
+            "predictions": [],
+        },
+    )
+
+    r = app_client.post("/api/v1/predictions/batch", json={}, headers=auth_headers)
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body == {"total": 0, "succeeded": 0, "failed": 0, "predictions": []}

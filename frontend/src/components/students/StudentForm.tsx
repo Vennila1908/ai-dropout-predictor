@@ -1,18 +1,22 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { Button } from '@/components/ui/Button';
+import { usersApi } from '@/features/users/usersApi';
+import { formatError } from '@/lib/api';
+import { bindPersonNameField, personNameSchema, rollNoSchema, sanitizePersonName } from '@/lib/validation';
 import type { Student, StudentCreatePayload } from '@/types';
 
 const schema = z.object({
-  roll_no: z.string().min(1).max(40),
-  name: z.string().min(1).max(160),
+  roll_no: rollNoSchema,
+  name: personNameSchema,
   age: z.coerce.number().int().min(10).max(80),
   gender: z.string().max(16).default('U'),
-  department_id: z.coerce.number().int().nullable().optional(),
+  department_id: z.string().optional(),
   semester: z.coerce.number().int().min(1).max(12),
   attendance_pct: z.coerce.number().min(0).max(100),
   internal_marks: z.coerce.number().min(0).max(100),
@@ -35,24 +39,34 @@ export function StudentForm({
   onSubmit,
   loading,
   submitLabel = 'Save',
+  courseOptions = [],
 }: {
   initial?: Partial<Student>;
   onSubmit: (values: StudentCreatePayload) => Promise<void> | void;
   loading?: boolean;
   submitLabel?: string;
+  courseOptions?: { value: number; label: string }[];
 }) {
+  const isCreate = !initial?.id;
+  const [rollLookupError, setRollLookupError] = useState<string | null>(null);
+  const [rollMatched, setRollMatched] = useState(!isCreate);
+  const [rollLookupPending, setRollLookupPending] = useState(false);
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<StudentFormValues>({
     resolver: zodResolver(schema),
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
     defaultValues: {
       roll_no: initial?.roll_no ?? '',
       name: initial?.name ?? '',
       age: initial?.age ?? 20,
       gender: initial?.gender ?? 'U',
-      department_id: initial?.department_id ?? null,
+      department_id: initial?.department_id ? String(initial.department_id) : '',
       semester: initial?.semester ?? 1,
       attendance_pct: initial?.attendance_pct ?? 75,
       internal_marks: initial?.internal_marks ?? 50,
@@ -69,12 +83,50 @@ export function StudentForm({
     },
   });
 
+  const lookupAccountByRoll = useCallback(
+    async (rawRoll: string) => {
+      const rollNo = rawRoll.trim();
+      if (!isCreate || !rollNo) {
+        setRollLookupError(null);
+        setRollMatched(!isCreate);
+        return;
+      }
+
+      setRollLookupPending(true);
+      setRollLookupError(null);
+      setRollMatched(false);
+
+      try {
+        const match = await usersApi.lookupByRoll(rollNo);
+        setValue('name', sanitizePersonName(match.full_name), { shouldValidate: true });
+        setValue('department_id', match.department_id ? String(match.department_id) : '', {
+          shouldValidate: true,
+        });
+        setRollMatched(true);
+      } catch (err) {
+        setValue('name', '');
+        setValue('department_id', '');
+        setRollMatched(false);
+        setRollLookupError(
+          formatError(err).message ||
+            'No login account found for this roll number. Create a student account under User accounts first.',
+        );
+      } finally {
+        setRollLookupPending(false);
+      }
+    },
+    [isCreate, setValue],
+  );
+
+  const canSubmit = !isCreate || (rollMatched && !rollLookupPending && !rollLookupError);
+
   return (
     <form
       onSubmit={handleSubmit(async (v) => {
+        if (isCreate && !rollMatched) return;
         await onSubmit({
           ...v,
-          department_id: v.department_id ?? null,
+          department_id: v.department_id ? Number(v.department_id) : null,
           family_background: v.family_background ?? '',
           behavioral_indicators: v.behavioral_indicators ?? '',
           extracurricular: v.extracurricular ?? '',
@@ -83,8 +135,23 @@ export function StudentForm({
       })}
       className="grid grid-cols-1 gap-4 sm:grid-cols-2"
     >
-      <Input label="Roll No" {...register('roll_no')} error={errors.roll_no?.message} />
-      <Input label="Full Name" {...register('name')} error={errors.name?.message} />
+      <Input
+        label="Roll No"
+        disabled={!isCreate}
+        hint={isCreate ? 'Enter the roll number from the student login account.' : undefined}
+        error={rollLookupError ?? errors.roll_no?.message}
+        {...register('roll_no', {
+          onBlur: (event) => {
+            if (isCreate) void lookupAccountByRoll(event.target.value);
+          },
+        })}
+      />
+      <Input
+        label="Full Name"
+        disabled={isCreate && rollMatched}
+        {...bindPersonNameField(register('name'))}
+        error={errors.name?.message}
+      />
       <Input type="number" label="Age" {...register('age')} error={errors.age?.message} />
       <Select
         label="Gender"
@@ -95,7 +162,20 @@ export function StudentForm({
           { value: 'U', label: 'Unspecified' },
         ]}
       />
-      <Input type="number" label="Department ID" {...register('department_id')} hint="Leave blank for none" />
+      <Select
+        label="Degree course"
+        placeholder="Select course"
+        options={courseOptions}
+        hint={
+          isCreate && rollMatched
+            ? 'Filled from the student login account.'
+            : courseOptions.length
+              ? 'Assign the student to a degree program.'
+              : 'No courses loaded — check Degree courses page.'
+        }
+        disabled={isCreate && rollMatched}
+        {...register('department_id')}
+      />
       <Input type="number" label="Semester" {...register('semester')} error={errors.semester?.message} />
       <Input type="number" step="0.1" label="Attendance %" {...register('attendance_pct')} error={errors.attendance_pct?.message} />
       <Input type="number" step="0.1" label="Internal marks" {...register('internal_marks')} error={errors.internal_marks?.message} />
@@ -134,7 +214,9 @@ export function StudentForm({
       <Textarea label="Counselor remarks" className="sm:col-span-2" {...register('counselor_remarks')} />
 
       <div className="sm:col-span-2 flex justify-end pt-1">
-        <Button type="submit" loading={loading}>{submitLabel}</Button>
+        <Button type="submit" loading={loading || rollLookupPending} disabled={loading || rollLookupPending || !canSubmit}>
+          {submitLabel}
+        </Button>
       </div>
     </form>
   );

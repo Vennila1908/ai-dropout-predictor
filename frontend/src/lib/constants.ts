@@ -1,5 +1,8 @@
 export const APP_NAME = 'AI Dropout Predictor';
 
+export const COLLEGE_NAME = 'S.E.A COLLEGE OF SCIENCE COMMERCE & ARTS';
+export const COLLEGE_LOGO = '/logo_sea.webp';
+
 export const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/+$/, '');
 export const API_PREFIX = '/api/v1';
 export const API_URL = `${API_BASE}${API_PREFIX}`;
@@ -19,7 +22,7 @@ export const PLACEMENT_READINESS = ['low', 'medium', 'high'] as const;
 export const QUICK_PROMPTS = [
   'Show students with attendance below 60%',
   'How many students are at high risk?',
-  'Summarize CSE department risk profile',
+  'Summarize B.Sc. Computer Science degree risk profile',
   'Which features matter most for risk?',
   'List students with 3+ backlogs',
 ];

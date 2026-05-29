@@ -23,7 +23,10 @@ class UserRole(str, enum.Enum):
 
 class User(Base, TimestampMixin):
     __tablename__ = "users"
-    __table_args__ = (Index("idx_users_email", "email"),)
+    __table_args__ = (
+        Index("idx_users_email", "email"),
+        Index("idx_users_roll_no", "roll_no", unique=True),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
@@ -32,6 +35,7 @@ class User(Base, TimestampMixin):
     role: Mapped[UserRole] = mapped_column(
         SAEnum(UserRole, name="user_role"), nullable=False, default=UserRole.student
     )
+    roll_no: Mapped[Optional[str]] = mapped_column(String(40), unique=True, nullable=True)
     department_id: Mapped[Optional[int]] = mapped_column(ForeignKey("departments.id"), nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 

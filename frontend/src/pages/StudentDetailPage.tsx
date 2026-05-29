@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ClipboardList, Edit3, Play, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
@@ -16,6 +16,7 @@ import { ExplainabilityPanel } from '@/components/predictions/ExplainabilityPane
 import { RecommendationPanel } from '@/components/predictions/RecommendationPanel';
 import { studentsApi } from '@/features/students/studentsApi';
 import { predictionsApi } from '@/features/predictions/predictionsApi';
+import { useDepartments } from '@/hooks/useDepartments';
 import { formatDate, formatPercent, riskClass } from '@/lib/utils';
 
 export function StudentDetailPage() {
@@ -25,6 +26,16 @@ export function StudentDetailPage() {
   const qc = useQueryClient();
   const [editing, setEditing] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const { data: departments } = useDepartments();
+
+  const courseOptions = useMemo(
+    () =>
+      (departments ?? []).map((d) => ({
+        value: d.id,
+        label: `${d.code} — ${d.name}`,
+      })),
+    [departments],
+  );
 
   const { data: student, isLoading } = useQuery({
     queryKey: ['student', sid],
@@ -33,9 +44,9 @@ export function StudentDetailPage() {
   });
 
   const { data: latest } = useQuery({
-    queryKey: ['prediction', 'latest', sid],
-    queryFn: () => predictionsApi.latest(sid),
-    enabled: !!student,
+    queryKey: ['prediction', 'latest', student?.roll_no],
+    queryFn: () => predictionsApi.latest(student!.roll_no),
+    enabled: !!student?.roll_no,
     retry: false,
   });
 
@@ -65,10 +76,10 @@ export function StudentDetailPage() {
   });
 
   const runPredict = useMutation({
-    mutationFn: () => predictionsApi.run(sid),
+    mutationFn: () => predictionsApi.run(student!.roll_no),
     onSuccess: () => {
       toast.success('Prediction generated');
-      qc.invalidateQueries({ queryKey: ['prediction', 'latest', sid] });
+      qc.invalidateQueries({ queryKey: ['prediction', 'latest', student?.roll_no] });
       qc.invalidateQueries({ queryKey: ['student', sid] });
     },
     onError: (err: { message?: string }) => toast.error(err.message ?? 'Prediction failed'),
@@ -184,6 +195,7 @@ export function StudentDetailPage() {
       <Modal open={editing} onClose={() => setEditing(false)} title="Edit student" widthClass="max-w-3xl">
         <StudentForm
           initial={student}
+          courseOptions={courseOptions}
           onSubmit={(v) => void update.mutateAsync(v)}
           loading={update.isPending}
           submitLabel="Save changes"

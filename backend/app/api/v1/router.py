@@ -9,6 +9,7 @@ from app.api.v1.endpoints import (
     auth,
     chat,
     counseling,
+    departments,
     health,
     ml,
     predictions,
@@ -24,6 +25,7 @@ api_router = APIRouter()
 api_router.include_router(health.router)
 api_router.include_router(auth.router)
 api_router.include_router(users.router)
+api_router.include_router(departments.router)
 api_router.include_router(students.router)
 api_router.include_router(uploads.router)
 api_router.include_router(predictions.router)

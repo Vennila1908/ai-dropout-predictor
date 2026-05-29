@@ -18,6 +18,7 @@ from app.parsers.excel_parser import iter_excel_rows, parse_excel
 from app.parsers.pdf_parser import iter_pdf_rows, parse_pdf
 from app.repositories.student_repo import student_repo
 from app.repositories.upload_repo import upload_repo
+from app.schemas.validators import is_valid_person_name, is_valid_roll_no, normalize_roll_no
 
 
 logger = get_logger(__name__)
@@ -122,7 +123,17 @@ def confirm_upload(
                     skipped += 1
                     continue
                 raise ValueError(f"row missing roll_no/name: {row}")
-            if student_repo.get_by_roll_no(db, mapped["roll_no"]):
+
+            roll_no = normalize_roll_no(str(mapped["roll_no"]))
+            name = str(mapped.get("name", "")).strip()
+            if not is_valid_roll_no(roll_no) or not is_valid_person_name(name):
+                if skip_invalid:
+                    skipped += 1
+                    errors.append(f"invalid roll_no/name: roll_no={mapped.get('roll_no')!r}, name={name!r}")
+                    continue
+                raise ValueError(f"row has invalid roll_no or name: roll_no={mapped.get('roll_no')!r}, name={name!r}")
+
+            if student_repo.get_by_roll_no(db, roll_no):
                 skipped += 1
                 continue
 
@@ -139,8 +150,8 @@ def confirm_upload(
                     dept_id = new_dept.id
 
             student = Student(
-                roll_no=str(mapped["roll_no"]).strip(),
-                name=str(mapped.get("name", "")).strip(),
+                roll_no=roll_no,
+                name=name,
                 age=_int(mapped.get("age", 20), 20),
                 gender=str(mapped.get("gender", "U")).strip()[:16] or "U",
                 department_id=dept_id,

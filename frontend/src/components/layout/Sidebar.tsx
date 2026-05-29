@@ -9,9 +9,10 @@ import {
   MessageCircle,
   Settings,
   X,
-  GraduationCap,
   UserCog,
+  BookOpen,
 } from 'lucide-react';
+import { CollegeBrand } from '@/components/branding/CollegeBrand';
 import { cn } from '@/lib/utils';
 import { useUiStore } from '@/store/uiStore';
 import { useAuth } from '@/hooks/useAuth';
@@ -20,6 +21,7 @@ const NAV = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, roles: ['admin', 'faculty', 'student'] },
   { to: '/students', label: 'Students', icon: Users, roles: ['admin', 'faculty'] },
   { to: '/users', label: 'User accounts', icon: UserCog, roles: ['admin'] },
+  { to: '/courses', label: 'Degree courses', icon: BookOpen, roles: ['admin'] },
   { to: '/uploads', label: 'Uploads', icon: UploadCloud, roles: ['admin', 'faculty'] },
   { to: '/predictions', label: 'Predictions', icon: Brain, roles: ['admin', 'faculty'] },
   { to: '/counseling', label: 'Counseling', icon: ClipboardList, roles: ['admin', 'faculty'] },
@@ -48,17 +50,9 @@ export function Sidebar() {
           sidebarOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        <div className="flex h-14 items-center justify-between border-b px-4">
-          <div className="flex items-center gap-2">
-            <div className="rounded-md bg-gradient-to-br from-primary-500 to-violet-500 p-1.5 text-white">
-              <GraduationCap className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="text-sm font-semibold leading-tight">Dropout AI</div>
-              <div className="text-[10px] uppercase tracking-wide text-ink-muted">v0.1</div>
-            </div>
-          </div>
-          <button onClick={() => setSidebar(false)} className="btn-ghost p-1.5 lg:hidden">
+        <div className="flex items-start justify-between gap-2 border-b px-3 py-3">
+          <CollegeBrand variant="sidebar" className="pr-1" />
+          <button onClick={() => setSidebar(false)} className="btn-ghost shrink-0 p-1.5 lg:hidden">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -82,9 +76,9 @@ export function Sidebar() {
             </NavLink>
           ))}
         </nav>
-        <div className="border-t p-3 text-xs text-ink-muted">
+        {/* <div className="border-t p-3 text-xs text-ink-muted">
           <p>Local-only AI · Your data never leaves this server.</p>
-        </div>
+        </div> */}
       </aside>
     </>
   );

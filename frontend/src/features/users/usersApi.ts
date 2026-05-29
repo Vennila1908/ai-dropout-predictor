@@ -7,8 +7,15 @@ export interface UserCreatePayload {
   full_name: string;
   password: string;
   role: Role;
+  roll_no?: string | null;
   department_id?: number | null;
   is_active?: boolean;
+}
+
+export interface UserRollLookup {
+  roll_no: string;
+  full_name: string;
+  department_id: number | null;
 }
 
 export interface UserUpdatePayload {
@@ -21,6 +28,8 @@ export interface UserUpdatePayload {
 
 export const usersApi = {
   list: () => unwrap(api.get<User[]>('/users')),
+  lookupByRoll: (rollNo: string) =>
+    unwrap(api.get<UserRollLookup>('/users/lookup-by-roll', { params: { roll_no: rollNo } })),
   create: (payload: UserCreatePayload) => unwrap(api.post<User>('/users', payload)),
   update: (id: number, payload: UserUpdatePayload) => unwrap(api.patch<User>(`/users/${id}`, payload)),
   deactivate: (id: number) => unwrap(api.delete<void>(`/users/${id}`)),

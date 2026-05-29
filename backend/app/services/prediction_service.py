@@ -45,10 +45,11 @@ def _persist(db: Session, student: Student, raw: dict, explanation: dict) -> Pre
     return pred
 
 
-def _to_response(p: Prediction) -> dict[str, Any]:
+def _to_response(p: Prediction, *, roll_no: str) -> dict[str, Any]:
     return {
         "id": p.id,
         "student_id": p.student_id,
+        "roll_no": roll_no,
         "risk_level": p.risk_level.value,
         "confidence": p.confidence,
         "model_version": p.model_version,
@@ -58,8 +59,8 @@ def _to_response(p: Prediction) -> dict[str, Any]:
     }
 
 
-def predict_for_student(db: Session, student_id: int) -> dict[str, Any] | None:
-    student = student_repo.get(db, student_id)
+def predict_for_student(db: Session, roll_no: str) -> dict[str, Any] | None:
+    student = student_repo.get_by_roll_no(db, roll_no)
     if not student:
         return None
     record = student_to_features(student)
@@ -67,13 +68,25 @@ def predict_for_student(db: Session, student_id: int) -> dict[str, Any] | None:
     model, meta = load_artifact()
     explanation = explain_one(model, raw["features"], meta) if model else {"top_factors": [], "narrative": ""}
     pred = _persist(db, student, raw, explanation)
-    return _to_response(pred)
+    return _to_response(pred, roll_no=student.roll_no)
 
 
-def predict_batch(db: Session, *, student_ids: list[int] | None, department_id: int | None) -> dict[str, Any]:
+def predict_batch(
+    db: Session,
+    *,
+    roll_nos: list[str] | None,
+    student_ids: list[int] | None = None,
+    department_id: int | None,
+) -> dict[str, Any]:
     students: list[Student] = []
-    if student_ids:
-        students = [s for s in (student_repo.get(db, sid) for sid in student_ids) if s]
+    if not roll_nos and student_ids:
+        roll_nos = []
+        for sid in student_ids:
+            student = student_repo.get(db, sid)
+            if student:
+                roll_nos.append(student.roll_no)
+    if roll_nos:
+        students = [s for s in (student_repo.get_by_roll_no(db, roll_no) for roll_no in roll_nos) if s]
     else:
         students, _ = student_repo.search(
             db,
@@ -96,7 +109,7 @@ def predict_batch(db: Session, *, student_ids: list[int] | None, department_id: 
         try:
             explanation = explain_one(model, raw["features"], meta) if model else {"top_factors": [], "narrative": ""}
             pred = _persist(db, student, raw, explanation)
-            out.append(_to_response(pred))
+            out.append(_to_response(pred, roll_no=student.roll_no))
             succeeded += 1
         except Exception as exc:  # noqa: BLE001
             logger.error("Prediction failed for student %s: %s", student.id, exc)
@@ -109,13 +122,19 @@ def predict_batch(db: Session, *, student_ids: list[int] | None, department_id: 
     }
 
 
-def latest_for_student(db: Session, student_id: int) -> dict[str, Any] | None:
-    p = prediction_repo.latest(db, student_id)
-    return _to_response(p) if p else None
+def latest_for_student(db: Session, roll_no: str) -> dict[str, Any] | None:
+    student = student_repo.get_by_roll_no(db, roll_no)
+    if not student:
+        return None
+    p = prediction_repo.latest(db, student.id)
+    return _to_response(p, roll_no=student.roll_no) if p else None
 
 
-def history_for_student(db: Session, student_id: int) -> list[dict[str, Any]]:
-    return [_to_response(p) for p in prediction_repo.list_for_student(db, student_id)]
+def history_for_student(db: Session, roll_no: str) -> list[dict[str, Any]]:
+    student = student_repo.get_by_roll_no(db, roll_no)
+    if not student:
+        return []
+    return [_to_response(p, roll_no=student.roll_no) for p in prediction_repo.list_for_student(db, student.id)]
 
 
 def status() -> dict[str, Any]:

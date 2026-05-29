@@ -35,7 +35,7 @@ SYNONYMS: dict[str, list[str]] = {
     "name": ["student name", "full name", "student", "fullname"],
     "age": ["age", "years"],
     "gender": ["gender", "sex"],
-    "department_code": ["department", "dept", "branch", "stream", "dept code", "department code"],
+    "department_code": ["department", "dept", "course", "degree", "program", "programme", "dept code", "department code"],
     "semester": ["semester", "sem", "term", "year"],
     "attendance_pct": ["attendance", "attendance %", "attendance percentage", "attend pct", "att%", "att"],
     "internal_marks": ["internal", "internal marks", "internals", "ia marks", "ca marks"],

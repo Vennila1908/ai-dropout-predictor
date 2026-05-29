@@ -7,14 +7,16 @@ from typing import List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from app.schemas.validators import PersonName, RollNumber
+
 FinancialStatusLiteral = Literal["low", "medium", "high"]
 PlacementReadinessLiteral = Literal["low", "medium", "high"]
 RiskLevelLiteral = Literal["low", "medium", "high"]
 
 
 class StudentBase(BaseModel):
-    roll_no: str = Field(min_length=1, max_length=40)
-    name: str = Field(min_length=1, max_length=160)
+    roll_no: RollNumber
+    name: PersonName
     age: int = Field(ge=10, le=80)
     gender: str = Field(default="U", max_length=16)
     department_id: Optional[int] = None
@@ -38,8 +40,14 @@ class StudentCreate(StudentBase):
     pass
 
 
+class StudentRollLookup(BaseModel):
+    roll_no: str
+    name: str
+    department_id: Optional[int] = None
+
+
 class StudentUpdate(BaseModel):
-    name: Optional[str] = None
+    name: PersonName | None = None
     age: Optional[int] = Field(default=None, ge=10, le=80)
     gender: Optional[str] = None
     department_id: Optional[int] = None
@@ -60,6 +68,8 @@ class StudentUpdate(BaseModel):
 
 
 class StudentOut(StudentBase):
+    roll_no: str
+    name: str
     model_config = ConfigDict(from_attributes=True)
     id: int
     created_at: datetime

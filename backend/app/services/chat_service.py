@@ -85,7 +85,7 @@ def _build_artifacts(db: Session, *, message: str, filters: dict | None) -> dict
     )
     wants_risk = any(token in msg for token in ("risk", "overview", "summary", "how many", "distribution"))
     wants_departments = any(
-        token in msg for token in ("department", "dept", "cse", "profile", "breakdown")
+        token in msg for token in ("department", "dept", "bscs", "degree", "program", "profile", "breakdown")
     )
 
     return {
