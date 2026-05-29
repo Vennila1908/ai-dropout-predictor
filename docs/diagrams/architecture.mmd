@@ -1,0 +1,35 @@
+%% C4-style container view of the AI Dropout Predictor.
+flowchart LR
+  subgraph Browser
+    SPA["React 18 SPA<br/>Vite · Tailwind · React Query"]
+  end
+
+  subgraph App["Application Server"]
+    API["FastAPI<br/>uvicorn"]
+    AUTH["Auth + JWT<br/>passlib · python-jose"]
+    SVC["Service Layer<br/>students · uploads · predictions · counseling"]
+    PARSE["Parsers<br/>pandas · pdfplumber · PyMuPDF · python-docx"]
+    ML["ML Service<br/>scikit-learn · xgboost · SHAP"]
+    LLM["LLM Service<br/>httpx → Ollama"]
+    RL["Rate Limiter<br/>slowapi"]
+  end
+
+  subgraph Data
+    DB[("SQLite / Postgres")]
+    UPLOADS[("uploads/")]
+    ARTIFACTS[("ml/artifacts/")]
+  end
+
+  OL["Ollama Daemon<br/>phi3 · mistral · gemma"]
+
+  SPA -- "REST + JWT" --> API
+  API --> AUTH
+  API --> RL
+  API --> SVC
+  SVC --> PARSE
+  SVC --> ML
+  SVC --> LLM
+  SVC --> DB
+  PARSE --> UPLOADS
+  ML --> ARTIFACTS
+  LLM -- "HTTP" --> OL

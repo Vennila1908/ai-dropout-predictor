@@ -1,0 +1,26 @@
+sequenceDiagram
+  participant U as User (Browser)
+  participant FE as Frontend (React)
+  participant API as Backend (FastAPI)
+  participant DB as Database
+
+  U->>FE: Submit email + password
+  FE->>API: POST /api/v1/auth/login
+  API->>API: slowapi rate-limit check (10/min)
+  API->>DB: SELECT users WHERE email=?
+  DB-->>API: user row
+  API->>API: bcrypt.verify(password, user.hashed_password)
+  alt Valid
+    API->>API: Build JWT access (30 min) + refresh (7 d)
+    API->>DB: INSERT audit_logs(action='login.success')
+    API-->>FE: 200 { access_token, refresh_token, user }
+    FE->>FE: Persist tokens (Zustand + localStorage)
+    FE->>U: Redirect by role to dashboard
+  else Invalid
+    API->>DB: INSERT audit_logs(action='login.failed')
+    API-->>FE: 401 Unauthorized
+    FE->>U: Show error toast
+  end
+
+  Note over FE,API: All subsequent calls send Authorization: Bearer <access_token>
+  Note over FE: Axios interceptor catches 401 → refresh once → else clear auth + /login

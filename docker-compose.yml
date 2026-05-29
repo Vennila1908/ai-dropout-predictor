@@ -1,0 +1,85 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Default profile: SQLite + no LLM container (works offline without GPU).
+# Optional profiles:
+#   --profile postgres   → spin up Postgres and use it via DATABASE_URL.
+#   --profile ollama     → spin up local Ollama for LLM features.
+#   --profile full       → backend + frontend + postgres + ollama.
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dropout-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env.example
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-sqlite:////data/app.db}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
+      - LLM_MODEL=${LLM_MODEL:-phi3}
+      - SECRET_KEY=${SECRET_KEY:-please-change-me-in-prod}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173,http://localhost:8080}
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend_data:/data
+      - ./uploads:/app/uploads
+      - ./ml/artifacts:/app/ml_artifacts
+    networks:
+      - dropout-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    container_name: dropout-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    networks:
+      - dropout-net
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: dropout-postgres
+    restart: unless-stopped
+    profiles: ["postgres", "full"]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-dropout}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dropout}
+      POSTGRES_DB: ${POSTGRES_DB:-dropout}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dropout-net
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: dropout-ollama
+    restart: unless-stopped
+    profiles: ["ollama", "full"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - dropout-net
+
+volumes:
+  backend_data:
+  postgres_data:
+  ollama_data:
+
+networks:
+  dropout-net:
+    driver: bridge

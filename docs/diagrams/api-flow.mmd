@@ -1,0 +1,35 @@
+flowchart LR
+  Client["Frontend / cURL"] --> NG["Nginx (prod) / Vite proxy (dev)"]
+  NG -->|"/api/v1/*"| FA["FastAPI Router"]
+  FA --> AUTHM["JWT middleware + RoleGate"]
+  AUTHM --> R{"Endpoint group"}
+  R --> A1["/auth"]
+  R --> U1["/users"]
+  R --> S1["/students"]
+  R --> UP["/uploads"]
+  R --> P1["/predictions"]
+  R --> ML1["/ml"]
+  R --> RC["/recommendations"]
+  R --> CO["/counseling"]
+  R --> AN["/analytics"]
+  R --> RP["/reports"]
+  R --> CH["/chat"]
+  R --> H["/health"]
+
+  S1 --> SVC1["StudentService"]
+  UP --> SVC2["UploadService"]
+  P1 --> SVC3["PredictionService"]
+  ML1 --> SVC4["MLService"]
+  RC --> SVC5["RecommendationService"]
+  CH --> SVC6["ChatService"]
+
+  SVC1 --> REPO[("Repositories")]
+  SVC2 --> REPO
+  SVC3 --> REPO
+  SVC5 --> REPO
+  SVC6 --> REPO
+  REPO --> DB[("SQLite / Postgres")]
+
+  SVC3 --> ML_LOAD["Load joblib + predict"]
+  SVC5 --> LLM["httpx → Ollama"]
+  SVC6 --> LLM
