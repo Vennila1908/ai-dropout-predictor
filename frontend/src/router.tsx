@@ -7,6 +7,7 @@ import { RoleGate } from '@/components/common/RoleGate';
 import { useAuth } from '@/hooks/useAuth';
 
 import { LoginPage } from '@/pages/LoginPage';
+import { RegisterPage } from '@/pages/RegisterPage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { StudentDashboardPage } from '@/pages/StudentDashboardPage';
 import { StudentsListPage } from '@/pages/StudentsListPage';
@@ -47,6 +48,7 @@ export function AppRouter() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
         <Route
           element={
