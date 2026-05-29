@@ -9,7 +9,7 @@ if (-not (Test-Path $venv)) {
 }
 Push-Location (Join-Path $repo "backend")
 try {
-  & $venv -m app.db.seed_risk_demos
+  & $venv -m app.db.seed --risk-demo-predictions
 } finally {
   Pop-Location
 }

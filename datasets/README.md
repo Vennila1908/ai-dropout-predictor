@@ -2,7 +2,7 @@
 
 | File                       | Rows  | Origin                                                                                              |
 |---------------------------- |-------|-----------------------------------------------------------------------------------------------------|
-| `sample_students.csv`      | ~210  | Committed sample for instant demo. Reproducible — generated with the deterministic Node script.     |
+| `sample_students.csv`      | ~219  | Committed sample for instant demo. Includes 9 curated low/medium/high risk profiles at the end.     |
 | `synthetic_students.csv`   | varies| Run `python ml/training_scripts/generate_synthetic.py --rows 1000` to regenerate.                   |
 
 ## Schema
