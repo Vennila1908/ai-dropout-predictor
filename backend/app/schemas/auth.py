@@ -35,3 +35,18 @@ class RefreshIn(BaseModel):
 class AccessTokenOnly(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+
+class ForgotPasswordIn(BaseModel):
+    email: EmailAddress
+
+
+class ForgotPasswordOut(BaseModel):
+    message: str
+    reset_token: str | None = None
+    reset_url: str | None = None
+
+
+class ResetPasswordIn(BaseModel):
+    token: str
+    password: str = Field(min_length=8, max_length=128)

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { GraduationCap, UserCog, UserX, Users } from 'lucide-react';
+import { GraduationCap, UserCog, UserX } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 import { UserForm } from '@/components/users/UserForm';
@@ -96,20 +96,28 @@ export function UsersPage() {
         <div>
           <h1 className="text-xl font-semibold">User accounts</h1>
           <p className="text-sm text-ink-muted">
-            Create login credentials for students, faculty, and admins. This is separate from student
-            records used for ML predictions.
+            Create login credentials for students, faculty, and admins. This is separate from student records
+            used for ML predictions.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button variant="secondary" icon={<GraduationCap className="h-4 w-4" />} onClick={() => openCreate('student')}>
+          <Button
+            variant="secondary"
+            icon={<GraduationCap className="h-4 w-4" />}
+            onClick={() => openCreate('student')}
+          >
             Add student
           </Button>
-          <Button variant="secondary" icon={<UserCog className="h-4 w-4" />} onClick={() => openCreate('faculty')}>
+          <Button
+            variant="secondary"
+            icon={<UserCog className="h-4 w-4" />}
+            onClick={() => openCreate('faculty')}
+          >
             Add faculty
           </Button>
-          <Button variant="ghost" icon={<Users className="h-4 w-4" />} onClick={() => openCreate('admin')}>
+          {/* <Button variant="ghost" icon={<Users className="h-4 w-4" />} onClick={() => openCreate('admin')}>
             Add admin
-          </Button>
+          </Button> */}
         </div>
       </header>
 
@@ -147,11 +155,7 @@ export function UsersPage() {
       <Card>
         <CardHeader
           title="Accounts"
-          subtitle={
-            users
-              ? `${filteredUsers.length} shown · ${users.length} total`
-              : '…'
-          }
+          subtitle={users ? `${filteredUsers.length} shown · ${users.length} total` : '…'}
         />
         <CardBody className="p-0">
           {isLoading ? (
@@ -193,7 +197,11 @@ export function UsersPage() {
                             icon={<UserX className="h-3.5 w-3.5" />}
                             loading={deactivate.isPending}
                             onClick={() => {
-                              if (window.confirm(`Deactivate ${user.email}? They will no longer be able to sign in.`)) {
+                              if (
+                                window.confirm(
+                                  `Deactivate ${user.email}? They will no longer be able to sign in.`,
+                                )
+                              ) {
                                 deactivate.mutate(user.id);
                               }
                             }}
@@ -207,7 +215,9 @@ export function UsersPage() {
                   {!filteredUsers.length && (
                     <tr>
                       <td colSpan={5} className="px-5 py-8 text-center text-ink-muted">
-                        {users?.length ? 'No accounts match this filter.' : 'No accounts yet. Add a student or faculty login to get started.'}
+                        {users?.length
+                          ? 'No accounts match this filter.'
+                          : 'No accounts yet. Add a student or faculty login to get started.'}
                       </td>
                     </tr>
                   )}
@@ -222,17 +232,17 @@ export function UsersPage() {
         <CardHeader title="Quick reference" />
         <CardBody className="space-y-2 text-sm text-ink-muted">
           <p>
-            <strong className="text-ink">Login account</strong> — lets someone sign in to this app
-            (email + password).
+            <strong className="text-ink">Login account</strong> — lets someone sign in to this app (email +
+            password).
           </p>
           <p>
-            <strong className="text-ink">Student record</strong> — academic data for predictions
-            (roll number, marks, attendance). Add those under <em>Students</em> or via CSV upload.
+            <strong className="text-ink">Student record</strong> — academic data for predictions (roll number,
+            marks, attendance). Add those under <em>Students</em> or via CSV upload.
           </p>
           <p className="text-xs">
-            Seeded demo logins: admin@example.com, faculty@example.com, student@example.com (passwords
-            end with @123). Faculty accounts need a department and can access Students, Predictions,
-            Counseling, and Analytics.
+            Seeded demo logins: admin@example.com, faculty@example.com, student@example.com (passwords end
+            with @123). Faculty accounts need a department and can access Students, Predictions, Counseling,
+            and Analytics.
           </p>
         </CardBody>
       </Card>

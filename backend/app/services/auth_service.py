@@ -29,6 +29,23 @@ def issue_tokens(user: User) -> dict[str, str]:
     }
 
 
+def issue_password_reset_token(user: User) -> str:
+    return create_token(
+        user.id,
+        role=user.role.value,
+        token_type="password_reset",
+        extra={"pwd": user.hashed_password[-16:]},
+    )
+
+
+def reset_user_password(db: Session, *, user: User, password: str) -> User:
+    user.hashed_password = hash_password(password)
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
+
+
 def register_user(
     db: Session,
     *,
