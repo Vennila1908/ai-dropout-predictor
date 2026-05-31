@@ -32,27 +32,52 @@ _STUDENT_EMAIL_DOMAIN = "student.edu"
 
 
 _DEFAULT_DEPARTMENTS = [
-    ("B.Sc. Computer Science", "BSCS"),
-    ("Bachelor of Computer Applications", "BCA"),
-    ("B.Sc. Physics", "BSCP"),
-    ("B.Sc. Mathematics", "BSCM"),
-    ("B.Sc. Chemistry", "BSCC"),
+    ("Bachelor of Arts in History, Economics and Political Science", "BA-HEP"),
+    ("Bachelor of Arts in Criminology, Psychology and Journalism", "BA-CPJ"),
+    ("Bachelor of Commerce", "BCOM"),
+    ("Bachelor of Commerce in Logistics and Supply Chain Management", "BCOM-LSCM"),
+    ("Bachelor of Science in Electronics, Mathematics and Computer Science", "BSC-EMCS"),
+    ("Bachelor of Science in Chemistry, Biotechnology and Life Sciences", "BSC-CBLS"),
+    ("Bachelor of Science in Psychology, Chemistry and Mathematics", "BSC-PCMATH"),
+    ("Bachelor of Science in Physics, Mathematics and Computer Science", "BSC-PMCS"),
+    ("Bachelor of Science in Physics, Chemistry and Mathematics", "BSC-PCM"),
+    ("Bachelor of Science in Clinical Nutrition and Dietetics", "BSC-CND"),
+    ("Bachelor of Science in Forensic Science", "BSC-FS"),
+    ("Bachelor of Social Work", "BSW"),
     ("Bachelor of Business Administration", "BBA"),
-    ("B.Com", "BCOM"),
-    ("M.Com", "MCOM"),
-    ("B.Com (Honours)", "BCOMH"),
-    ("B.Com (Computer Applications)", "BCOMCA"),
+    ("Bachelor of Business Administration in Aviation Management", "BBA-AM"),
+    ("Bachelor of Computer Applications", "BCA"),
+    ("Bachelor of Hotel Management", "BHM"),
+    ("Bachelor of Tourism and Travel Management", "BTTM"),
+    ("Master of Tourism and Travel Management", "MTTM"),
+    ("Master of Commerce", "MCOM"),
+    ("Master of Arts in Economics", "MA-ECO"),
+    ("Master of Arts in Kannada", "MA-KAN"),
+    ("Master of Arts in English", "MA-ENG"),
+    ("Master of Science in Computer Science", "MSC-CS"),
+    ("Master of Science in Organic Chemistry", "MSC-OC"),
+    ("Master of Science in Inorganic Chemistry", "MSC-IC"),
+    ("Master of Science in Physical Chemistry", "MSC-PC"),
+    ("Master of Science in Botany", "MSC-BOT"),
+    ("Master of Social Work", "MSW"),
+    ("Master of Business Administration", "MBA"),
+    ("Master of Computer Applications", "MCA"),
 ]
 
 
-# Old engineering-style codes → new degree program codes (one-time migration on startup).
+# Legacy codes → current degree program codes (one-time migration on startup).
 _LEGACY_DEPT_CODE_MAP: dict[str, str] = {
-    "CSE": "BSCS",
+    "CSE": "BSC-EMCS",
     "IT": "BCA",
-    "ECE": "BSCP",
-    "MECH": "BSCM",
-    "CIVIL": "BSCC",
-    "MBA": "BBA",
+    "ECE": "BSC-PCM",
+    "MECH": "BSC-PMCS",
+    "CIVIL": "BSC-CBLS",
+    "BSCS": "BSC-EMCS",
+    "BSCP": "BSC-PCM",
+    "BSCM": "BSC-PMCS",
+    "BSCC": "BSC-CBLS",
+    "BCOMH": "BCOM",
+    "BCOMCA": "BCOM-LSCM",
 }
 
 
@@ -115,7 +140,7 @@ def seed_departments(db: Session) -> dict[str, Department]:
 def seed_users(db: Session, departments: dict[str, Department]) -> None:
     if db.execute(select(User).limit(1)).first():
         return  # already seeded
-    bscs = departments.get("BSCS")
+    bca = departments.get("BCA")
     users = [
         User(
             email=settings.seed_admin_email,
@@ -130,7 +155,7 @@ def seed_users(db: Session, departments: dict[str, Department]) -> None:
             full_name="Jane Faculty",
             hashed_password=hash_password("Faculty@123"),
             role=UserRole.faculty,
-            department_id=bscs.id if bscs else None,
+            department_id=bca.id if bca else None,
             is_active=True,
         ),
         User(
@@ -138,7 +163,7 @@ def seed_users(db: Session, departments: dict[str, Department]) -> None:
             full_name="Alex Student",
             hashed_password=hash_password("Student@123"),
             role=UserRole.student,
-            department_id=bscs.id if bscs else None,
+            department_id=bca.id if bca else None,
             is_active=True,
         ),
     ]
@@ -158,13 +183,13 @@ def seed_sample_students(db: Session, departments: dict[str, Department]) -> Non
 
     inserted = 0
     code_to_id = {code: dept.id for code, dept in departments.items()}
-    default_dept_id = code_to_id.get("BSCS") or next(iter(code_to_id.values()), None)
+    default_dept_id = code_to_id.get("BCA") or next(iter(code_to_id.values()), None)
 
     with csv_path.open("r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             try:
-                dept_id = code_to_id.get(row.get("department_code", "BSCS")) or default_dept_id
+                dept_id = code_to_id.get(row.get("department_code", "BCA")) or default_dept_id
                 student = Student(
                     roll_no=row["roll_no"].strip(),
                     name=row["name"].strip(),
@@ -351,17 +376,17 @@ def _sanitize_roll_numbers(db: Session) -> None:
         logger.info("Normalized %d student roll numbers to alphanumeric-only format", updated)
 
 
-# Curated low / medium / high showcases (last 9 rows in sample_students.csv).
+# Curated low / medium / high showcases (15th student in selected programs).
 RISK_DEMO_ROLL_NUMBERS: tuple[str, ...] = (
-    "BSCS060211",
-    "BCA050212",
-    "BSCP040213",
-    "BSCS050214",
-    "BSCM060215",
-    "BCA040216",
-    "BSCS050217",
-    "BSCP060218",
-    "BSCC040219",
+    "BSCEMCS060015",
+    "BCA050015",
+    "BSCPCM040015",
+    "BSCPMCS050015",
+    "BSCCBLS060015",
+    "BBA040015",
+    "BSCFS050015",
+    "BACPJ060015",
+    "BSW040015",
 )
 
 

@@ -93,6 +93,17 @@ the seed), these accounts exist:
 
 Change these immediately in production.
 
+Each seeded student also gets a login account:
+
+| Email pattern              | Password    | Role    |
+|----------------------------|-------------|---------|
+| `{roll_no}@student.edu`    | Student@123 | student |
+
+Examples: `bca050001@student.edu`, `bahep010014@student.edu`, `mba020003@student.edu`
+(roll numbers are lowercase in the email; hyphens in program codes are omitted in roll numbers).
+
+To load the new 30-program dataset on an existing database, delete `backend/app.db` (or reset Postgres) and restart the backend so the seed runs again.
+
 ## Training the ML Model
 
 The setup script trains an initial model. To retrain manually:
