@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { studentsApi } from '@/features/students/studentsApi';
-import type { UserCreatePayload } from '@/features/users/usersApi';
+import { usersApi, type UserCreatePayload } from '@/features/users/usersApi';
 import { formatError } from '@/lib/api';
 import type { Role } from '@/lib/constants';
 import { bindPersonNameField, personNameLongSchema, sanitizePersonName } from '@/lib/validation';
@@ -125,19 +125,33 @@ export function UserForm({
       setRollMatched(false);
 
       try {
-        const match = await studentsApi.lookupByRoll(rollNo);
-        setValue('full_name', sanitizePersonName(match.name), { shouldValidate: true });
-        setValue('department_id', match.department_id ? String(match.department_id) : '', {
-          shouldValidate: true,
-        });
-        setRollMatched(true);
-        setRollLookupError(null);
-      } catch (err) {
-        setRollMatched(false);
-        if (formatError(err).status === 404) {
+        try {
+          await usersApi.lookupByRoll(rollNo);
+          setRollLookupError('A login account already exists for this roll number.');
+          return;
+        } catch (err) {
+          const loginCheck = formatError(err);
+          if (loginCheck.status !== 404) {
+            setRollLookupError(loginCheck.message || 'Could not check roll number.');
+            return;
+          }
+        }
+
+        try {
+          const match = await studentsApi.lookupByRoll(rollNo);
+          setValue('full_name', sanitizePersonName(match.name), { shouldValidate: true });
+          setValue('department_id', match.department_id ? String(match.department_id) : '', {
+            shouldValidate: true,
+          });
+          setRollMatched(true);
           setRollLookupError(null);
-        } else {
-          setRollLookupError(formatError(err).message || 'Could not look up roll number.');
+        } catch (err) {
+          setRollMatched(false);
+          if (formatError(err).status === 404) {
+            setRollLookupError(null);
+          } else {
+            setRollLookupError(formatError(err).message || 'Could not look up roll number.');
+          }
         }
       } finally {
         setRollLookupPending(false);
@@ -175,6 +189,10 @@ export function UserForm({
           error={rollLookupError ?? errors.roll_no?.message}
           disabled={loading}
           {...register('roll_no', {
+            onChange: () => {
+              setRollLookupError(null);
+              setRollMatched(false);
+            },
             onBlur: (event) => {
               void lookupStudentByRoll(event.target.value);
             },

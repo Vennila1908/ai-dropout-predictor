@@ -23,20 +23,25 @@ export function SettingsPage() {
         <CardBody className="space-y-1 text-sm">
           <p>{user?.full_name}</p>
           <p className="text-ink-muted">{user?.email}</p>
-          <p>
+          <p className="py-2">
             Role: <Badge>{user?.role}</Badge>
           </p>
-          <p className="text-xs text-ink-muted">
+          {/* <p className="text-xs text-ink-muted">
             To rotate your password or change role, ask an administrator (admin-only via /users API).
-          </p>
+          </p> */}
         </CardBody>
       </Card>
 
       <Card>
         <CardHeader title="System" />
         <CardBody className="text-sm space-y-1">
-          <p>Backend: <span className="font-mono text-xs">v{health?.version ?? '?'}</span></p>
-          <p>Database: {health?.db ? <Badge variant="low">healthy</Badge> : <Badge variant="high">degraded</Badge>}</p>
+          <p>
+            Backend: <span className="font-mono text-xs">v{health?.version ?? '?'}</span>
+          </p>
+          <p>
+            Database:{' '}
+            {health?.db ? <Badge variant="low">healthy</Badge> : <Badge variant="high">degraded</Badge>}
+          </p>
         </CardBody>
       </Card>
     </div>

@@ -118,6 +118,11 @@ export function LoginPage() {
           {...register('password', { onChange: () => setFormError(null) })}
           placeholder="••••••••"
         />
+        <div className="text-right text-sm">
+          <Link to="/forgot-password" className="font-medium text-primary-600 hover:underline dark:text-primary-400">
+            Forgot password?
+          </Link>
+        </div>
         <Button type="submit" className="w-full" loading={login.isPending} disabled={login.isPending}>
           {login.isPending ? 'Signing in…' : 'Sign in'}
         </Button>

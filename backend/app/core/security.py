@@ -5,7 +5,7 @@ Uses passlib[bcrypt] for hashing and python-jose for JWT.
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any, Literal
 
 from jose import JWTError, jwt
@@ -13,10 +13,9 @@ from passlib.context import CryptContext
 
 from app.core.config import settings
 
-
 _pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-TokenType = Literal["access", "refresh"]
+TokenType = Literal["access", "refresh", "password_reset"]
 
 
 def hash_password(plain: str) -> str:
@@ -35,6 +34,8 @@ def verify_password(plain: str, hashed: str) -> bool:
 def _expiry_for(token_type: TokenType) -> timedelta:
     if token_type == "refresh":
         return timedelta(minutes=settings.refresh_token_expire_minutes)
+    if token_type == "password_reset":
+        return timedelta(minutes=settings.password_reset_token_expire_minutes)
     return timedelta(minutes=settings.access_token_expire_minutes)
 
 
@@ -54,7 +55,7 @@ def create_token(
     token_type : "access" or "refresh".
     extra   : optional extra claims merged into the payload.
     """
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     payload: dict[str, Any] = {
         "sub": str(subject),
         "role": role,

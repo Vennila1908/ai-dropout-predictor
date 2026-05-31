@@ -27,6 +27,7 @@ export const studentsApi = {
     unwrap(api.get<PaginatedResponse<Student>>('/students', { params })),
   lookupByRoll: (rollNo: string) =>
     unwrap(api.get<StudentRollLookup>('/students/lookup-by-roll', { params: { roll_no: rollNo } })),
+  me: () => unwrap(api.get<Student>('/students/me')),
   get: (id: number) => unwrap(api.get<Student>(`/students/${id}`)),
   create: (payload: StudentCreatePayload) => unwrap(api.post<Student>('/students', payload)),
   update: (id: number, payload: StudentUpdatePayload) =>

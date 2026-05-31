@@ -1,7 +1,9 @@
-"""Idempotent seed: creates default departments + admin/faculty/student users.
+"""Idempotent seed: departments, users, sample students, and demo predictions.
 
-Also imports a handful of demo students from `datasets/sample_students.csv`
-when the students table is empty so the dashboards have something to show.
+Imports students from `datasets/sample_students.csv` when the table is empty.
+Runs ML predictions for nine curated low/medium/high showcase rolls via
+``seed_risk_demo_predictions``. Use ``python -m app.db.seed --risk-demo-predictions``
+to refresh those predictions after retraining.
 """
 
 from __future__ import annotations
@@ -15,10 +17,13 @@ from sqlalchemy.orm import Session
 from app.core.config import settings
 from app.core.logging import get_logger
 from app.core.security import hash_password
+from app.repositories.prediction_repo import prediction_repo
+from app.repositories.student_repo import student_repo
 from app.schemas.validators import normalize_roll_no
 from app.models.department import Department
 from app.models.student import FinancialStatus, PlacementReadiness, Student
 from app.models.user import User, UserRole
+from app.services import prediction_service
 
 
 logger = get_logger(__name__)
@@ -346,16 +351,103 @@ def _sanitize_roll_numbers(db: Session) -> None:
         logger.info("Normalized %d student roll numbers to alphanumeric-only format", updated)
 
 
+# Curated low / medium / high showcases (last 9 rows in sample_students.csv).
+RISK_DEMO_ROLL_NUMBERS: tuple[str, ...] = (
+    "BSCS060211",
+    "BCA050212",
+    "BSCP040213",
+    "BSCS050214",
+    "BSCM060215",
+    "BCA040216",
+    "BSCS050217",
+    "BSCP060218",
+    "BSCC040219",
+)
+
+
+def seed_risk_demo_predictions(db: Session, *, force: bool = False) -> dict[str, int]:
+    """Run ML predictions for curated demo students (imported from sample_students.csv)."""
+    predicted = 0
+    skipped = 0
+    missing: list[str] = []
+
+    for roll_no in RISK_DEMO_ROLL_NUMBERS:
+        student = student_repo.get_by_roll_no(db, roll_no)
+        if not student:
+            missing.append(roll_no)
+            continue
+        if not force and prediction_repo.latest(db, student.id):
+            skipped += 1
+            continue
+        result = prediction_service.predict_for_student(db, roll_no)
+        if result:
+            predicted += 1
+            logger.info(
+                "Predicted %s (%s) risk=%s confidence=%.2f",
+                roll_no,
+                student.id,
+                result.get("risk_level"),
+                float(result.get("confidence") or 0),
+            )
+
+    if missing:
+        logger.warning(
+            "Demo students not in DB (import sample_students.csv first): %s",
+            ", ".join(missing),
+        )
+
+    logger.info(
+        "Risk demo predictions: predicted=%d skipped=%d missing=%d (of %d)",
+        predicted,
+        skipped,
+        len(missing),
+        len(RISK_DEMO_ROLL_NUMBERS),
+    )
+    return {
+        "predicted": predicted,
+        "skipped": skipped,
+        "missing": len(missing),
+        "total_demos": len(RISK_DEMO_ROLL_NUMBERS),
+    }
+
+
 def seed_all(db: Session) -> None:
     """Run every seed step. Safe to call repeatedly — each step is idempotent."""
     departments = seed_departments(db)
     _migrate_legacy_department_codes(db, departments)
     seed_users(db, departments)
     seed_sample_students(db, departments)
-    from app.db.seed_risk_demos import seed_risk_demo_students
-
-    seed_risk_demo_students(db)
+    seed_risk_demo_predictions(db)
     _sanitize_roll_numbers(db)
     redistribute_students_across_departments(db, departments)
     _migrate_student_local_emails(db)
     seed_student_login_accounts(db)
+
+
+if __name__ == "__main__":
+    import argparse
+
+    from app.db.session import SessionLocal
+
+    parser = argparse.ArgumentParser(description="Seed database or refresh risk-demo predictions.")
+    parser.add_argument(
+        "--risk-demo-predictions",
+        action="store_true",
+        help="Run ML predictions for the nine curated demo students only.",
+    )
+    args = parser.parse_args()
+
+    db = SessionLocal()
+    try:
+        if args.risk_demo_predictions:
+            summary = seed_risk_demo_predictions(db, force=True)
+            print(
+                f"Done — ran {summary['predicted']} predictions, "
+                f"skipped {summary['skipped']} (already had predictions), "
+                f"missing {summary['missing']} of {summary['total_demos']} demo rolls."
+            )
+        else:
+            seed_all(db)
+            print("Seed complete.")
+    finally:
+        db.close()

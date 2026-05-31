@@ -10,11 +10,10 @@ from __future__ import annotations
 import json
 from functools import lru_cache
 from pathlib import Path
-from typing import Annotated, List
+from typing import Annotated
 
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
-
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 REPO_ROOT = BACKEND_DIR.parent
@@ -41,12 +40,13 @@ class Settings(BaseSettings):
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     refresh_token_expire_minutes: int = 60 * 24 * 7
+    password_reset_token_expire_minutes: int = 30
 
     # ─── DB ────────────────────────────────────────────────────────────────
     database_url: str = "sqlite:///./app.db"
 
     # ─── CORS ──────────────────────────────────────────────────────────────
-    cors_origins: Annotated[List[str], NoDecode] = Field(
+    cors_origins: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: [
             "http://localhost:5173",
             "http://localhost:8080",

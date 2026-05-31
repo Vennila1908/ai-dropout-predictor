@@ -93,7 +93,23 @@ function messageFromDetail(detail: unknown): string | undefined {
   return parts.length ? parts.join('; ') : undefined;
 }
 
+function isApiError(err: unknown): err is ApiError {
+  return (
+    typeof err === 'object' &&
+    err !== null &&
+    'status' in err &&
+    'code' in err &&
+    'message' in err &&
+    typeof (err as ApiError).status === 'number' &&
+    typeof (err as ApiError).code === 'string' &&
+    typeof (err as ApiError).message === 'string'
+  );
+}
+
 export function formatError(err: unknown): ApiError {
+  if (isApiError(err)) {
+    return err;
+  }
   if (axios.isAxiosError(err)) {
     const data = err.response?.data as
       | { error?: { code?: string; message?: string }; detail?: unknown }

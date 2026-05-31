@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any
-
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
@@ -25,7 +23,6 @@ from app.schemas.student import (
 from app.schemas.validators import ROLL_NO_PATTERN
 from app.services import student_service
 from app.services.auth_service import write_audit
-
 
 router = APIRouter(prefix="/students", tags=["students"])
 
@@ -84,6 +81,19 @@ def create_student(payload: StudentCreate, db: Session = Depends(get_db), me: Us
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(exc)) from exc
     write_audit(db, user_id=me.id, action="student.create", entity="student", entity_id=item["id"], meta={"roll_no": item["roll_no"]})
     return StudentOut.model_validate(item)
+
+
+@router.get("/me", response_model=StudentOut)
+def get_my_student_record(db: Session = Depends(get_db), me: User = Depends(get_current_user)) -> StudentOut:
+    if not me.roll_no:
+        raise HTTPException(status_code=404, detail="No roll number is linked to this account")
+    item = student_repo.get_by_roll_no(db, me.roll_no)
+    if not item:
+        raise HTTPException(status_code=404, detail="Student record not found for this account")
+    hydrated = student_service.get_student(db, item.id)
+    if not hydrated:
+        raise HTTPException(status_code=404, detail="Student record not found for this account")
+    return StudentOut.model_validate(hydrated)
 
 
 @router.get("/{student_id:int}", response_model=StudentOut)
