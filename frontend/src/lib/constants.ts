@@ -3,7 +3,7 @@ export const APP_NAME = 'AI Dropout Predictor';
 export const COLLEGE_NAME = 'S.E.A COLLEGE OF SCIENCE COMMERCE & ARTS';
 export const COLLEGE_LOGO = '/logo_sea.webp';
 
-export const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/+$/, '');
+export const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/+$/, '');
 export const API_PREFIX = '/api/v1';
 export const API_URL = `${API_BASE}${API_PREFIX}`;
 
