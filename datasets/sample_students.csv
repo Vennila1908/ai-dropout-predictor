@@ -1,220 +1,451 @@
 roll_no,name,age,gender,department_code,semester,attendance_pct,internal_marks,semester_marks,backlogs,fee_paid,fee_delay_days,financial_status,family_background,behavioral_indicators,extracurricular,placement_readiness,counselor_remarks,risk_level
-BSCM040001,Aman Rao,21,F,BSCM,4,59.43,26.12,40.8,2,false,120,medium,,discipline: clean,music,low,,high
-BSCS040002,Anjali Nair,24,M,BSCS,4,39.64,40.73,25.95,2,false,29,low,stable,,"football, debate",medium,,high
-BSCS010003,Rahul Pawar,23,F,BSCS,1,80.74,56.13,66.14,0,false,9,medium,single parent,,music,medium,,low
-BSCS080004,Sneha Chopra,18,F,BSCS,8,86.96,53.43,52.77,0,true,0,medium,support: high,warning: late submissions,,medium,,medium
-BSCS080005,Snehal Goyal,20,F,BSCS,8,86.49,60.85,64.46,0,true,0,medium,,discipline: clean,"football, debate",low,,low
-BSCS060006,Megha Trivedi,19,M,BSCS,6,94.58,92.62,72.06,0,true,0,medium,stable,discipline: clean,,high,,low
-BSCM030007,Aarav Saxena,22,F,BSCM,3,92.06,92.17,77.18,0,true,0,high,single parent,discipline: clean,,high,,low
-BCA050008,Snehal Iyer,18,F,BCA,5,73.31,51.19,67.64,1,true,0,medium,joint family,discipline: clean,music,low,,medium
-BSCP040009,Sneha Bose,23,M,BSCP,4,82.35,59.96,58.4,1,true,0,medium,single parent,,sports,medium,,medium
-BSCC030010,Rohit Pillai,18,F,BSCC,3,87.02,71.06,82.71,0,true,0,medium,support: high,warning: late submissions,robotics club,high,,low
-BBA080011,Rahul Patel,18,F,BBA,8,72.64,65.47,70.19,0,true,0,medium,,discipline: clean,,medium,,medium
-BSCC080012,Imran Bose,24,M,BSCC,8,58.21,49.29,50.59,4,false,76,low,support: high,,sports,medium,,high
-BSCS010013,Dev Chopra,24,F,BSCS,1,83.07,73.9,71.99,0,true,0,low,joint family,,,low,,low
-BSCM050014,Kiran Iyer,17,M,BSCM,5,78.44,61.48,60.63,0,true,0,medium,,calm,"football, debate",low,,low
-BSCS070015,Lina Sinha,21,F,BSCS,7,79.04,52.47,70.54,0,true,0,medium,,discipline: clean,,medium,,medium
-BCA010016,Isha Das,24,F,BCA,1,82.95,76.57,84.79,0,true,0,high,single parent,,,high,,low
-BBA080017,Vivek Gupta,23,F,BBA,8,90.29,91.5,90.58,0,true,0,high,joint family,,literary club,high,,low
-BBA080018,Anjali Mukherjee,24,F,BBA,8,75.56,65.79,66.7,1,false,11,low,joint family,,robotics club,medium,,medium
-BCA080019,Simran Goyal,23,M,BCA,8,74.95,65.77,69.28,1,true,0,medium,stable,calm,"football, debate",medium,,medium
-BSCM060020,Megha Das,24,F,BSCM,6,70.78,54.19,52.44,0,false,11,medium,single parent,,,medium,,medium
-BBA030021,Asha Khan,24,F,BBA,3,92.04,76,80.56,0,true,0,medium,joint family,calm,literary club,medium,,low
-BSCS010022,Ananya Saxena,24,M,BSCS,1,87.45,76,75.06,0,true,0,high,,,literary club,high,,low
-BSCC050023,Priya Gupta,23,M,BSCC,5,83.32,89.31,79.5,0,true,0,high,stable,discipline: clean,"football, debate",high,,low
-BCA020024,Isha Chopra,23,M,BCA,2,80.85,63.89,55.13,1,false,16,low,stable,,sports,medium,,medium
-BSCP020025,Lina Iyer,25,F,BSCP,2,79.14,54.71,71.31,0,true,4,low,joint family,warning: late submissions,"football, debate",medium,,medium
-BCA050026,Lina Verma,25,F,BCA,5,78.03,62.13,56.3,0,true,1,medium,stable,calm,music,medium,,low
-BSCC010027,Rohan Chopra,25,M,BSCC,1,79.88,62.04,62.81,0,true,0,low,stable,warning: late submissions,,medium,,low
-BBA040028,Yash Bhat,21,M,BBA,4,91.08,82.37,79.72,0,true,0,medium,joint family,warning: late submissions,,high,,low
-BSCS050029,Karan Patel,25,M,BSCS,5,82.27,63.88,65.25,1,false,20,medium,support: high,discipline: clean,literary club,medium,,medium
-BBA060030,Pooja Mukherjee,20,F,BBA,6,75.9,71.01,61.34,1,true,0,low,stable,,literary club,medium,,medium
-BSCP070031,Ravi Shah,25,M,BSCP,7,70.29,67.1,71.88,0,false,18,medium,single parent,warning: late submissions,literary club,medium,,medium
-BSCS060032,Maya Mukherjee,25,F,BSCS,6,77.81,64.91,70.87,0,true,0,medium,joint family,warning: late submissions,sports,low,,medium
-BSCS080033,Isha Rao,23,F,BSCS,8,82.55,83.1,71.26,0,true,0,high,support: high,calm,,high,,high
-BSCM070034,Kiran Banerjee,20,F,BSCM,7,77.47,64.7,60.28,0,true,0,medium,support: high,discipline: clean,music,medium,,low
-BBA060035,Snehal Sharma,22,F,BBA,6,96.55,82.71,90.18,0,true,0,medium,joint family,discipline: clean,robotics club,medium,,low
-BCA080036,Aman Shah,20,M,BCA,8,97.13,77.66,81.27,0,true,0,medium,,discipline: clean,robotics club,medium,,low
-BSCM080037,Karan Sharma,23,M,BSCM,8,79.73,72.21,64.68,1,true,0,medium,joint family,warning: late submissions,sports,medium,,medium
-BSCS020038,Sara Nair,24,M,BSCS,2,75.06,51.08,61.49,1,true,4,low,single parent,,sports,low,,medium
-BSCP080039,Tanvi Banerjee,18,M,BSCP,8,68.49,36.3,30.23,4,false,118,medium,stable,,robotics club,medium,,high
-BSCS050040,Megha Gupta,20,M,BSCS,5,80.77,74.4,63.15,1,false,16,medium,single parent,discipline: clean,music,low,,medium
-BSCP060041,Kiran Verma,18,M,BSCP,6,66.2,28.34,42.69,3,false,103,medium,single parent,discipline: clean,robotics club,low,,high
-BSCP070042,Anjali Joshi,18,F,BSCP,7,78.13,59.48,74.93,1,true,0,medium,stable,,sports,low,,high
-BSCM010043,Simran Mehta,17,F,BSCM,1,85.77,54.74,71.07,0,true,0,medium,single parent,,robotics club,low,,medium
-BCA010044,Rohit Singh,17,F,BCA,1,93.03,89.82,91.47,0,true,0,high,joint family,warning: late submissions,music,high,,low
-BBA020045,Aarav Chauhan,19,F,BBA,2,82.17,93.85,84.77,0,true,0,high,,warning: late submissions,sports,medium,,low
-BSCS030046,Vivek Iyer,20,M,BSCS,3,69.74,39.49,31.17,1,false,150,low,support: high,discipline: clean,robotics club,medium,,medium
-BSCM050047,Neha Singh,22,F,BSCM,5,80.63,51.6,72.06,1,true,0,medium,support: high,,robotics club,low,,medium
-BSCP040048,Ravi Pawar,20,M,BSCP,4,77.72,68.11,52.01,0,true,0,medium,stable,warning: late submissions,"football, debate",medium,,low
-BBA040049,Anirudh Verma,25,F,BBA,4,66.98,23.39,39.9,6,false,63,low,single parent,warning: late submissions,robotics club,medium,,high
-BCA030050,Ravi Kapoor,22,F,BCA,3,74.86,55.18,50.74,1,true,0,low,joint family,warning: late submissions,,medium,,medium
-BSCC070051,Neha Pawar,24,F,BSCC,7,81.99,62.04,59.19,0,true,0,medium,single parent,warning: late submissions,robotics club,medium,,low
-BBA080052,Karan Joshi,25,M,BBA,8,79.15,59.71,71.38,0,true,0,low,single parent,,literary club,low,,low
-BBA070053,Sahil Mukherjee,22,M,BBA,7,95.19,79.13,75.63,0,true,0,medium,joint family,discipline: clean,literary club,high,,low
-BSCC060054,Anjali Joshi,22,F,BSCC,6,79.22,72.82,60.18,1,true,0,medium,stable,,literary club,medium,,medium
-BSCP050055,Sneha Das,25,F,BSCP,5,86.6,94.16,91.13,0,true,0,high,support: high,,music,high,,low
-BCA020056,Asha Kapoor,21,M,BCA,2,96.33,94.71,84.14,0,true,0,medium,joint family,calm,music,high,,low
-BSCM020057,Simran Patel,24,M,BSCM,2,84.59,65.45,53.41,0,true,5,low,stable,,literary club,medium,,low
-BSCM050058,Ravi Khan,19,F,BSCM,5,85.11,74.47,54.27,0,false,25,medium,support: high,,music,low,,low
-BSCC080059,Anirudh Chopra,25,M,BSCC,8,85.45,72.8,67.59,1,true,0,low,support: high,,sports,medium,,medium
-BSCS030060,Dev Verma,20,M,BSCS,3,81.43,74.99,69.02,1,false,25,medium,single parent,discipline: clean,sports,medium,,medium
-BCA060061,Isha Goyal,23,M,BCA,6,94.46,77.44,70.46,0,true,0,medium,single parent,discipline: clean,,medium,,low
-BCA050062,Karan Gupta,24,M,BCA,5,60.46,48.08,50.13,5,false,135,low,support: high,,robotics club,low,,high
-BBA060063,Tara Khan,22,F,BBA,6,85.17,82.7,89.52,0,true,0,medium,,,,high,,low
-BSCS010064,Sahil Trivedi,21,M,BSCS,1,85.89,93.46,89.79,0,true,0,medium,single parent,calm,robotics club,high,,low
-BSCM010065,Manoj Kapoor,21,M,BSCM,1,54.34,42.81,28.5,1,false,108,medium,joint family,,music,low,,low
-BSCC020066,Arjun Saini,18,F,BSCC,2,86.51,75.64,79.55,0,true,0,high,,calm,sports,high,,low
-BSCM050067,Simran Kapoor,19,M,BSCM,5,92.51,84.27,75.58,0,true,0,medium,stable,calm,robotics club,medium,,low
-BCA070068,Anjali Singh,22,M,BCA,7,88.91,90.6,84.56,0,true,0,medium,stable,,"football, debate",medium,,low
-BSCM040069,Neha Khan,25,F,BSCM,4,57.9,33.62,32.15,5,false,169,medium,stable,warning: late submissions,literary club,medium,,high
-BSCM030070,Rahul Mehta,19,F,BSCM,3,85.73,57.87,60.4,1,false,27,low,stable,,,medium,,medium
-BSCM010071,Simran Singh,23,F,BSCM,1,48.78,41.33,34.95,3,false,148,medium,stable,,robotics club,medium,,high
-BBA060072,Riya Saxena,25,M,BBA,6,75.16,53.97,51.35,0,true,0,low,joint family,calm,robotics club,low,,medium
-BSCP010073,Manoj Saxena,18,M,BSCP,1,56.41,22.95,29.83,1,false,25,low,single parent,,literary club,medium,,high
-BBA040074,Naina Trivedi,18,F,BBA,4,83.63,94.17,82.82,0,true,0,high,stable,calm,robotics club,high,,low
-BSCM040075,Tanvi Kapoor,20,M,BSCM,4,93.19,75.32,74.07,0,true,0,high,stable,discipline: clean,robotics club,high,,low
-BSCM080076,Lina Chopra,24,M,BSCM,8,78.15,51.09,53.78,0,true,0,low,joint family,warning: late submissions,literary club,medium,,medium
-BSCP050077,Karan Chopra,22,M,BSCP,5,63.08,39.7,30.69,3,false,45,medium,single parent,discipline: clean,"football, debate",medium,,high
-BSCM020078,Priya Nair,17,M,BSCM,2,68.79,38.68,34.08,3,false,92,low,support: high,,robotics club,low,,high
-BSCP050079,Ali Reddy,19,F,BSCP,5,86.88,60.15,68.6,0,true,0,low,,warning: late submissions,,low,,low
-BCA080080,Aman Bose,18,M,BCA,8,39.49,32.03,51.24,4,false,56,low,stable,warning: late submissions,,medium,,high
-BSCS030081,Zara Shah,23,M,BSCS,3,85,74.93,75.23,0,true,0,high,single parent,warning: late submissions,robotics club,medium,,low
-BSCM020082,Anjali Bose,19,F,BSCM,2,81.76,51.86,52.13,0,false,30,medium,stable,,music,medium,,medium
-BSCP020083,Asha Gupta,25,M,BSCP,2,80.84,67.78,67.8,0,true,0,medium,,warning: late submissions,,low,,high
-BSCS080084,Tara Kapoor,18,F,BSCS,8,54.46,20.11,51.9,6,false,52,low,,,robotics club,medium,,high
-BSCS080085,Megha Reddy,24,F,BSCS,8,86.8,88.93,90.58,0,true,0,high,support: high,discipline: clean,music,high,,low
-BSCM030086,Lina Kapoor,22,M,BSCM,3,95.38,94.11,70.65,0,true,0,high,stable,warning: late submissions,"football, debate",high,,low
-BSCS040087,Naina Reddy,19,M,BSCS,4,87.59,90.25,72.58,0,true,0,high,stable,discipline: clean,,medium,,low
-BSCM080088,Pooja Verma,21,F,BSCM,8,82.36,59.59,65.5,0,true,0,medium,support: high,discipline: clean,,low,,low
-BSCC010089,Rohit Reddy,23,F,BSCC,1,51.94,24.78,53.3,6,false,129,medium,single parent,,robotics club,low,,high
-BSCS080090,Aman Mukherjee,17,M,BSCS,8,84.67,68.98,56.09,1,true,0,low,joint family,,,medium,,medium
-BSCS020091,Lina Chopra,18,F,BSCS,2,95.31,73.96,73.77,0,true,0,high,,,robotics club,high,,low
-BSCS070092,Ravi Pandey,22,F,BSCS,7,88.69,79.13,83.21,0,true,0,medium,,calm,"football, debate",medium,,low
-BBA060093,Sneha Shah,20,F,BBA,6,96.11,92.59,70.82,0,true,0,medium,joint family,calm,"football, debate",high,,low
-BCA070094,Naina Nair,24,M,BCA,7,73.38,67.86,58.13,1,false,19,medium,,,robotics club,low,,high
-BBA050095,Vivek Trivedi,20,M,BBA,5,84.77,66.31,67.29,0,true,0,medium,stable,warning: late submissions,robotics club,low,,low
-BSCP030096,Rahul Rao,18,F,BSCP,3,69.78,29.18,49.51,1,false,163,medium,stable,discipline: clean,,low,,high
-BCA010097,Neha Sinha,17,F,BCA,1,97.86,88.5,89.31,0,true,0,high,,discipline: clean,,high,,low
-BCA050098,Dev Gupta,17,M,BCA,5,88.58,74.24,86.29,0,true,0,high,,calm,sports,high,,low
-BCA020099,Vikram Yadav,25,F,BCA,2,83.72,92.49,78.74,0,true,0,high,support: high,discipline: clean,"football, debate",high,,low
-BSCP030100,Anirudh Bose,19,F,BSCP,3,82,62.74,56.93,1,true,0,low,stable,calm,music,low,,high
-BSCS020101,Pooja Khan,18,M,BSCS,2,93.55,86.35,91.49,0,true,0,medium,support: high,,"football, debate",high,,low
-BSCM060102,Vivek Bose,25,M,BSCM,6,85.61,78.35,75.94,0,true,0,high,single parent,,music,high,,low
-BBA060103,Isha Das,19,M,BBA,6,77.71,72.51,50.77,0,false,18,medium,support: high,,,medium,,low
-BSCP020104,Karan Pillai,17,F,BSCP,2,78.08,55.08,70.92,0,true,5,medium,stable,calm,"football, debate",medium,,low
-BSCS060105,Imran Saini,25,F,BSCS,6,84,93.26,73.01,0,true,0,medium,stable,warning: late submissions,music,medium,,low
-BSCM020106,Dev Sharma,23,M,BSCM,2,70.22,56.15,60.06,1,true,0,medium,stable,warning: late submissions,,low,,medium
-BBA080107,Snehal Nair,21,F,BBA,8,80.03,54.74,71.97,1,false,12,medium,support: high,calm,music,low,,low
-BSCS020108,Aarav Mukherjee,21,M,BSCS,2,54.8,51.31,36.54,2,false,144,low,joint family,discipline: clean,robotics club,low,,high
-BSCC050109,Isha Goyal,25,F,BSCC,5,87.84,58.81,70.71,0,true,0,medium,joint family,warning: late submissions,music,low,,low
-BSCM060110,Rohit Joshi,19,F,BSCM,6,73.06,61.74,57.87,0,false,21,low,support: high,,literary club,low,,medium
-BBA010111,Maya Goyal,23,F,BBA,1,84.95,85.28,70.88,0,true,0,high,,,"football, debate",high,,low
-BSCP010112,Maya Trivedi,21,F,BSCP,1,82.87,63.69,74.32,1,false,16,medium,,,,medium,,medium
-BCA040113,Arjun Verma,21,M,BCA,4,97.67,71.09,83.95,0,true,0,high,single parent,calm,,high,,high
-BSCM030114,Sandeep Joshi,24,M,BSCM,3,72.72,52.64,65.8,0,true,0,low,stable,warning: late submissions,music,low,,high
-BSCP080115,Sneha Banerjee,21,F,BSCP,8,95.92,92.25,75.05,0,true,0,medium,stable,discipline: clean,,high,,low
-BCA050116,Rohit Banerjee,17,M,BCA,5,96.8,70.34,85.22,0,true,0,high,stable,calm,,high,,low
-BCA040117,Imran Rao,22,M,BCA,4,81.59,55.13,57.72,0,false,9,medium,joint family,discipline: clean,literary club,medium,,low
-BSCC030118,Neha Saini,20,F,BSCC,3,80.8,74.18,67.11,0,false,28,medium,joint family,calm,"football, debate",medium,,low
-BSCC080119,Rohan Chopra,25,F,BSCC,8,89.86,74.85,87.66,0,true,0,high,,,literary club,medium,,low
-BSCC060120,Aditya Sinha,17,M,BSCC,6,92.38,87.14,90.07,0,true,0,medium,single parent,warning: late submissions,sports,medium,,low
-BCA010121,Sandeep Pandey,25,F,BCA,1,93.16,92.83,81.7,0,true,0,medium,,warning: late submissions,,high,,low
-BSCM070122,Aarav Bhat,23,F,BSCM,7,71.94,70.61,59.2,0,false,8,low,single parent,calm,sports,low,,medium
-BCA030123,Riya Mehta,18,M,BCA,3,84.88,90.9,81.24,0,true,0,medium,single parent,,robotics club,high,,low
-BSCC010124,Megha Banerjee,24,M,BSCC,1,66.44,39.94,27.5,1,false,67,medium,joint family,,sports,medium,,high
-BCA080125,Aditya Mehta,19,F,BCA,8,86.29,65.49,74.91,0,true,0,medium,support: high,,sports,low,,low
-BSCP080126,Anjali Pawar,25,M,BSCP,8,88.43,76.57,87.47,0,true,0,high,,,sports,high,,low
-BSCP060127,Maya Singh,17,M,BSCP,6,89.72,71.95,91.53,0,true,0,high,support: high,,music,high,,low
-BSCM040128,Vivek Rao,20,M,BSCM,4,75.43,60.42,64.57,0,true,0,low,single parent,,robotics club,low,,low
-BBA010129,Pooja Bhat,23,F,BBA,1,44.1,36.78,32.57,2,false,114,low,stable,discipline: clean,sports,medium,,high
-BSCC080130,Anirudh Joshi,21,F,BSCC,8,85.58,57.24,54.57,1,true,0,low,joint family,,literary club,medium,,medium
-BBA070131,Megha Khan,20,M,BBA,7,40.72,21.69,47.16,5,false,178,low,single parent,discipline: clean,music,low,,low
-BSCC040132,Aman Pillai,24,M,BSCC,4,70.97,67.1,58.93,0,true,0,low,,,"football, debate",medium,,medium
-BSCM010133,Megha Pillai,21,M,BSCM,1,60.71,33.19,31.86,6,false,40,low,single parent,warning: late submissions,,low,,high
-BSCC070134,Snehal Khan,24,F,BSCC,7,66.14,24.77,33.5,4,false,103,low,joint family,discipline: clean,"football, debate",low,,high
-BSCP030135,Zara Bose,20,F,BSCP,3,91.05,85.8,73.71,0,true,0,high,,,robotics club,high,,high
-BCA040136,Sneha Sinha,22,F,BCA,4,90.81,88.98,78.15,0,true,0,high,,discipline: clean,"football, debate",medium,,low
-BSCC020137,Tara Das,23,F,BSCC,2,95.84,78.88,77.96,0,true,0,medium,stable,calm,music,high,,low
-BSCM050138,Pooja Trivedi,20,F,BSCM,5,59.75,46.27,25.32,5,false,102,low,stable,calm,literary club,medium,,high
-BSCP040139,Aditya Bhat,17,M,BSCP,4,51.19,33.92,40.45,2,false,150,low,single parent,discipline: clean,"football, debate",low,,high
-BSCS030140,Tara Singh,24,F,BSCS,3,85.7,86.98,89.87,0,true,0,high,stable,,literary club,high,,medium
-BSCM020141,Karan Bhat,24,F,BSCM,2,85.11,89.2,79.07,0,true,0,medium,,,,high,,medium
-BSCM070142,Zara Khan,20,F,BSCM,7,41.48,31.12,47.56,2,false,87,low,stable,warning: late submissions,music,low,,high
-BSCM020143,Snehal Saini,19,F,BSCM,2,84.51,53.51,53.99,0,false,10,medium,single parent,discipline: clean,robotics club,low,,medium
-BCA030144,Tanvi Shah,18,F,BCA,3,83.49,71.18,72.16,0,true,0,high,,discipline: clean,robotics club,medium,,low
-BBA050145,Sandeep Reddy,25,M,BBA,5,92.39,71.79,82.7,0,true,0,medium,stable,,sports,medium,,low
-BSCS010146,Neha Verma,19,F,BSCS,1,94.83,77.54,70.21,0,true,0,high,,warning: late submissions,sports,high,,low
-BBA080147,Karan Mukherjee,25,M,BBA,8,85.45,86.79,81.35,0,true,0,high,stable,discipline: clean,literary club,high,,low
-BSCC020148,Nikhil Pillai,23,F,BSCC,2,85.34,71.72,84.12,0,true,0,medium,joint family,warning: late submissions,"football, debate",medium,,low
-BSCC050149,Isha Bose,23,F,BSCC,5,82.66,65.92,52.61,1,false,9,medium,support: high,warning: late submissions,"football, debate",medium,,medium
-BBA060150,Ananya Trivedi,19,F,BBA,6,97.17,85.44,86.32,0,true,0,high,single parent,,,high,,low
-BCA070151,Sara Chauhan,18,M,BCA,7,66.42,27.55,32.4,5,false,77,medium,joint family,discipline: clean,,low,,high
-BSCC010152,Isha Nair,24,M,BSCC,1,91.95,80.62,83.28,0,true,0,medium,single parent,,literary club,medium,,low
-BCA030153,Pooja Mehta,25,F,BCA,3,80.58,64.42,70.32,0,true,0,low,support: high,,literary club,low,,low
-BSCP040154,Ananya Mukherjee,17,M,BSCP,4,57.31,52.56,29.01,1,false,32,low,support: high,discipline: clean,robotics club,medium,,high
-BSCS050155,Sahil Bhat,23,M,BSCS,5,85.24,65.18,58.19,0,false,29,medium,joint family,warning: late submissions,literary club,medium,,low
-BSCC050156,Tara Rao,20,M,BSCC,5,81.36,61.54,59.74,0,true,0,medium,single parent,,literary club,medium,,low
-BSCS080157,Sahil Banerjee,19,M,BSCS,8,78.57,67.47,50.12,1,false,10,medium,,discipline: clean,sports,medium,,medium
-BSCP070158,Tanvi Reddy,25,M,BSCP,7,39.77,30.64,36.67,5,false,149,low,joint family,warning: late submissions,"football, debate",low,,high
-BSCP040159,Manoj Rao,17,M,BSCP,4,78.89,57.68,69.07,0,false,9,low,joint family,,sports,low,,low
-BSCC080160,Zara Singh,22,F,BSCC,8,91.31,92.71,90.97,0,true,0,high,joint family,discipline: clean,literary club,high,,low
-BBA060161,Nikhil Pandey,21,M,BBA,6,86.57,85.59,90.06,0,true,0,high,stable,discipline: clean,"football, debate",medium,,low
-BCA060162,Arjun Pawar,21,F,BCA,6,59.69,33.42,36.81,3,false,37,low,single parent,,sports,low,,high
-BCA070163,Naina Yadav,18,F,BCA,7,42.29,28.57,38,5,false,97,low,single parent,,robotics club,low,,high
-BSCM050164,Manoj Kapoor,20,M,BSCM,5,72.92,56.74,70.59,0,false,28,medium,,discipline: clean,literary club,medium,,medium
-BSCM040165,Megha Yadav,19,M,BSCM,4,75.15,69.56,52.78,0,true,0,low,support: high,discipline: clean,music,medium,,low
-BSCS070166,Anirudh Rao,21,M,BSCS,7,84.76,51.02,54,0,true,0,medium,single parent,warning: late submissions,"football, debate",medium,,high
-BBA040167,Sandeep Banerjee,20,M,BBA,4,44.7,48.28,50.93,1,false,124,medium,joint family,warning: late submissions,sports,low,,high
-BCA070168,Manoj Nair,21,M,BCA,7,96.62,79.07,78.4,0,true,0,medium,single parent,warning: late submissions,robotics club,high,,low
-BSCS010169,Karan Gupta,19,M,BSCS,1,83.65,72.67,86.07,0,true,0,high,,discipline: clean,robotics club,high,,low
-BSCM040170,Pooja Mehta,23,F,BSCM,4,71.48,64.91,56.21,0,false,28,low,support: high,,"football, debate",medium,,medium
-BSCM070171,Rohan Pillai,25,F,BSCM,7,86.14,85.42,87.58,0,true,0,high,single parent,warning: late submissions,sports,high,,low
-BSCS060172,Yash Yadav,21,F,BSCS,6,82.41,88.02,87.88,0,true,0,medium,stable,,literary club,medium,,low
-BSCS020173,Ananya Yadav,19,M,BSCS,2,88.26,83.44,89.15,0,true,0,high,joint family,discipline: clean,,high,,low
-BBA050174,Sahil Iyer,22,M,BBA,5,64.45,42.3,43.98,3,false,24,medium,,,literary club,low,,high
-BSCC040175,Zara Patel,21,F,BSCC,4,97.85,88.48,86.38,0,true,0,high,,calm,,high,,low
-BBA060176,Asha Pawar,23,M,BBA,6,62.16,22.59,38.68,3,false,55,medium,single parent,discipline: clean,"football, debate",low,,high
-BBA040177,Rohan Goyal,18,F,BBA,4,89.61,80.33,72.01,0,true,0,high,single parent,warning: late submissions,sports,high,,low
-BSCP030178,Neha Rao,20,F,BSCP,3,84.09,86.3,82.02,0,true,0,high,support: high,,"football, debate",high,,low
-BSCM040179,Megha Pillai,21,M,BSCM,4,92.08,79.96,80.81,0,true,0,high,,,music,high,,low
-BSCS050180,Ananya Saini,21,F,BSCS,5,70.76,57.56,58.52,0,true,0,medium,single parent,,literary club,medium,,medium
-BSCP070181,Megha Sharma,20,M,BSCP,7,58.02,27.82,53.44,4,false,55,medium,single parent,,literary club,low,,high
-BCA040182,Sneha Bose,22,M,BCA,4,94.38,92.06,89.48,0,true,0,medium,support: high,discipline: clean,sports,high,,high
-BCA050183,Tanvi Pawar,17,F,BCA,5,68.43,31.04,48.9,3,false,74,low,single parent,warning: late submissions,,low,,high
-BSCP080184,Aman Joshi,18,M,BSCP,8,74.25,53.9,67.11,1,true,0,low,,discipline: clean,robotics club,medium,,medium
-BCA020185,Rohit Mukherjee,21,F,BCA,2,86.12,70.5,56.2,0,true,0,medium,,discipline: clean,sports,medium,,high
-BBA020186,Rohan Sinha,23,F,BBA,2,73.08,67.24,61.7,0,true,0,low,support: high,,sports,medium,,medium
-BBA050187,Vikram Kapoor,23,M,BBA,5,87.77,87.06,85.16,0,true,0,medium,stable,,literary club,medium,,low
-BBA060188,Aman Pillai,21,M,BBA,6,44.59,24.94,26.27,4,false,167,medium,stable,discipline: clean,literary club,low,,high
-BBA040189,Zara Goyal,21,F,BBA,4,72.47,58.32,57.24,0,true,0,low,support: high,warning: late submissions,music,low,,medium
-BBA050190,Megha Mukherjee,22,F,BBA,5,78.74,64.28,72.13,0,true,0,medium,support: high,,,medium,,medium
-BSCM050191,Karan Verma,18,M,BSCM,5,73.87,56.02,58.43,1,true,0,medium,single parent,warning: late submissions,,medium,,medium
-BCA050192,Megha Joshi,21,F,BCA,5,87.22,66.88,72.33,1,true,0,medium,support: high,calm,"football, debate",low,,medium
-BSCC040193,Megha Nair,25,F,BSCC,4,85.3,79.58,90.24,0,true,0,medium,,calm,sports,high,,low
-BBA080194,Yash Das,21,M,BBA,8,87,74.27,82.79,0,true,0,medium,single parent,,robotics club,high,,low
-BSCC010195,Rohan Bose,24,M,BSCC,1,82.78,73.32,87.87,0,true,0,medium,joint family,warning: late submissions,,high,,low
-BSCC050196,Lina Pandey,19,M,BSCC,5,66.33,21.17,33.34,1,false,134,medium,support: high,calm,music,medium,,high
-BSCS050197,Megha Yadav,25,F,BSCS,5,75.21,50.46,53,1,true,0,low,single parent,calm,music,low,,medium
-BCA040198,Sandeep Trivedi,18,F,BCA,4,95.01,84.16,85.39,0,true,0,medium,support: high,calm,sports,high,,low
-BCA020199,Tanvi Pillai,18,M,BCA,2,81.52,72.38,73.44,1,true,0,medium,stable,discipline: clean,,medium,,medium
-BCA070200,Rohan Pawar,19,F,BCA,7,87.49,62.62,51.78,1,true,0,low,single parent,warning: late submissions,sports,low,,medium
-BCA040201,Rohan Shah,22,F,BCA,4,88.12,85.31,78.56,0,true,0,high,stable,warning: late submissions,"football, debate",high,,low
-BSCP070202,Tanvi Saxena,18,M,BSCP,7,78.73,74.63,62.32,0,true,2,low,joint family,discipline: clean,,medium,,low
-BSCP040203,Nikhil Pandey,23,F,BSCP,4,84.81,67.67,61.95,1,true,0,medium,stable,discipline: clean,sports,low,,medium
-BSCS050204,Sara Banerjee,22,M,BSCS,5,93.91,93.29,82.74,0,true,0,medium,single parent,,,high,,low
-BCA030205,Riya Gupta,22,M,BCA,3,87.74,64.32,54.71,0,true,0,medium,stable,discipline: clean,,medium,,low
-BSCM040206,Snehal Singh,19,F,BSCM,4,96.2,75.09,81.81,0,true,0,medium,single parent,warning: late submissions,music,high,,low
-BSCP010207,Sneha Saini,18,M,BSCP,1,78.18,53.25,72.88,1,true,0,medium,joint family,discipline: clean,music,medium,,medium
-BSCP060208,Kiran Saxena,22,F,BSCP,6,97.74,92.29,76.83,0,true,0,high,joint family,,"football, debate",high,,low
-BBA040209,Neha Trivedi,21,M,BBA,4,83.64,68.12,68.41,0,false,21,medium,single parent,warning: late submissions,"football, debate",medium,,low
-BSCM020210,Lina Joshi,18,M,BSCM,2,82.4,64.18,60.72,0,false,29,low,stable,,music,medium,,low
-BSCS060211,Priya Sharma,20,F,BSCS,6,92,78,81,0,true,0,medium,,"Punctual, participates actively","Coding club lead, hackathon winner",high,Strong academic track; no intervention needed.,low
-BCA050212,Rahul Mehta,20,M,BCA,5,88,74,76,0,true,0,high,,"Collaborative, good peer feedback","Robotics club, internship completed",high,On track for placement season.,low
-BSCP040213,Ananya Iyer,20,F,BSCP,4,95,82,84,0,true,0,medium,,Consistent performer,NSS volunteer technical paper presenter,medium,Reliable attendance and steady grades.,low
-BSCS050214,Vikram Singh,20,M,BSCS,5,68,52,54,1,true,15,medium,,Missed two consecutive tutorials,Occasional lab sessions,medium,Slipping attendance; one backlog to clear.,medium
-BSCM060215,Sneha Patel,20,F,BSCM,6,73,53,55,1,true,35,medium,,Quiet in class limited office-hour visits,Workshop participant,medium,Borderline grades and one backlog — monitor closely.,medium
-BCA040216,Karan Joshi,20,M,BCA,4,74,56,58,1,true,0,medium,,Irregular lab submissions,Part-time tutoring,medium,Needs academic coaching for backlog subject.,medium
-BSCS050217,Arjun Reddy,20,M,BSCS,5,42,32,35,4,false,90,low,,Repeated absences disciplinary warning on file,,low,Urgent intervention — multiple failed courses.,high
-BSCP060218,Meera Nair,20,F,BSCP,6,55,38,40,3,false,120,low,,"Late to exams, missed counseling appointment",,low,Family financial stress reported; at risk of dropout.,high
-BSCC040219,Rohit Khan,20,M,BSCC,4,48,36,38,3,false,60,low,,Disengaged frequent class absences,,low,Schedule parent meeting and remedial plan.,high
+BAHEP050001,Aditya Verma,17,M,BA-HEP,5,84.23,72.6,86.3,0,true,0,medium,stable,,music,high,,low
+BAHEP040002,Aditya Kapoor,25,M,BA-HEP,4,82.62,60.5,61.2,0,true,0,low,joint family,,music,medium,,low
+BAHEP020003,Sara Patel,18,F,BA-HEP,2,76.46,58.6,56.6,0,true,0,medium,support: high,calm,literary club,low,,low
+BAHEP020004,Sara Das,20,F,BA-HEP,2,85.65,77.2,71.8,0,true,0,medium,,calm,music,medium,,low
+BAHEP020005,Rohan Saxena,21,M,BA-HEP,2,73.08,68.2,54.1,0,false,8,medium,joint family,,music,medium,,medium
+BAHEP050006,Harish Mehta,23,F,BA-HEP,5,96.61,84.2,85.8,0,true,0,medium,,,robotics club,high,,low
+BAHEP070007,Sahil Bhat,23,F,BA-HEP,7,87.95,53.5,62.3,0,true,0,low,,discipline: clean,,medium,,medium
+BAHEP050008,Maya Khan,25,F,BA-HEP,5,65.54,20.4,46.6,6,false,157,low,joint family,warning: late submissions,music,medium,,high
+BAHEP030009,Sahil Banerjee,25,F,BA-HEP,3,71.92,65.6,71.0,1,true,0,low,support: high,,sports,medium,,medium
+BAHEP060010,Harish Saini,18,M,BA-HEP,6,64.61,30.8,26.7,5,false,40,low,stable,discipline: clean,music,medium,,high
+BAHEP030011,Simran Mehta,25,F,BA-HEP,3,95.96,80.6,74.7,0,true,0,medium,joint family,warning: late submissions,sports,high,,low
+BAHEP020012,Riya Reddy,20,M,BA-HEP,2,91.41,75.8,74.8,0,true,0,medium,stable,,robotics club,high,,medium
+BAHEP040013,Karan Khan,24,F,BA-HEP,4,83.02,72.1,64.4,0,true,0,medium,,calm,"football, debate",low,,low
+BAHEP010014,Sneha Das,18,M,BA-HEP,1,76.11,71.5,56.2,0,true,0,low,,,,medium,,low
+BAHEP010015,Riya Rao,17,M,BA-HEP,1,67.64,49.7,30.0,4,false,143,low,,,"football, debate",low,,high
+BACPJ070001,Riya Mukherjee,21,F,BA-CPJ,7,83.15,69.6,66.5,0,true,0,medium,support: high,,literary club,low,,low
+BACPJ030002,Tara Mehta,24,M,BA-CPJ,3,90.13,91.3,71.5,0,true,0,medium,stable,discipline: clean,music,high,,low
+BACPJ070003,Imran Iyer,18,M,BA-CPJ,7,80.17,57.9,56.5,1,true,0,low,joint family,warning: late submissions,robotics club,medium,,medium
+BACPJ080004,Tara Joshi,17,M,BA-CPJ,8,80.13,52.5,63.4,1,true,0,medium,joint family,,"football, debate",low,,medium
+BACPJ010005,Vivek Iyer,25,F,BA-CPJ,1,79.98,73.3,52.6,0,true,0,low,joint family,calm,sports,medium,,low
+BACPJ050006,Maya Sinha,20,F,BA-CPJ,5,74.52,72.7,51.3,1,true,0,low,single parent,calm,music,low,,medium
+BACPJ010007,Yash Banerjee,25,F,BA-CPJ,1,97.12,87.3,73.3,0,true,0,medium,single parent,warning: late submissions,music,high,,high
+BACPJ040008,Sahil Bhat,22,M,BA-CPJ,4,82.0,58.8,64.0,0,false,19,low,single parent,warning: late submissions,,low,,low
+BACPJ040009,Aman Saini,23,F,BA-CPJ,4,94.6,72.7,89.2,0,true,0,high,,calm,robotics club,medium,,low
+BACPJ010010,Anjali Kapoor,20,M,BA-CPJ,1,77.17,57.0,51.7,0,false,11,medium,stable,,robotics club,medium,,low
+BACPJ020011,Manoj Verma,17,F,BA-CPJ,2,76.22,69.7,60.9,1,true,0,medium,,,sports,low,,medium
+BACPJ070012,Simran Gupta,22,M,BA-CPJ,7,92.63,78.3,76.9,0,true,0,medium,joint family,warning: late submissions,robotics club,high,,low
+BACPJ030013,Pooja Bose,25,F,BA-CPJ,3,92.64,79.5,86.5,0,true,0,medium,,discipline: clean,,high,,low
+BACPJ060014,Kavya Saxena,23,M,BA-CPJ,6,77.96,55.3,61.8,1,true,5,low,support: high,calm,,medium,,medium
+BACPJ060015,Meera Nair,20,F,BA-CPJ,6,55,38,40,3,false,120,low,,"Late to exams, missed counseling appointment",,low,Family financial stress reported; at risk of dropout.,high
+BCOM040001,Pooja Singh,21,M,BCOM,4,42.72,21.6,54.5,5,false,38,low,,warning: late submissions,"football, debate",low,,high
+BCOM070002,Nikhil Iyer,18,M,BCOM,7,94.87,87.4,80.2,0,true,0,medium,,discipline: clean,sports,medium,,low
+BCOM070003,Kiran Sinha,25,F,BCOM,7,55.53,51.4,47.3,4,false,135,low,support: high,warning: late submissions,literary club,low,,high
+BCOM050004,Sara Trivedi,18,F,BCOM,5,87.37,92.3,71.8,0,true,0,medium,single parent,,,medium,,low
+BCOM080005,Sara Shah,25,F,BCOM,8,73.72,60.5,72.6,1,false,30,low,stable,calm,robotics club,medium,,medium
+BCOM040006,Nikhil Desai,25,F,BCOM,4,74.91,62.1,59.7,1,true,0,medium,single parent,discipline: clean,sports,low,,high
+BCOM070007,Ali Kapoor,18,M,BCOM,7,89.39,71.3,78.3,0,true,0,medium,,calm,"football, debate",high,,low
+BCOM010008,Tara Singh,24,M,BCOM,1,70.94,73.8,55.6,0,false,24,low,stable,discipline: clean,music,low,,medium
+BCOM040009,Karan Mukherjee,18,F,BCOM,4,74.61,59.2,65.1,1,true,0,low,stable,calm,sports,medium,,medium
+BCOM040010,Naina Bhat,23,F,BCOM,4,93.05,85.7,72.2,0,true,0,high,stable,discipline: clean,,high,,low
+BCOM020011,Pooja Pillai,22,F,BCOM,2,76.14,71.2,70.6,0,true,0,medium,single parent,discipline: clean,literary club,medium,,low
+BCOM070012,Nikhil Mukherjee,24,F,BCOM,7,56.96,31.3,32.4,1,false,91,low,support: high,warning: late submissions,robotics club,low,,medium
+BCOM040013,Priya Reddy,24,M,BCOM,4,74.65,57.0,64.9,0,true,0,medium,,warning: late submissions,sports,low,,medium
+BCOM080014,Vivek Gupta,24,F,BCOM,8,71.67,55.5,67.3,0,false,21,medium,joint family,warning: late submissions,literary club,medium,,medium
+BCOM050015,Isha Goyal,24,F,BCOM,5,85.69,88.0,76.9,0,true,0,medium,,calm,literary club,medium,,low
+BCOMLSCM040001,Rahul Verma,18,F,BCOM-LSCM,4,87.77,77.6,85.6,0,true,0,medium,support: high,calm,literary club,high,,low
+BCOMLSCM010002,Imran Shah,18,F,BCOM-LSCM,1,78.45,61.0,54.6,0,true,0,low,stable,discipline: clean,literary club,low,,low
+BCOMLSCM050003,Sara Nair,19,M,BCOM-LSCM,5,85.97,84.0,79.2,0,true,0,medium,,calm,sports,high,,low
+BCOMLSCM020004,Vikram Rao,17,F,BCOM-LSCM,2,44.65,27.4,44.8,2,false,81,low,stable,warning: late submissions,"football, debate",medium,,high
+BCOMLSCM010005,Yash Saxena,21,F,BCOM-LSCM,1,93.31,87.6,80.0,0,true,0,medium,single parent,warning: late submissions,,high,,low
+BCOMLSCM030006,Neha Nair,21,M,BCOM-LSCM,3,84.65,77.7,86.5,0,true,0,high,joint family,warning: late submissions,robotics club,high,,low
+BCOMLSCM020007,Yash Sharma,24,F,BCOM-LSCM,2,86.01,68.4,65.1,0,true,0,medium,joint family,discipline: clean,,medium,,low
+BCOMLSCM080008,Lina Kapoor,24,M,BCOM-LSCM,8,43.81,40.5,44.0,4,false,43,low,joint family,,music,low,,high
+BCOMLSCM070009,Aarav Saxena,21,F,BCOM-LSCM,7,55.6,35.9,34.4,3,false,49,low,support: high,warning: late submissions,"football, debate",medium,,medium
+BCOMLSCM010010,Ananya Chopra,24,F,BCOM-LSCM,1,90.79,93.2,79.6,0,true,0,high,support: high,,literary club,medium,,low
+BCOMLSCM070011,Pooja Shah,25,M,BCOM-LSCM,7,97.88,92.8,80.2,0,true,0,medium,joint family,discipline: clean,literary club,high,,low
+BCOMLSCM040012,Lina Kapoor,24,F,BCOM-LSCM,4,72.6,54.8,65.0,1,true,0,low,support: high,calm,,medium,,medium
+BCOMLSCM030013,Tara Mukherjee,24,F,BCOM-LSCM,3,78.72,58.3,69.1,0,true,0,low,,,"football, debate",medium,,high
+BCOMLSCM030014,Nikhil Sharma,23,F,BCOM-LSCM,3,70.67,62.6,64.8,0,true,0,low,single parent,warning: late submissions,literary club,medium,,medium
+BCOMLSCM050015,Harish Pandey,24,M,BCOM-LSCM,5,93.08,86.2,88.7,0,true,0,high,support: high,,sports,high,,high
+BSCEMCS070001,Ali Bhat,18,M,BSC-EMCS,7,62.33,44.6,28.0,2,false,96,low,stable,calm,robotics club,low,,medium
+BSCEMCS070002,Yash Iyer,20,M,BSC-EMCS,7,84.27,54.2,52.0,0,false,19,low,single parent,warning: late submissions,literary club,medium,,medium
+BSCEMCS080003,Aditya Trivedi,17,F,BSC-EMCS,8,59.68,25.5,38.3,3,false,170,low,joint family,warning: late submissions,robotics club,medium,,high
+BSCEMCS020004,Imran Das,24,F,BSC-EMCS,2,91.15,84.4,91.8,0,true,0,high,stable,discipline: clean,literary club,medium,,low
+BSCEMCS050005,Arjun Chopra,24,M,BSC-EMCS,5,74.14,70.0,55.5,0,true,0,medium,stable,,robotics club,medium,,medium
+BSCEMCS030006,Asha Gupta,22,M,BSC-EMCS,3,86.72,88.7,73.9,0,true,0,medium,support: high,calm,music,high,,low
+BSCEMCS060007,Priya Bhat,21,F,BSC-EMCS,6,52.99,22.6,47.6,2,false,121,medium,,,robotics club,low,,high
+BSCEMCS050008,Ali Desai,22,F,BSC-EMCS,5,84.8,73.5,52.7,0,true,0,medium,support: high,,literary club,medium,,high
+BSCEMCS020009,Anjali Iyer,23,F,BSC-EMCS,2,97.14,77.6,80.8,0,true,0,medium,,warning: late submissions,robotics club,medium,,low
+BSCEMCS070010,Megha Nair,19,F,BSC-EMCS,7,85.01,65.4,73.5,0,true,1,medium,single parent,calm,,low,,low
+BSCEMCS060011,Isha Chopra,25,F,BSC-EMCS,6,86.41,94.2,90.9,0,true,0,high,support: high,,,medium,,low
+BSCEMCS040012,Pooja Bhat,19,M,BSC-EMCS,4,94.24,75.2,74.8,0,true,0,medium,support: high,,robotics club,high,,low
+BSCEMCS050013,Ananya Rao,19,M,BSC-EMCS,5,71.98,71.7,53.3,0,true,0,medium,joint family,,music,medium,,medium
+BSCEMCS080014,Sanjay Bose,18,M,BSC-EMCS,8,76.52,64.8,61.3,0,false,30,low,,,,medium,,low
+BSCEMCS060015,Priya Sharma,20,F,BSC-EMCS,6,92,78,81,0,true,0,medium,,"Punctual, participates actively","Coding club lead, hackathon winner",high,Strong academic track; no intervention needed.,low
+BSCCBLS020001,Rohit Chopra,23,F,BSC-CBLS,2,86.37,51.8,52.0,1,true,0,low,support: high,discipline: clean,literary club,medium,,medium
+BSCCBLS070002,Megha Kulkarni,24,F,BSC-CBLS,7,93.23,91.3,84.3,0,true,0,medium,single parent,warning: late submissions,robotics club,high,,low
+BSCCBLS020003,Priya Saini,23,F,BSC-CBLS,2,87.0,76.4,91.0,0,true,0,high,stable,,"football, debate",medium,,high
+BSCCBLS010004,Riya Bose,25,M,BSC-CBLS,1,80.11,58.2,53.1,0,false,27,medium,support: high,calm,robotics club,medium,,low
+BSCCBLS080005,Rohan Bhat,19,M,BSC-CBLS,8,83.73,91.1,78.1,0,true,0,high,,discipline: clean,sports,high,,low
+BSCCBLS010006,Pooja Mukherjee,21,M,BSC-CBLS,1,93.24,77.7,77.5,0,true,0,medium,,,music,medium,,low
+BSCCBLS040007,Riya Iyer,18,M,BSC-CBLS,4,78.17,53.9,57.8,0,false,24,medium,single parent,discipline: clean,,low,,medium
+BSCCBLS070008,Yash Shah,24,F,BSC-CBLS,7,77.96,56.8,68.9,0,true,0,low,support: high,calm,,medium,,low
+BSCCBLS040009,Aarav Shah,17,M,BSC-CBLS,4,85.38,73.4,75.6,0,true,0,high,,,music,medium,,low
+BSCCBLS060010,Pooja Pillai,25,M,BSC-CBLS,6,95.79,71.1,70.4,0,true,0,medium,support: high,warning: late submissions,literary club,high,,low
+BSCCBLS070011,Aditya Pandey,18,F,BSC-CBLS,7,87.2,90.0,83.6,0,true,0,high,stable,,"football, debate",medium,,low
+BSCCBLS050012,Dev Joshi,23,M,BSC-CBLS,5,73.99,69.5,51.9,1,true,3,medium,single parent,,,low,,medium
+BSCCBLS030013,Pooja Chopra,19,M,BSC-CBLS,3,81.8,54.4,69.3,0,false,14,medium,support: high,calm,literary club,medium,,medium
+BSCCBLS080014,Rahul Verma,18,F,BSC-CBLS,8,75.45,56.9,51.4,1,true,0,medium,joint family,calm,,medium,,medium
+BSCCBLS060015,Sneha Patel,20,F,BSC-CBLS,6,73,53,55,1,true,35,medium,,"Quiet in class, limited office-hour visits",Workshop participant,medium,Borderline grades and one backlog — monitor closely.,medium
+BSCPCMATH070001,Ali Pawar,25,M,BSC-PCMATH,7,79.98,69.8,72.4,0,false,29,medium,,discipline: clean,music,low,,low
+BSCPCMATH060002,Sanjay Pawar,18,F,BSC-PCMATH,6,40.7,42.6,26.2,6,false,132,low,single parent,calm,robotics club,medium,,high
+BSCPCMATH060003,Ravi Das,23,F,BSC-PCMATH,6,70.94,65.8,58.4,0,true,3,medium,support: high,,robotics club,medium,,low
+BSCPCMATH070004,Sanjay Patel,21,F,BSC-PCMATH,7,93.34,72.1,82.3,0,true,0,high,,discipline: clean,robotics club,medium,,high
+BSCPCMATH060005,Anjali Saini,20,M,BSC-PCMATH,6,53.56,27.9,29.1,1,false,95,low,support: high,,literary club,medium,,high
+BSCPCMATH030006,Megha Verma,23,M,BSC-PCMATH,3,95.3,89.3,87.8,0,true,0,medium,,calm,literary club,high,,low
+BSCPCMATH080007,Pooja Nair,21,F,BSC-PCMATH,8,85.83,94.1,87.3,0,true,0,medium,,calm,"football, debate",high,,low
+BSCPCMATH040008,Sanjay Pandey,19,F,BSC-PCMATH,4,42.43,28.8,44.2,3,false,161,low,stable,calm,,medium,,high
+BSCPCMATH030009,Imran Gupta,24,F,BSC-PCMATH,3,40.93,51.9,49.5,3,false,26,low,joint family,,"football, debate",low,,high
+BSCPCMATH010010,Rahul Bose,20,F,BSC-PCMATH,1,83.59,87.9,77.4,0,true,0,medium,,,literary club,medium,,low
+BSCPCMATH010011,Ravi Reddy,18,M,BSC-PCMATH,1,95.36,83.7,86.0,0,true,0,high,joint family,,,medium,,low
+BSCPCMATH020012,Ravi Pillai,18,F,BSC-PCMATH,2,53.99,38.8,44.0,5,false,81,medium,stable,discipline: clean,robotics club,low,,high
+BSCPCMATH020013,Rahul Chopra,19,F,BSC-PCMATH,2,76.49,73.8,63.6,1,true,0,medium,,calm,robotics club,medium,,medium
+BSCPCMATH060014,Rahul Joshi,18,F,BSC-PCMATH,6,92.51,72.6,82.8,0,true,0,high,support: high,calm,literary club,medium,,low
+BSCPCMATH030015,Rahul Kapoor,24,F,BSC-PCMATH,3,40.02,47.2,38.7,3,false,71,low,joint family,discipline: clean,"football, debate",low,,high
+BSCPMCS010001,Aditya Kulkarni,21,F,BSC-PMCS,1,73.44,58.9,69.5,1,true,0,low,,warning: late submissions,"football, debate",medium,,medium
+BSCPMCS080002,Anjali Bose,24,M,BSC-PMCS,8,84.35,56.7,52.1,0,true,0,medium,joint family,,,low,,low
+BSCPMCS080003,Kiran Chopra,21,F,BSC-PMCS,8,77.67,67.2,58.8,0,true,0,medium,stable,,literary club,medium,,low
+BSCPMCS030004,Asha Joshi,25,F,BSC-PMCS,3,42.57,41.3,48.4,1,false,52,low,,discipline: clean,,low,,high
+BSCPMCS060005,Ananya Goyal,22,F,BSC-PMCS,6,71.38,53.4,59.2,0,true,0,low,single parent,warning: late submissions,sports,low,,medium
+BSCPMCS050006,Megha Rao,21,M,BSC-PMCS,5,73.86,65.3,67.3,0,true,0,low,,,literary club,low,,medium
+BSCPMCS020007,Asha Gupta,22,F,BSC-PMCS,2,75.23,57.5,53.9,1,false,29,medium,single parent,,music,low,,medium
+BSCPMCS010008,Imran Trivedi,24,M,BSC-PMCS,1,80.3,61.7,74.6,0,true,0,low,,discipline: clean,"football, debate",medium,,low
+BSCPMCS060009,Aditya Gupta,19,M,BSC-PMCS,6,78.1,67.0,58.6,1,false,20,low,stable,,sports,low,,medium
+BSCPMCS060010,Vivek Das,19,M,BSC-PMCS,6,45.22,53.2,40.6,3,false,40,low,single parent,calm,sports,low,,high
+BSCPMCS030011,Pooja Das,19,M,BSC-PMCS,3,82.97,65.1,71.1,1,true,0,low,single parent,discipline: clean,"football, debate",low,,medium
+BSCPMCS050012,Riya Rao,24,M,BSC-PMCS,5,75.44,56.1,70.2,0,true,0,low,,warning: late submissions,"football, debate",medium,,low
+BSCPMCS060013,Vivek Khan,19,F,BSC-PMCS,6,48.22,54.6,35.4,4,false,53,low,joint family,,"football, debate",medium,,high
+BSCPMCS030014,Ali Desai,20,F,BSC-PMCS,3,86.64,79.6,83.5,0,true,0,medium,support: high,calm,music,medium,,low
+BSCPMCS050015,Vikram Singh,20,M,BSC-PMCS,5,68,52,54,1,true,15,medium,,Missed two consecutive tutorials,Occasional lab sessions,medium,Slipping attendance; one backlog to clear.,medium
+BSCPCM080001,Dev Verma,25,F,BSC-PCM,8,75.55,50.6,73.6,1,true,0,low,stable,calm,"football, debate",medium,,medium
+BSCPCM010002,Riya Mukherjee,21,F,BSC-PCM,1,51.79,50.9,46.8,4,false,113,low,support: high,,robotics club,low,,high
+BSCPCM080003,Maya Banerjee,23,M,BSC-PCM,8,75.03,74.7,67.0,0,true,0,medium,joint family,,music,medium,,low
+BSCPCM010004,Naina Kulkarni,25,F,BSC-PCM,1,84.19,78.3,80.4,0,true,0,high,support: high,,robotics club,medium,,low
+BSCPCM070005,Pooja Bose,19,F,BSC-PCM,7,61.66,30.5,35.1,5,false,156,low,,,robotics club,medium,,high
+BSCPCM050006,Rohan Goyal,23,M,BSC-PCM,5,83.06,67.2,50.7,0,false,8,medium,stable,discipline: clean,"football, debate",medium,,low
+BSCPCM040007,Pooja Pillai,19,F,BSC-PCM,4,97.17,72.7,70.4,0,true,0,high,single parent,warning: late submissions,sports,high,,low
+BSCPCM030008,Maya Banerjee,17,F,BSC-PCM,3,80.1,75.0,62.0,0,true,0,medium,joint family,calm,sports,medium,,low
+BSCPCM050009,Harish Kapoor,21,M,BSC-PCM,5,97.57,77.4,76.4,0,true,0,medium,,calm,sports,high,,low
+BSCPCM020010,Ravi Trivedi,21,F,BSC-PCM,2,79.78,72.4,59.9,0,true,0,medium,stable,calm,"football, debate",low,,low
+BSCPCM040011,Tara Reddy,20,F,BSC-PCM,4,46.68,39.7,33.1,1,false,177,medium,stable,discipline: clean,music,medium,,high
+BSCPCM070012,Divya Shah,18,M,BSC-PCM,7,89.56,87.0,73.0,0,true,0,medium,single parent,calm,robotics club,high,,low
+BSCPCM040013,Harish Rao,18,M,BSC-PCM,4,83.02,73.4,72.8,0,true,0,low,joint family,,,medium,,low
+BSCPCM050014,Aman Bhat,22,M,BSC-PCM,5,81.54,63.1,72.2,0,false,27,medium,stable,calm,music,medium,,low
+BSCPCM040015,Ananya Iyer,20,F,BSC-PCM,4,95,82,84,0,true,0,medium,,Consistent performer,"NSS volunteer, technical paper presenter",medium,Reliable attendance and steady grades.,low
+BSCCND010001,Kavya Kapoor,19,F,BSC-CND,1,84.23,64.2,68.9,0,false,19,medium,stable,warning: late submissions,literary club,medium,,medium
+BSCCND040002,Yash Goyal,22,F,BSC-CND,4,88.14,81.2,75.9,0,true,0,high,support: high,,robotics club,high,,low
+BSCCND020003,Ravi Joshi,17,M,BSC-CND,2,72.87,67.2,73.1,1,true,0,medium,support: high,,music,low,,medium
+BSCCND080004,Tara Saxena,19,F,BSC-CND,8,80.9,60.4,63.7,0,false,24,medium,support: high,,sports,low,,low
+BSCCND020005,Ali Pandey,18,F,BSC-CND,2,90.76,82.6,82.6,0,true,0,medium,support: high,warning: late submissions,,medium,,low
+BSCCND080006,Simran Goyal,18,F,BSC-CND,8,52.51,38.0,38.7,1,false,163,low,stable,warning: late submissions,robotics club,medium,,high
+BSCCND010007,Lina Rao,18,M,BSC-CND,1,82.61,63.5,51.5,0,true,0,low,single parent,warning: late submissions,robotics club,medium,,low
+BSCCND070008,Anjali Mehta,24,F,BSC-CND,7,82.29,66.5,63.5,1,true,0,low,support: high,,literary club,low,,medium
+BSCCND050009,Kiran Singh,17,M,BSC-CND,5,82.94,60.6,59.5,0,true,0,medium,stable,,literary club,low,,low
+BSCCND040010,Rahul Mehta,20,M,BSC-CND,4,91.5,81.2,84.8,0,true,0,medium,,,sports,medium,,low
+BSCCND050011,Simran Kulkarni,19,M,BSC-CND,5,96.66,84.4,82.7,0,true,0,high,single parent,discipline: clean,music,medium,,low
+BSCCND030012,Lina Pillai,17,F,BSC-CND,3,77.69,62.4,74.3,1,true,0,medium,single parent,calm,"football, debate",medium,,medium
+BSCCND040013,Vivek Gupta,20,F,BSC-CND,4,93.32,90.1,90.1,0,true,0,high,single parent,warning: late submissions,music,high,,low
+BSCCND080014,Naina Verma,18,F,BSC-CND,8,40.96,45.4,30.7,3,false,116,medium,stable,,sports,medium,,high
+BSCCND040015,Tara Trivedi,24,M,BSC-CND,4,48.65,53.5,25.5,2,false,50,medium,support: high,,"football, debate",low,,high
+BSCFS070001,Ali Desai,21,F,BSC-FS,7,81.68,57.7,59.0,0,true,0,medium,single parent,calm,robotics club,medium,,low
+BSCFS010002,Maya Reddy,19,M,BSC-FS,1,96.96,84.5,79.2,0,true,0,medium,,discipline: clean,music,medium,,low
+BSCFS080003,Anjali Shah,21,F,BSC-FS,8,58.53,37.2,30.0,3,false,63,low,single parent,discipline: clean,literary club,medium,,high
+BSCFS010004,Nikhil Joshi,18,M,BSC-FS,1,77.42,71.1,55.8,1,true,0,low,stable,discipline: clean,literary club,medium,,medium
+BSCFS010005,Ravi Sharma,24,F,BSC-FS,1,90.83,70.3,81.6,0,true,0,high,support: high,warning: late submissions,music,high,,low
+BSCFS030006,Asha Mehta,25,M,BSC-FS,3,91.92,76.3,77.8,0,true,0,high,,discipline: clean,music,medium,,low
+BSCFS020007,Aarav Trivedi,21,M,BSC-FS,2,85.45,69.0,52.3,0,false,12,medium,single parent,,"football, debate",low,,low
+BSCFS010008,Vikram Saxena,18,F,BSC-FS,1,96.42,87.3,82.5,0,true,0,high,joint family,discipline: clean,sports,medium,,low
+BSCFS010009,Pooja Reddy,22,M,BSC-FS,1,56.79,46.3,46.4,4,false,39,low,support: high,warning: late submissions,literary club,low,,high
+BSCFS030010,Vikram Kapoor,23,F,BSC-FS,3,82.41,52.0,68.6,0,true,0,medium,support: high,discipline: clean,sports,low,,medium
+BSCFS050011,Sara Patel,17,F,BSC-FS,5,78.11,55.7,63.8,0,true,0,medium,support: high,calm,music,medium,,low
+BSCFS030012,Megha Joshi,21,M,BSC-FS,3,84.11,53.9,59.7,0,true,0,low,joint family,,music,medium,,high
+BSCFS070013,Aarav Bose,25,F,BSC-FS,7,83.43,83.9,83.1,0,true,0,high,,warning: late submissions,,high,,low
+BSCFS030014,Lina Bose,25,M,BSC-FS,3,73.05,56.7,56.7,0,true,0,medium,,,robotics club,medium,,medium
+BSCFS050015,Arjun Reddy,20,M,BSC-FS,5,42,32,35,4,false,90,low,,"Repeated absences, disciplinary warning on file",,low,Urgent intervention — multiple failed courses.,high
+BSW040001,Aditya Saini,24,M,BSW,4,72.44,50.2,59.9,1,true,0,medium,support: high,,robotics club,medium,,medium
+BSW060002,Tara Kapoor,24,M,BSW,6,88.37,78.0,86.2,0,true,0,high,,calm,"football, debate",high,,low
+BSW030003,Vikram Saini,25,M,BSW,3,79.9,73.8,61.5,1,true,0,medium,,warning: late submissions,music,medium,,medium
+BSW030004,Lina Banerjee,21,M,BSW,3,84.2,51.8,74.8,0,true,0,medium,stable,calm,literary club,medium,,medium
+BSW040005,Aditya Khan,18,M,BSW,4,76.39,66.2,51.1,1,false,21,medium,stable,,robotics club,medium,,medium
+BSW060006,Lina Desai,24,M,BSW,6,83.9,64.7,62.5,0,true,0,low,stable,,literary club,medium,,low
+BSW080007,Simran Verma,22,F,BSW,8,79.38,58.7,52.4,1,true,0,medium,stable,,robotics club,low,,medium
+BSW030008,Aditya Mehta,20,M,BSW,3,75.96,60.7,61.6,0,true,0,low,stable,discipline: clean,music,medium,,low
+BSW010009,Asha Kapoor,23,F,BSW,1,73.7,68.8,70.2,0,true,0,medium,single parent,warning: late submissions,,low,,medium
+BSW060010,Simran Desai,25,F,BSW,6,81.0,64.7,58.7,0,true,0,medium,support: high,discipline: clean,,medium,,low
+BSW040011,Arjun Mukherjee,18,F,BSW,4,84.93,87.3,81.2,0,true,0,high,,warning: late submissions,music,high,,low
+BSW030012,Arjun Singh,25,M,BSW,3,72.53,57.9,61.3,0,true,0,low,,discipline: clean,sports,medium,,medium
+BSW070013,Anjali Bose,24,F,BSW,7,77.99,54.2,64.1,0,true,0,medium,single parent,warning: late submissions,sports,low,,medium
+BSW020014,Anjali Singh,25,F,BSW,2,74.82,63.6,74.8,1,true,0,medium,,,literary club,medium,,medium
+BSW040015,Rohit Khan,20,M,BSW,4,48,36,38,3,false,60,low,,"Disengaged, frequent class absences",,low,Schedule parent meeting and remedial plan.,high
+BBA010001,Yash Trivedi,21,M,BBA,1,76.27,70.4,61.0,0,true,0,low,joint family,discipline: clean,literary club,medium,,low
+BBA040002,Ravi Mukherjee,20,M,BBA,4,56.24,38.6,42.9,2,false,102,medium,joint family,discipline: clean,literary club,low,,high
+BBA010003,Tara Sinha,23,M,BBA,1,65.75,24.4,51.0,2,false,57,medium,,warning: late submissions,music,low,,high
+BBA070004,Nikhil Shah,23,F,BBA,7,81.41,72.0,52.3,1,true,0,medium,joint family,discipline: clean,,medium,,medium
+BBA060005,Ravi Kapoor,24,M,BBA,6,63.46,33.9,54.0,2,false,146,low,support: high,discipline: clean,music,low,,high
+BBA010006,Nikhil Sharma,22,F,BBA,1,92.02,90.9,70.4,0,true,0,medium,,,literary club,high,,low
+BBA050007,Imran Chopra,19,F,BBA,5,87.77,72.1,84.6,0,true,0,medium,joint family,,"football, debate",medium,,low
+BBA040008,Aditya Trivedi,17,M,BBA,4,72.39,55.7,67.0,0,true,0,medium,single parent,warning: late submissions,,low,,medium
+BBA020009,Pooja Patel,18,M,BBA,2,96.1,73.4,87.0,0,true,0,medium,support: high,discipline: clean,,high,,low
+BBA060010,Arjun Sinha,24,M,BBA,6,81.31,53.8,60.3,1,true,0,low,stable,discipline: clean,literary club,low,,medium
+BBA030011,Ananya Pandey,22,F,BBA,3,92.31,76.2,83.2,0,true,0,high,joint family,,sports,high,,low
+BBA050012,Naina Patel,23,M,BBA,5,84.11,69.8,56.0,0,true,0,medium,support: high,,robotics club,medium,,low
+BBA070013,Manoj Singh,23,M,BBA,7,82.29,69.1,73.9,0,true,0,low,stable,,"football, debate",low,,low
+BBA070014,Kavya Desai,23,F,BBA,7,90.59,85.4,76.1,0,true,0,high,single parent,,sports,medium,,low
+BBA040015,Karan Joshi,20,M,BBA,4,74,56,58,1,true,0,medium,,Irregular lab submissions,Part-time tutoring,medium,Needs academic coaching for backlog subject.,medium
+BBAAM070001,Riya Bose,21,M,BBA-AM,7,85.24,51.4,52.2,0,true,0,medium,single parent,,,medium,,medium
+BBAAM080002,Kiran Goyal,19,M,BBA-AM,8,54.74,47.4,46.6,2,false,115,low,stable,,robotics club,medium,,high
+BBAAM020003,Harish Pandey,25,F,BBA-AM,2,97.6,85.7,80.9,0,true,0,high,support: high,,robotics club,medium,,low
+BBAAM040004,Sneha Desai,18,M,BBA-AM,4,70.05,71.5,50.3,0,true,0,medium,stable,discipline: clean,literary club,low,,medium
+BBAAM060005,Kavya Saxena,20,F,BBA-AM,6,96.65,78.0,88.2,0,true,0,high,stable,,music,medium,,low
+BBAAM020006,Asha Singh,23,M,BBA-AM,2,65.71,47.1,34.3,1,false,161,low,joint family,discipline: clean,robotics club,low,,medium
+BBAAM060007,Lina Sharma,24,M,BBA-AM,6,78.88,69.3,54.9,1,true,0,low,single parent,discipline: clean,robotics club,low,,medium
+BBAAM010008,Riya Iyer,22,M,BBA-AM,1,76.77,68.5,57.7,0,true,0,medium,joint family,,,medium,,low
+BBAAM080009,Riya Pillai,22,F,BBA-AM,8,40.72,23.3,29.0,4,false,39,medium,single parent,,robotics club,medium,,high
+BBAAM060010,Karan Rao,23,F,BBA-AM,6,86.35,71.9,74.5,0,true,0,medium,,warning: late submissions,robotics club,medium,,low
+BBAAM080011,Naina Verma,20,F,BBA-AM,8,86.24,73.0,73.5,0,true,0,high,single parent,calm,music,high,,medium
+BBAAM010012,Vivek Reddy,23,F,BBA-AM,1,74.68,74.8,50.8,0,true,0,medium,stable,warning: late submissions,,medium,,medium
+BBAAM010013,Priya Mukherjee,18,M,BBA-AM,1,94.5,75.6,74.4,0,true,0,high,support: high,calm,,high,,medium
+BBAAM030014,Sahil Desai,24,M,BBA-AM,3,95.56,90.2,72.7,0,true,0,high,support: high,warning: late submissions,literary club,medium,,low
+BBAAM070015,Rohit Pawar,23,M,BBA-AM,7,85.44,74.7,76.2,0,true,0,medium,support: high,,literary club,medium,,low
+BCA080001,Anjali Bhat,25,F,BCA,8,86.48,73.4,74.4,0,true,0,medium,stable,warning: late submissions,literary club,high,,low
+BCA060002,Yash Reddy,22,F,BCA,6,73.24,58.0,55.5,0,true,0,medium,single parent,,music,medium,,medium
+BCA010003,Yash Kapoor,25,F,BCA,1,87.06,64.4,74.6,0,true,0,low,joint family,discipline: clean,,low,,low
+BCA040004,Riya Reddy,19,F,BCA,4,63.93,54.0,41.3,2,false,145,low,support: high,,,low,,medium
+BCA040005,Yash Trivedi,22,M,BCA,4,48.9,26.2,49.1,3,false,35,low,single parent,,sports,low,,high
+BCA070006,Ali Rao,22,M,BCA,7,76.06,58.1,74.4,1,true,0,medium,support: high,discipline: clean,robotics club,medium,,medium
+BCA050007,Rahul Rao,23,M,BCA,5,75.3,54.4,50.0,1,false,30,medium,support: high,calm,sports,medium,,medium
+BCA030008,Maya Nair,24,M,BCA,3,83.24,78.7,77.0,0,true,0,medium,stable,calm,music,high,,low
+BCA050009,Dev Banerjee,22,M,BCA,5,82.97,51.2,61.0,0,true,0,medium,,,"football, debate",medium,,medium
+BCA080010,Maya Rao,19,M,BCA,8,95.53,77.4,77.0,0,true,0,medium,,,literary club,medium,,medium
+BCA010011,Lina Trivedi,24,F,BCA,1,81.77,65.2,60.9,0,true,0,low,support: high,discipline: clean,robotics club,low,,low
+BCA020012,Aditya Patel,20,F,BCA,2,91.15,91.0,73.4,0,true,0,high,joint family,discipline: clean,"football, debate",medium,,low
+BCA030013,Priya Chopra,20,M,BCA,3,87.59,61.8,52.9,0,true,0,medium,support: high,warning: late submissions,music,medium,,low
+BCA030014,Karan Patel,22,F,BCA,3,74.74,61.6,55.7,0,true,0,low,joint family,discipline: clean,"football, debate",medium,,medium
+BCA050015,Rahul Mehta,20,M,BCA,5,88,74,76,0,true,0,high,,"Collaborative, good peer feedback","Robotics club, internship completed",high,On track for placement season.,low
+BHM010001,Simran Patel,25,M,BHM,1,64.19,34.7,41.1,4,false,166,low,,,sports,low,,high
+BHM080002,Aditya Patel,18,M,BHM,8,97.75,94.3,87.8,0,true,0,medium,,,literary club,medium,,low
+BHM020003,Rohit Mukherjee,22,F,BHM,2,90.9,83.8,88.8,0,true,0,high,support: high,warning: late submissions,,medium,,low
+BHM020004,Harish Mukherjee,18,M,BHM,2,71.82,57.2,63.4,0,true,0,medium,support: high,warning: late submissions,,medium,,medium
+BHM070005,Asha Sharma,19,F,BHM,7,96.23,78.3,75.2,0,true,0,high,joint family,calm,robotics club,high,,low
+BHM040006,Lina Pawar,18,F,BHM,4,97.59,81.1,88.2,0,true,0,high,stable,,"football, debate",high,,low
+BHM060007,Pooja Sharma,24,F,BHM,6,54.49,25.6,34.3,5,false,123,low,single parent,,music,medium,,high
+BHM080008,Imran Chopra,17,M,BHM,8,87.77,75.0,78.1,0,true,0,high,stable,,music,high,,low
+BHM080009,Ananya Mehta,19,F,BHM,8,76.3,54.1,72.4,1,false,26,low,stable,,sports,medium,,medium
+BHM040010,Sneha Pawar,20,M,BHM,4,74.84,60.2,50.5,1,true,0,low,stable,,robotics club,medium,,medium
+BHM070011,Yash Khan,21,F,BHM,7,65.25,36.1,31.5,3,false,153,medium,stable,discipline: clean,literary club,low,,high
+BHM050012,Manoj Chopra,25,F,BHM,5,83.73,71.6,91.7,0,true,0,high,joint family,,music,high,,low
+BHM070013,Rahul Mukherjee,17,M,BHM,7,82.25,68.0,66.4,0,true,0,medium,support: high,,robotics club,medium,,low
+BHM080014,Karan Shah,25,M,BHM,8,59.5,37.8,50.4,6,false,162,low,single parent,calm,literary club,low,,high
+BHM020015,Manoj Mukherjee,22,M,BHM,2,85.57,91.8,79.3,0,true,0,high,joint family,warning: late submissions,,high,,low
+BTTM040001,Maya Pillai,24,M,BTTM,4,85.61,59.5,57.5,0,true,0,low,support: high,warning: late submissions,music,low,,low
+BTTM080002,Isha Sinha,18,M,BTTM,8,97.79,77.8,71.3,0,true,0,high,single parent,discipline: clean,music,high,,low
+BTTM070003,Aarav Kulkarni,19,M,BTTM,7,77.26,74.1,59.6,0,true,0,medium,joint family,discipline: clean,music,medium,,medium
+BTTM060004,Simran Bose,20,M,BTTM,6,83.64,82.6,76.7,0,true,0,medium,,discipline: clean,sports,medium,,low
+BTTM060005,Arjun Singh,19,F,BTTM,6,53.69,46.3,29.9,4,false,24,low,stable,discipline: clean,sports,low,,high
+BTTM070006,Riya Trivedi,17,F,BTTM,7,46.19,38.7,26.5,1,false,47,medium,stable,warning: late submissions,"football, debate",low,,high
+BTTM030007,Sanjay Das,24,F,BTTM,3,92.97,70.2,79.3,0,true,0,medium,support: high,discipline: clean,literary club,high,,low
+BTTM020008,Aman Joshi,25,M,BTTM,2,94.56,82.4,83.4,0,true,0,high,,calm,music,high,,high
+BTTM060009,Priya Sinha,24,M,BTTM,6,82.2,72.2,72.4,0,true,0,high,support: high,,literary club,medium,,low
+BTTM080010,Ali Pillai,20,F,BTTM,8,47.47,36.2,28.0,2,false,30,low,stable,,,low,,low
+BTTM060011,Imran Mehta,22,M,BTTM,6,68.56,29.4,47.0,3,false,107,low,,calm,"football, debate",low,,high
+BTTM030012,Lina Desai,23,F,BTTM,3,93.14,71.5,90.7,0,true,0,medium,support: high,warning: late submissions,sports,medium,,low
+BTTM060013,Megha Verma,23,M,BTTM,6,85.53,72.0,68.2,0,true,0,low,stable,calm,literary club,medium,,low
+BTTM020014,Riya Sharma,22,M,BTTM,2,83.08,62.0,66.6,1,true,0,medium,single parent,discipline: clean,"football, debate",medium,,medium
+BTTM080015,Tara Patel,18,M,BTTM,8,87.29,77.0,81.2,0,true,0,high,,warning: late submissions,sports,high,,low
+MTTM030001,Vivek Banerjee,25,F,MTTM,3,89.96,86.3,72.3,0,true,0,high,stable,,sports,medium,,low
+MTTM020002,Rohit Pawar,26,F,MTTM,2,78.21,58.5,70.6,0,true,0,medium,,calm,literary club,medium,,low
+MTTM020003,Karan Verma,28,M,MTTM,2,87.68,85.8,87.6,0,true,0,high,single parent,warning: late submissions,music,high,,low
+MTTM030004,Karan Sinha,22,F,MTTM,3,73.38,73.3,59.8,0,true,0,medium,,,literary club,medium,,medium
+MTTM040005,Aditya Saini,28,M,MTTM,4,80.61,62.6,74.1,0,false,16,low,support: high,warning: late submissions,sports,medium,,low
+MTTM020006,Tara Das,27,M,MTTM,2,72.31,59.7,65.0,0,true,0,medium,,calm,robotics club,medium,,medium
+MTTM040007,Vivek Chopra,23,M,MTTM,4,85.96,62.8,71.1,1,true,0,medium,single parent,,music,medium,,medium
+MTTM030008,Ali Trivedi,27,F,MTTM,3,42.25,44.9,54.3,2,false,148,medium,stable,calm,sports,medium,,high
+MTTM030009,Riya Singh,27,F,MTTM,3,51.52,20.4,28.2,4,false,57,low,joint family,,robotics club,medium,,high
+MTTM010010,Vivek Pandey,28,M,MTTM,1,75.31,68.8,50.8,0,true,3,medium,single parent,discipline: clean,"football, debate",medium,,low
+MTTM010011,Manoj Singh,27,F,MTTM,1,50.4,53.5,54.3,3,false,161,low,support: high,warning: late submissions,music,low,,high
+MTTM020012,Kavya Khan,28,F,MTTM,2,87.36,57.4,54.4,1,true,0,low,,,"football, debate",medium,,medium
+MTTM020013,Riya Sinha,23,F,MTTM,2,74.59,58.3,67.7,0,true,0,medium,support: high,calm,"football, debate",medium,,medium
+MTTM030014,Priya Joshi,22,F,MTTM,3,87.23,63.0,69.7,0,false,13,medium,single parent,,literary club,medium,,low
+MTTM020015,Dev Nair,24,F,MTTM,2,57.78,36.6,41.8,6,false,22,low,single parent,discipline: clean,sports,medium,,high
+MCOM030001,Kavya Bhat,27,M,MCOM,3,84.33,52.8,56.4,1,true,0,medium,support: high,warning: late submissions,"football, debate",medium,,low
+MCOM010002,Isha Pandey,26,F,MCOM,1,43.36,53.5,41.1,1,false,180,low,,,music,low,,high
+MCOM010003,Vivek Patel,27,F,MCOM,1,72.77,61.5,58.3,0,true,0,low,support: high,,robotics club,medium,,medium
+MCOM040004,Yash Verma,27,F,MCOM,4,70.3,66.8,63.4,1,false,23,low,stable,calm,sports,medium,,medium
+MCOM010005,Sahil Banerjee,26,F,MCOM,1,96.83,79.5,88.1,0,true,0,medium,single parent,,literary club,high,,low
+MCOM020006,Vivek Pandey,27,F,MCOM,2,96.19,94.1,89.1,0,true,0,high,support: high,,,medium,,high
+MCOM020007,Sneha Reddy,24,M,MCOM,2,86.26,58.6,60.3,1,false,27,low,support: high,calm,music,low,,medium
+MCOM040008,Dev Iyer,28,M,MCOM,4,71.32,66.8,56.3,0,false,23,medium,single parent,,robotics club,medium,,medium
+MCOM040009,Sahil Sharma,24,M,MCOM,4,81.09,57.6,64.6,1,true,0,medium,joint family,,music,medium,,medium
+MCOM030010,Harish Banerjee,24,F,MCOM,3,93.73,91.9,80.2,0,true,0,high,stable,,literary club,high,,low
+MCOM020011,Ananya Saini,28,F,MCOM,2,44.29,45.7,43.8,6,false,39,low,support: high,discipline: clean,"football, debate",medium,,high
+MCOM030012,Ravi Iyer,22,M,MCOM,3,87.98,61.8,69.4,0,true,0,medium,,discipline: clean,sports,medium,,high
+MCOM020013,Sneha Mukherjee,27,M,MCOM,2,63.81,41.5,30.0,5,false,55,low,support: high,,literary club,low,,high
+MCOM020014,Divya Desai,22,F,MCOM,2,74.17,56.6,55.9,1,true,6,medium,,,,medium,,medium
+MCOM030015,Vikram Gupta,22,F,MCOM,3,46.43,39.1,30.2,6,false,116,low,joint family,warning: late submissions,music,medium,,high
+MAECO030001,Kavya Chopra,28,F,MA-ECO,3,78.68,65.1,62.5,0,true,0,low,joint family,,music,low,,low
+MAECO010002,Sahil Chopra,26,F,MA-ECO,1,77.46,58.3,52.8,1,true,0,low,,,music,medium,,low
+MAECO010003,Ananya Kulkarni,27,M,MA-ECO,1,42.7,25.8,52.7,5,false,123,medium,joint family,,music,medium,,high
+MAECO040004,Kavya Das,28,F,MA-ECO,4,95.29,85.0,87.5,0,true,0,medium,single parent,calm,"football, debate",high,,low
+MAECO040005,Karan Rao,23,M,MA-ECO,4,71.95,55.1,71.5,1,true,0,low,,discipline: clean,sports,medium,,low
+MAECO020006,Asha Pandey,25,M,MA-ECO,2,55.26,20.0,53.1,6,false,130,medium,stable,discipline: clean,"football, debate",low,,high
+MAECO040007,Divya Sinha,28,F,MA-ECO,4,84.48,72.7,70.9,1,true,0,low,single parent,,robotics club,medium,,medium
+MAECO020008,Isha Trivedi,24,F,MA-ECO,2,93.9,70.2,81.5,0,true,0,medium,joint family,warning: late submissions,robotics club,high,,low
+MAECO030009,Lina Banerjee,27,F,MA-ECO,3,90.58,84.1,83.5,0,true,0,high,support: high,warning: late submissions,music,medium,,low
+MAECO030010,Sahil Khan,24,F,MA-ECO,3,83.94,60.0,53.5,1,true,3,low,single parent,discipline: clean,"football, debate",medium,,medium
+MAECO040011,Manoj Reddy,23,M,MA-ECO,4,38.17,23.2,29.4,5,false,131,low,joint family,,sports,low,,medium
+MAECO030012,Sanjay Bose,26,F,MA-ECO,3,80.75,73.6,70.5,1,true,0,low,single parent,,sports,low,,medium
+MAECO020013,Imran Mehta,26,M,MA-ECO,2,76.48,66.4,74.4,0,true,0,medium,support: high,,sports,medium,,medium
+MAECO030014,Imran Mukherjee,26,M,MA-ECO,3,80.06,64.6,58.7,0,true,7,low,stable,calm,music,medium,,low
+MAECO010015,Megha Mehta,26,M,MA-ECO,1,76.12,52.9,62.8,0,false,28,medium,support: high,warning: late submissions,music,medium,,medium
+MAKAN040001,Rohan Bhat,27,F,MA-KAN,4,65.58,36.9,32.7,4,false,76,medium,joint family,warning: late submissions,robotics club,medium,,high
+MAKAN030002,Sneha Shah,27,M,MA-KAN,3,83.49,86.8,88.1,0,true,0,medium,joint family,calm,music,high,,low
+MAKAN020003,Dev Iyer,23,F,MA-KAN,2,73.59,68.4,71.8,0,true,0,low,stable,,,medium,,medium
+MAKAN010004,Harish Rao,26,F,MA-KAN,1,79.75,51.1,62.1,1,true,0,medium,support: high,calm,"football, debate",medium,,medium
+MAKAN040005,Sanjay Nair,22,M,MA-KAN,4,79.73,62.6,59.8,1,true,0,medium,joint family,,,low,,medium
+MAKAN010006,Divya Pawar,26,F,MA-KAN,1,91.8,76.5,82.1,0,true,0,medium,joint family,calm,music,high,,low
+MAKAN030007,Kiran Bhat,25,M,MA-KAN,3,77.21,61.3,64.3,1,true,0,low,single parent,discipline: clean,"football, debate",medium,,medium
+MAKAN020008,Harish Bose,23,M,MA-KAN,2,70.18,60.5,53.4,1,false,16,medium,joint family,discipline: clean,sports,medium,,low
+MAKAN020009,Vivek Banerjee,22,M,MA-KAN,2,53.25,42.0,38.5,3,false,86,low,joint family,calm,,low,,high
+MAKAN020010,Harish Sinha,28,F,MA-KAN,2,81.7,63.5,74.5,0,true,0,medium,,,"football, debate",medium,,low
+MAKAN020011,Priya Rao,27,F,MA-KAN,2,58.5,52.5,37.7,5,false,166,low,joint family,,robotics club,low,,high
+MAKAN030012,Lina Rao,27,F,MA-KAN,3,77.12,72.2,69.5,0,false,23,medium,single parent,,music,medium,,low
+MAKAN010013,Riya Sharma,27,F,MA-KAN,1,88.35,72.4,90.6,0,true,0,high,,discipline: clean,,high,,low
+MAKAN040014,Sahil Sharma,22,M,MA-KAN,4,85.96,77.1,83.8,0,true,0,medium,stable,calm,robotics club,high,,low
+MAKAN030015,Pooja Pillai,28,F,MA-KAN,3,72.43,73.7,63.5,1,true,0,medium,support: high,discipline: clean,robotics club,medium,,medium
+MAENG020001,Arjun Joshi,26,F,MA-ENG,2,52.14,32.8,32.8,3,false,22,low,joint family,warning: late submissions,sports,medium,,medium
+MAENG010002,Aditya Mehta,24,F,MA-ENG,1,84.36,64.9,69.9,1,true,0,medium,single parent,,literary club,medium,,medium
+MAENG040003,Anjali Bhat,28,F,MA-ENG,4,83.27,85.6,81.4,0,true,0,high,joint family,warning: late submissions,music,high,,low
+MAENG030004,Ali Sharma,23,M,MA-ENG,3,89.29,81.3,85.4,0,true,0,high,single parent,,sports,medium,,medium
+MAENG020005,Harish Joshi,24,F,MA-ENG,2,83.09,55.8,53.8,0,true,0,medium,,,robotics club,medium,,medium
+MAENG040006,Neha Sinha,24,M,MA-ENG,4,89.52,74.8,88.5,0,true,0,high,single parent,warning: late submissions,"football, debate",medium,,low
+MAENG040007,Rahul Goyal,23,M,MA-ENG,4,71.69,66.7,55.2,0,true,0,medium,support: high,discipline: clean,,low,,medium
+MAENG030008,Sahil Bhat,23,F,MA-ENG,3,65.64,27.6,28.4,6,false,131,low,joint family,discipline: clean,,low,,high
+MAENG010009,Rohit Kapoor,22,M,MA-ENG,1,82.43,67.2,53.9,0,true,0,medium,stable,,robotics club,low,,low
+MAENG040010,Aman Sharma,23,M,MA-ENG,4,97.71,89.7,86.6,0,true,0,high,,calm,literary club,high,,low
+MAENG040011,Kiran Pandey,25,M,MA-ENG,4,79.77,62.3,64.2,1,true,0,medium,support: high,discipline: clean,music,medium,,low
+MAENG030012,Rohit Reddy,24,F,MA-ENG,3,78.17,69.4,62.6,1,true,0,medium,joint family,,literary club,medium,,medium
+MAENG040013,Vikram Verma,23,F,MA-ENG,4,72.77,57.1,60.2,0,true,0,medium,single parent,,,medium,,medium
+MAENG010014,Asha Reddy,23,F,MA-ENG,1,92.27,79.7,80.8,0,true,0,high,support: high,,,medium,,low
+MAENG040015,Asha Bhat,27,M,MA-ENG,4,64.63,36.4,44.2,3,false,162,medium,stable,discipline: clean,robotics club,low,,high
+MSCCS030001,Sara Singh,28,M,MSC-CS,3,85.45,83.0,72.2,0,true,0,medium,single parent,discipline: clean,literary club,high,,low
+MSCCS040002,Sneha Banerjee,26,M,MSC-CS,4,83.79,64.4,66.9,1,true,0,low,,discipline: clean,robotics club,low,,medium
+MSCCS030003,Tara Mukherjee,24,F,MSC-CS,3,87.94,71.1,60.3,1,false,13,medium,support: high,,"football, debate",medium,,medium
+MSCCS040004,Aarav Bose,24,F,MSC-CS,4,77.15,68.2,74.6,1,true,0,low,single parent,,robotics club,medium,,high
+MSCCS010005,Pooja Mehta,22,M,MSC-CS,1,72.81,56.6,72.2,0,true,0,medium,support: high,,literary club,low,,high
+MSCCS040006,Pooja Mehta,23,F,MSC-CS,4,60.07,40.2,52.2,5,false,96,low,stable,,robotics club,medium,,high
+MSCCS010007,Sanjay Verma,25,F,MSC-CS,1,45.25,42.8,43.1,1,false,117,low,joint family,discipline: clean,sports,low,,high
+MSCCS010008,Ravi Bhat,23,M,MSC-CS,1,87.95,74.3,68.8,1,true,0,low,,,music,medium,,medium
+MSCCS010009,Aman Shah,26,F,MSC-CS,1,74.73,60.0,60.9,1,true,0,medium,,discipline: clean,music,medium,,medium
+MSCCS010010,Lina Pillai,23,M,MSC-CS,1,88.88,87.1,82.7,0,true,0,medium,joint family,calm,music,high,,low
+MSCCS030011,Rahul Desai,28,M,MSC-CS,3,87.6,90.5,87.7,0,true,0,medium,single parent,,literary club,high,,low
+MSCCS010012,Maya Trivedi,22,M,MSC-CS,1,91.94,73.7,88.3,0,true,0,high,stable,calm,"football, debate",medium,,low
+MSCCS020013,Ananya Mehta,23,F,MSC-CS,2,90.37,76.5,80.6,0,true,0,medium,support: high,discipline: clean,,high,,low
+MSCCS020014,Asha Pandey,24,M,MSC-CS,2,81.12,51.3,66.4,0,true,0,medium,stable,,robotics club,medium,,medium
+MSCCS040015,Kavya Nair,23,F,MSC-CS,4,82.77,72.6,62.1,1,true,0,low,support: high,,,low,,medium
+MSCOC040001,Riya Chopra,24,F,MSC-OC,4,72.83,58.7,58.8,1,true,0,medium,joint family,warning: late submissions,,medium,,medium
+MSCOC020002,Tara Mukherjee,23,F,MSC-OC,2,88.29,73.4,86.1,0,true,0,medium,single parent,warning: late submissions,robotics club,high,,low
+MSCOC020003,Sanjay Desai,25,F,MSC-OC,2,84.22,83.5,87.6,0,true,0,medium,single parent,warning: late submissions,music,high,,low
+MSCOC010004,Lina Bose,24,M,MSC-OC,1,87.07,53.0,57.9,0,true,0,medium,,calm,music,medium,,medium
+MSCOC020005,Rohan Reddy,23,M,MSC-OC,2,97.78,85.4,83.3,0,true,0,medium,stable,calm,,high,,low
+MSCOC040006,Lina Sinha,23,F,MSC-OC,4,76.73,71.3,62.3,0,true,0,low,stable,calm,"football, debate",low,,low
+MSCOC020007,Ali Pandey,28,M,MSC-OC,2,96.83,94.6,89.1,0,true,0,high,,,"football, debate",high,,low
+MSCOC040008,Sanjay Khan,26,M,MSC-OC,4,77.09,73.5,64.3,1,false,16,medium,,warning: late submissions,,low,,medium
+MSCOC040009,Imran Kulkarni,26,M,MSC-OC,4,39.26,33.6,48.0,1,false,68,low,joint family,calm,"football, debate",low,,high
+MSCOC010010,Yash Kulkarni,26,F,MSC-OC,1,86.27,61.6,66.2,0,false,23,low,support: high,,"football, debate",low,,low
+MSCOC020011,Sahil Trivedi,22,F,MSC-OC,2,86.14,72.4,72.1,0,true,0,medium,stable,,,medium,,low
+MSCOC040012,Pooja Pandey,22,F,MSC-OC,4,87.55,65.3,54.0,1,true,0,low,single parent,,music,medium,,medium
+MSCOC030013,Aman Sharma,25,M,MSC-OC,3,94.3,81.2,83.8,0,true,0,medium,support: high,calm,,medium,,low
+MSCOC010014,Naina Sharma,26,F,MSC-OC,1,78.88,55.4,66.5,0,true,0,low,single parent,discipline: clean,robotics club,medium,,low
+MSCOC020015,Priya Verma,22,M,MSC-OC,2,92.45,70.9,88.8,0,true,0,high,stable,warning: late submissions,music,high,,low
+MSCIC020001,Vikram Sinha,26,F,MSC-IC,2,61.98,32.6,26.1,3,false,102,low,,discipline: clean,,low,,high
+MSCIC030002,Pooja Goyal,22,M,MSC-IC,3,88.62,75.2,74.6,0,true,0,medium,support: high,,"football, debate",medium,,low
+MSCIC030003,Harish Shah,25,F,MSC-IC,3,91.2,85.6,90.4,0,true,0,high,single parent,discipline: clean,music,high,,low
+MSCIC010004,Rahul Kapoor,22,M,MSC-IC,1,92.01,72.9,88.7,0,true,0,high,joint family,discipline: clean,literary club,high,,low
+MSCIC030005,Maya Kapoor,27,M,MSC-IC,3,83.09,77.5,82.1,0,true,0,medium,,discipline: clean,sports,medium,,low
+MSCIC030006,Nikhil Kulkarni,23,M,MSC-IC,3,67.51,36.8,39.2,1,false,54,low,support: high,calm,"football, debate",low,,high
+MSCIC010007,Maya Bhat,27,F,MSC-IC,1,47.58,45.4,34.5,5,false,24,low,joint family,,music,medium,,high
+MSCIC040008,Rahul Das,24,M,MSC-IC,4,85.16,64.3,59.7,1,true,0,medium,,,"football, debate",medium,,medium
+MSCIC030009,Megha Gupta,25,F,MSC-IC,3,86.84,72.8,87.3,0,true,0,medium,stable,warning: late submissions,sports,medium,,low
+MSCIC030010,Rahul Nair,25,F,MSC-IC,3,72.58,71.8,70.6,1,true,0,low,,discipline: clean,,medium,,low
+MSCIC040011,Isha Kapoor,24,M,MSC-IC,4,41.3,46.8,47.4,1,false,167,low,single parent,,robotics club,medium,,high
+MSCIC040012,Anjali Joshi,28,F,MSC-IC,4,74.91,53.9,52.9,1,false,17,low,support: high,calm,robotics club,low,,medium
+MSCIC020013,Ananya Shah,26,F,MSC-IC,2,86.98,92.3,81.9,0,true,0,medium,stable,,"football, debate",medium,,high
+MSCIC040014,Pooja Iyer,23,F,MSC-IC,4,75.62,70.4,67.8,1,false,25,low,stable,warning: late submissions,,medium,,medium
+MSCIC020015,Maya Bhat,25,F,MSC-IC,2,42.6,51.3,32.7,3,false,120,low,joint family,warning: late submissions,"football, debate",medium,,medium
+MSCPC040001,Karan Kapoor,24,M,MSC-PC,4,73.07,69.2,65.1,0,true,0,medium,support: high,,robotics club,medium,,medium
+MSCPC040002,Isha Saini,26,F,MSC-PC,4,85.9,74.0,80.6,0,true,0,medium,support: high,warning: late submissions,"football, debate",high,,low
+MSCPC020003,Yash Pawar,26,F,MSC-PC,2,92.71,88.5,85.7,0,true,0,high,,calm,sports,medium,,high
+MSCPC040004,Harish Chopra,24,M,MSC-PC,4,83.74,90.4,87.0,0,true,0,high,stable,,music,high,,low
+MSCPC020005,Simran Mukherjee,28,M,MSC-PC,2,78.15,57.3,65.4,0,true,0,medium,joint family,warning: late submissions,literary club,medium,,low
+MSCPC010006,Vivek Saini,22,F,MSC-PC,1,79.19,71.2,71.3,0,false,11,low,joint family,,robotics club,low,,low
+MSCPC040007,Aman Banerjee,25,M,MSC-PC,4,82.81,60.2,60.9,0,true,0,medium,,calm,"football, debate",low,,low
+MSCPC010008,Priya Iyer,23,M,MSC-PC,1,82.25,88.0,80.7,0,true,0,high,,warning: late submissions,literary club,medium,,low
+MSCPC020009,Pooja Shah,26,F,MSC-PC,2,77.63,70.5,59.6,0,true,0,medium,single parent,discipline: clean,robotics club,low,,low
+MSCPC010010,Sanjay Pandey,22,F,MSC-PC,1,82.69,52.8,62.0,1,true,0,medium,joint family,warning: late submissions,sports,medium,,low
+MSCPC010011,Kavya Kulkarni,25,M,MSC-PC,1,79.71,64.5,65.3,0,true,0,medium,,discipline: clean,literary club,medium,,low
+MSCPC030012,Divya Mukherjee,28,F,MSC-PC,3,82.57,93.1,86.5,0,true,0,high,single parent,discipline: clean,,medium,,low
+MSCPC010013,Arjun Pawar,28,F,MSC-PC,1,83.32,82.6,88.7,0,true,0,high,joint family,calm,robotics club,high,,medium
+MSCPC020014,Maya Patel,26,M,MSC-PC,2,76.66,54.4,69.6,0,true,0,medium,single parent,discipline: clean,music,low,,medium
+MSCPC040015,Manoj Sinha,28,F,MSC-PC,4,89.04,85.9,74.6,0,true,0,high,stable,,music,medium,,low
+MSCBOT040001,Sanjay Pandey,24,F,MSC-BOT,4,83.54,63.3,59.5,1,true,0,medium,,,robotics club,low,,medium
+MSCBOT030002,Kiran Kapoor,25,F,MSC-BOT,3,59.85,21.4,52.5,6,false,110,low,joint family,calm,,medium,,high
+MSCBOT020003,Aarav Saini,25,F,MSC-BOT,2,80.6,54.9,58.4,1,true,0,medium,stable,,"football, debate",low,,low
+MSCBOT020004,Naina Chopra,24,F,MSC-BOT,2,74.53,50.9,65.5,0,false,30,medium,stable,,,low,,medium
+MSCBOT020005,Ali Das,25,M,MSC-BOT,2,60.26,28.9,39.0,1,false,136,low,single parent,,robotics club,low,,high
+MSCBOT030006,Imran Rao,25,F,MSC-BOT,3,46.26,48.4,30.3,1,false,145,low,,,music,medium,,high
+MSCBOT010007,Harish Iyer,23,F,MSC-BOT,1,60.89,23.6,27.2,5,false,84,low,stable,,literary club,low,,high
+MSCBOT030008,Vikram Banerjee,27,M,MSC-BOT,3,56.39,38.0,53.2,4,false,142,low,single parent,,"football, debate",low,,high
+MSCBOT030009,Anjali Pandey,22,F,MSC-BOT,3,86.85,71.4,91.9,0,true,0,medium,joint family,,"football, debate",high,,low
+MSCBOT020010,Dev Shah,27,F,MSC-BOT,2,82.63,79.6,74.2,0,true,0,high,stable,warning: late submissions,literary club,medium,,low
+MSCBOT010011,Megha Sharma,23,M,MSC-BOT,1,80.67,62.2,51.6,1,true,0,medium,stable,calm,,medium,,medium
+MSCBOT010012,Yash Reddy,25,M,MSC-BOT,1,92.46,83.1,90.7,0,true,0,medium,stable,,literary club,high,,low
+MSCBOT010013,Nikhil Pawar,25,M,MSC-BOT,1,92.38,70.4,83.9,0,true,0,high,single parent,discipline: clean,,medium,,low
+MSCBOT040014,Ali Khan,22,M,MSC-BOT,4,81.08,51.6,55.1,0,false,25,medium,support: high,discipline: clean,music,medium,,medium
+MSCBOT010015,Sahil Nair,28,M,MSC-BOT,1,76.04,53.0,53.5,0,true,5,medium,single parent,discipline: clean,,medium,,medium
+MSW020001,Yash Kulkarni,28,F,MSW,2,89.79,70.2,73.9,0,true,0,medium,joint family,warning: late submissions,literary club,high,,low
+MSW020002,Rahul Pawar,27,F,MSW,2,92.24,83.1,79.1,0,true,0,medium,single parent,warning: late submissions,sports,high,,low
+MSW040003,Asha Pandey,24,F,MSW,4,85.77,72.9,81.7,0,true,0,medium,support: high,discipline: clean,music,high,,low
+MSW010004,Sneha Rao,24,M,MSW,1,94.75,87.1,91.3,0,true,0,high,stable,,literary club,high,,low
+MSW030005,Sneha Rao,25,M,MSW,3,94.88,89.0,71.0,0,true,0,medium,stable,warning: late submissions,sports,high,,low
+MSW040006,Karan Reddy,27,M,MSW,4,75.87,55.0,66.9,0,true,0,medium,,,"football, debate",low,,low
+MSW040007,Asha Iyer,25,M,MSW,4,88.97,75.4,83.4,0,true,0,medium,,,literary club,high,,low
+MSW030008,Lina Rao,23,F,MSW,3,93.08,71.5,73.0,0,true,0,high,joint family,,robotics club,high,,low
+MSW020009,Kiran Sharma,26,M,MSW,2,95.71,82.2,91.9,0,true,0,high,,,music,high,,low
+MSW020010,Sanjay Mehta,26,M,MSW,2,66.74,34.6,26.3,4,false,149,low,,,"football, debate",low,,high
+MSW010011,Simran Rao,26,M,MSW,1,77.32,55.5,59.0,0,true,0,low,,discipline: clean,literary club,medium,,low
+MSW020012,Sara Kulkarni,25,F,MSW,2,50.97,47.6,36.1,4,false,20,medium,joint family,discipline: clean,,low,,high
+MSW020013,Neha Mehta,27,F,MSW,2,71.46,72.0,68.4,0,false,16,medium,joint family,warning: late submissions,sports,low,,high
+MSW010014,Yash Pandey,27,M,MSW,1,83.92,53.5,58.4,1,true,3,medium,single parent,,robotics club,medium,,medium
+MSW040015,Anjali Saxena,26,F,MSW,4,83.01,78.6,80.7,0,true,0,medium,support: high,calm,"football, debate",high,,low
+MBA040001,Sahil Das,23,M,MBA,4,88.25,74.5,91.1,0,true,0,medium,stable,,"football, debate",medium,,low
+MBA010002,Megha Goyal,26,M,MBA,1,97.51,83.5,72.9,0,true,0,high,stable,calm,music,high,,medium
+MBA030003,Simran Mukherjee,25,F,MBA,3,84.16,62.2,66.6,1,false,26,medium,single parent,calm,music,medium,,medium
+MBA030004,Anjali Bose,25,M,MBA,3,62.63,21.7,35.6,4,false,62,medium,single parent,,literary club,low,,high
+MBA020005,Isha Banerjee,23,M,MBA,2,97.9,84.4,79.7,0,true,0,high,stable,calm,robotics club,medium,,low
+MBA020006,Aarav Goyal,26,F,MBA,2,72.19,50.6,73.3,0,true,0,medium,support: high,discipline: clean,robotics club,low,,medium
+MBA030007,Neha Goyal,25,F,MBA,3,62.13,54.8,45.0,5,false,133,low,,,music,medium,,high
+MBA010008,Sanjay Reddy,24,M,MBA,1,85.14,61.1,52.3,0,false,19,low,joint family,,,medium,,high
+MBA040009,Pooja Trivedi,26,M,MBA,4,87.08,85.1,90.8,0,true,0,high,,calm,"football, debate",high,,low
+MBA030010,Lina Bhat,24,F,MBA,3,89.13,84.0,74.7,0,true,0,high,,calm,music,high,,low
+MBA040011,Maya Patel,27,F,MBA,4,91.39,72.2,74.6,0,true,0,high,support: high,warning: late submissions,,high,,high
+MBA040012,Simran Saini,23,F,MBA,4,83.59,53.4,54.7,0,false,9,medium,support: high,calm,"football, debate",low,,medium
+MBA010013,Ravi Pillai,23,F,MBA,1,72.77,57.5,66.0,1,true,0,medium,single parent,warning: late submissions,literary club,medium,,medium
+MBA030014,Divya Trivedi,22,M,MBA,3,87.47,65.0,59.0,0,true,0,medium,stable,calm,sports,medium,,low
+MBA030015,Sahil Verma,28,M,MBA,3,82.94,78.0,89.3,0,true,0,medium,joint family,calm,"football, debate",high,,low
+MCA030001,Naina Sinha,22,F,MCA,3,92.22,71.9,74.3,0,true,0,medium,single parent,discipline: clean,robotics club,medium,,low
+MCA030002,Harish Pillai,24,F,MCA,3,91.28,90.6,70.3,0,true,0,high,joint family,,,high,,low
+MCA020003,Lina Nair,28,M,MCA,2,80.06,67.2,73.8,1,false,22,medium,stable,,music,low,,medium
+MCA030004,Simran Sharma,24,F,MCA,3,72.5,61.0,74.7,1,true,0,low,stable,,music,medium,,medium
+MCA020005,Ananya Sinha,27,M,MCA,2,85.36,94.5,79.3,0,true,0,medium,,warning: late submissions,,medium,,low
+MCA010006,Isha Mukherjee,28,M,MCA,1,86.35,51.1,57.5,0,true,0,low,single parent,,literary club,medium,,medium
+MCA030007,Pooja Patel,23,M,MCA,3,49.13,25.6,40.0,6,false,176,low,stable,discipline: clean,,medium,,high
+MCA020008,Asha Trivedi,24,M,MCA,2,55.19,54.1,28.0,2,false,149,medium,support: high,,"football, debate",low,,high
+MCA030009,Sanjay Iyer,23,M,MCA,3,51.57,38.0,37.2,3,false,51,low,,calm,literary club,low,,high
+MCA030010,Lina Bose,22,M,MCA,3,76.93,61.4,68.4,1,true,0,low,,,,medium,,medium
+MCA030011,Priya Khan,27,F,MCA,3,97.98,82.3,72.3,0,true,0,high,single parent,warning: late submissions,"football, debate",high,,low
+MCA020012,Rohan Saini,27,M,MCA,2,97.6,78.5,83.1,0,true,0,high,,warning: late submissions,robotics club,medium,,low
+MCA040013,Neha Das,28,F,MCA,4,82.0,73.8,74.7,1,true,0,medium,,warning: late submissions,music,low,,medium
+MCA010014,Pooja Bose,22,M,MCA,1,84.95,62.5,50.7,0,false,12,medium,support: high,discipline: clean,,medium,,low
+MCA040015,Anjali Sharma,28,F,MCA,4,92.59,82.3,75.8,0,true,0,high,stable,warning: late submissions,,high,,low

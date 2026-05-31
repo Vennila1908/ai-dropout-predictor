@@ -12,7 +12,12 @@ import random
 from pathlib import Path
 
 
-DEPARTMENTS = ["BSCS", "BCA", "BSCP", "BSCM", "BSCC", "BBA", "BCOM", "MCOM", "BCOMH", "BCOMCA"]
+DEPARTMENTS = [
+    "BA-HEP", "BA-CPJ", "BCOM", "BCOM-LSCM", "BSC-EMCS", "BSC-CBLS", "BSC-PCMATH",
+    "BSC-PMCS", "BSC-PCM", "BSC-CND", "BSC-FS", "BSW", "BBA", "BBA-AM", "BCA",
+    "BHM", "BTTM", "MTTM", "MCOM", "MA-ECO", "MA-KAN", "MA-ENG", "MSC-CS", "MSC-OC",
+    "MSC-IC", "MSC-PC", "MSC-BOT", "MSW", "MBA", "MCA",
+]
 GENDERS = ["M", "F"]
 
 FIRST = [
@@ -79,8 +84,9 @@ def make_row(rng: random.Random, idx: int) -> dict:
     family_bg = rng.choice(["stable", "single parent", "joint family", "", "support: high"])
     counselor = ""
 
+    prefix = dept.replace("-", "")
     name = f"{rng.choice(FIRST)} {rng.choice(LAST)}"
-    roll_no = f"{dept}{semester:02d}{idx:04d}"
+    roll_no = f"{prefix}{semester:02d}{idx:04d}"
 
     row = {
         "roll_no": roll_no,

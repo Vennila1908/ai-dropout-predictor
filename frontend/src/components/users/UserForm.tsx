@@ -184,7 +184,7 @@ export function UserForm({
         <Input
           label="Roll number"
           autoComplete="off"
-          placeholder="e.g. BSCS040001"
+          placeholder="e.g. BCA050001"
           hint="Enter an existing student roll number to link this login, or type a new roll number."
           error={rollLookupError ?? errors.roll_no?.message}
           disabled={loading}
